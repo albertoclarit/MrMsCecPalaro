@@ -6,58 +6,56 @@ import {Well,
         ControlLabel,
         HelpBlock,
         Button,
-        ButtonGroup} from 'react-bootstrap';
-import './styles/bootstrap.css';
+        ButtonGroup,
+        Nav,
+        NavItem
+} from 'react-bootstrap';
 
 export default class App extends React.Component {
     //eslint-disable-next-line
    constructor(props){
        super(props);
    }
-    goToHome(){
-        this.props.history.push("/home");
-    }
-   
+
+
+    static contextTypes = {
+        router: React.PropTypes.object
+    };
+
+
+
+    handleSelect= (selectedKey)=>{
+
+          switch (selectedKey) {
+              case 1:
+                  this.context.router.push("/");
+                  break;
+              case 2:
+                  this.context.router.push("/judges")
+                  break;
+              case 3:
+                  this.context.router.push("/admin")
+                  break;
+              default:
+                  return;
+
+          }
+
+
+      };
+
+
   render(){
       
-        const wellStyle={
-          width: 400,
-          height: 500,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          marginTop: 50
-        };
+
     return (
         <div className="container">
-        <Well style={wellStyle}>
-          <legend>Welcome to GeminiTech</legend>
-          <form>
-              <FormGroup>
-                    <ControlLabel> Enter Username </ControlLabel>
-                          <FormControl
-                              type='text'
-                              placeholder='Enter Your Username'/>
-                    <FormControl.Feedback/>
-                        <HelpBlock> </HelpBlock>
-              </FormGroup>
-              <FormGroup>
-                        <ControlLabel>Enter Password </ControlLabel>
-                    <FormControl
-                        type='password'
-                        placeholder='Enter Your Password'/>
-                <FormControl.Feedback/>
-                    <HelpBlock> </HelpBlock>
-                </FormGroup>
-                <div className="button">
-                    <ButtonGroup>
-                        <Button  bsStyle="default" type="submit" onClick={this.goToHome.bind(this)}>
-                        Login</Button>
-                        <Button  bsStyle="primary" type="button">
-                        Register</Button>
-                    </ButtonGroup>    
-                </div>
-            </form>
-         </Well>
+            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+                <NavItem eventKey={1}>Home</NavItem>
+                <NavItem eventKey={2}>Judges</NavItem>
+                <NavItem eventKey={3}>Admin</NavItem>
+            </Nav>
+            {this.props.children}
          </div>
     );
   }
