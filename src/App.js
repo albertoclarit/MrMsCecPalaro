@@ -31,7 +31,7 @@ export default class App extends React.Component {
                   this.context.router.push("/");
                   break;
               case 2:
-                  this.context.router.push("/judges")
+                  this.context.router.push("/logIn")
                   break;
               case 3:
                   this.context.router.push("/admin")
@@ -52,8 +52,7 @@ export default class App extends React.Component {
         <div className="container">
             <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
                 <NavItem eventKey={1}>Home</NavItem>
-                <NavItem eventKey={2}>Judges</NavItem>
-                <NavItem eventKey={3}>Admin</NavItem>
+                <NavItem eventKey={2}>Log-In</NavItem>
             </Nav>
             {this.props.children}
          </div>
