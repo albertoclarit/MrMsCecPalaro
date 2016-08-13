@@ -15,6 +15,7 @@ export default class Judges extends React.Component {
 
     constructor(props){
         super(props);
+        
     }
 
 
@@ -65,6 +66,7 @@ export default class Judges extends React.Component {
                     </form>
                 </div>
             </Well>
+
         );
     }
 }

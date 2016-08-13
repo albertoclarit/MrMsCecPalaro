@@ -38,7 +38,7 @@ state={
                   break;
               case 3:
                   this.context.router.push("/admin")
-                  break;
+                  break;   
               default:
                   return;
 
