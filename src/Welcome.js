@@ -13,9 +13,21 @@ export default class Welcome extends React.Component {
 
 
     render(){
+        
+          const wellStyle={
+            width: 400,
+            height: 500,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: 80,
+        }
+          const fontSize={
+            fontSize: 50,  
+          }
+        
         return (
-            <Well>
-                <h1>Welcome Page </h1>
+            <Well style={wellStyle} >
+                <center style={fontSize}>Welcome</center> 
             </Well>
         );
     }

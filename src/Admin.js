@@ -15,7 +15,7 @@ export default class Admin extends React.Component {
     render(){
         return (
             <Well>
-                <h1>Admin Page </h1>
+                <h1></h1>
             </Well>
         );
     }

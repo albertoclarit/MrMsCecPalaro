@@ -18,6 +18,9 @@ export default class App extends React.Component {
    }
 
 
+state={
+    selectedKey:1
+};
     static contextTypes = {
         router: React.PropTypes.object
     };
@@ -25,7 +28,7 @@ export default class App extends React.Component {
 
 
     handleSelect= (selectedKey)=>{
-
+          this.setState({selectedKey});
           switch (selectedKey) {
               case 1:
                   this.context.router.push("/");
@@ -50,7 +53,7 @@ export default class App extends React.Component {
 
     return (
         <div className="container">
-            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+            <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                 <NavItem eventKey={1}>Home</NavItem>
                 <NavItem eventKey={2}>Judges</NavItem>
                 <NavItem eventKey={3}>Admin</NavItem>
