@@ -51,6 +51,9 @@ export default class Admin extends React.Component {
         
         
         return (
+            <Well>
+                <h1></h1>
+            </Well>
            <div className="container">
             <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
                 <NavItem eventKey={1}>Home</NavItem>
