@@ -51,21 +51,22 @@ export default class Admin extends React.Component {
         
         
         return (
+
             <Well>
-                <h1></h1>
+                <div className="container">
+                    <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+                        <NavItem eventKey={1}>Home</NavItem>
+                        <NavItem eventKey={2}>Best in Talent</NavItem>
+                        <NavItem eventKey={3}>Best in Gown</NavItem>
+                        <NavItem eventKey={4}>Best is Sportswear</NavItem>
+                        <NavItem eventKey={5}>Wit and Intelligent</NavItem>
+                        <NavItem eventKey={6}>Score Board</NavItem>
+                        <NavItem eventKey={7}>Log out</NavItem>
+                    </Nav>
+                    {this.props.children}
+                </div>
             </Well>
-           <div className="container">
-            <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
-                <NavItem eventKey={1}>Home</NavItem>
-                <NavItem eventKey={2}>Best in Talent</NavItem>
-                <NavItem eventKey={3}>Best in Gown</NavItem>
-                <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                <NavItem eventKey={6}>Score Board</NavItem>
-                <NavItem eventKey={7}>Log out</NavItem>
-            </Nav>
-            {this.props.children}
-         </div>
+
         );
     }
 }
