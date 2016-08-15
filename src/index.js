@@ -15,9 +15,13 @@ import Gown from './Gown'
 import Sportswear from './Sportswear'
 import Witandint from './Witandint'
 import Scoreboard from './Scoreboard'
+import JudgeList from './components/judges/JudgeList'
 
 import './App.css'
 import './styles/bootstrap.css'
+
+
+
 
 const Components=(
     <Router history={hashHistory}>
@@ -28,6 +32,7 @@ const Components=(
             <Route path="/sportswear" component={Sportswear}/>
             <Route path="/witandint" component={Witandint}/>
             <Route path="/scoreboard" component={Scoreboard}/>
+            <Route path="/judgeslist" component={JudgeList}/>
             <IndexRoute component={Welcome}/>
         </Route>    
         <Route path="/" component={App}>

@@ -1,0 +1,46 @@
+
+
+
+
+.info .modal-content .modal-header{
+ background-color: #5bc0de !important;
+   
+}
+
+.info .modal-content .modal-header .modal-title{
+    color: ghostwhite  !important;
+   
+}
+
+
+.warning .modal-content .modal-header{
+    background-color: #f0ad4e !important;
+   
+}
+
+.warning .modal-content .modal-header .modal-title{
+    color: ghostwhite  !important;
+   
+}
+
+
+
+.danger .modal-content .modal-header{
+    background-color: #d9534f !important;
+   
+}
+
+.danger .modal-content .modal-header .modal-title{
+    color: ghostwhite  !important;
+   
+}
+
+
+.success .modal-content .modal-header{
+    background-color: #5cb85c !important;
+}
+
+.success .modal-content .modal-header .modal-title{
+    color: ghostwhite  !important;
+}
+

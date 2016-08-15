@@ -10,7 +10,11 @@ export default class Admin extends React.Component {
     constructor(props){
         super(props);
     }
-    
+
+
+    state = {
+        selectedKey:0
+    };
     
     static contextTypes = {
         router: React.PropTypes.object
@@ -38,7 +42,10 @@ export default class Admin extends React.Component {
                   break;
               case 6:
                   this.context.router.push("/scoreboard")
-                  break;            
+                  break;
+              case 8:
+                  this.context.router.push("/judgeslist")
+                  break;
               default:
                   return;
 
@@ -54,7 +61,7 @@ export default class Admin extends React.Component {
 
             <Well>
                 <div className="container">
-                    <Nav bsStyle="pills" activeKey={1} onSelect={this.handleSelect}>
+                    <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                         <NavItem eventKey={1}>Home</NavItem>
                         <NavItem eventKey={2}>Best in Talent</NavItem>
                         <NavItem eventKey={3}>Best in Gown</NavItem>
@@ -62,6 +69,7 @@ export default class Admin extends React.Component {
                         <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                         <NavItem eventKey={6}>Score Board</NavItem>
                         <NavItem eventKey={7}>Log out</NavItem>
+                        <NavItem eventKey={8}>Judges List</NavItem>
                     </Nav>
                     {this.props.children}
                 </div>
