@@ -149,6 +149,9 @@ function runDevServer(port) {
     quiet: true,
     watchOptions: {
       ignored: /node_modules/
+    },
+    proxy: {
+      "/api*":"http://localhost:8080"
     }
   }).listen(port, (err, result) => {
     if (err) {
