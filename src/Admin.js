@@ -3,9 +3,14 @@
  */
 import React from 'react';
 import {Well,Nav,NavItem} from 'react-bootstrap';
-
-
-export default class Admin extends React.Component {
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as dialogActions  from './actions/dialogactions';
+import AlertModal from './dialogs/alertmodal/AlertModal';
+import ConfirmDialog from './dialogs/confirmdialog/ConfirmDialog';
+import PromptDialog from './dialogs/promptdialog/PromptDialog';
+import { routerActions } from 'react-router-redux'
+class Admin extends React.Component {
 
     constructor(props){
         super(props);
@@ -16,9 +21,7 @@ export default class Admin extends React.Component {
         selectedKey:0
     };
     
-    static contextTypes = {
-        router: React.PropTypes.object
-    };
+
 
 
 
@@ -26,25 +29,25 @@ export default class Admin extends React.Component {
 
           switch (selectedKey) {
               case 1:
-                  this.context.router.push("/")
+                  this.props.routerActions.push("/")
                   break;
               case 2:
-                  this.context.router.push("/talent")
+                  this.props.routerActions.push("/talent")
                   break;
               case 3:
-                  this.context.router.push("/gown")
+                  this.props.routerActions.push("/gown")
                   break;
               case 4:
-                  this.context.router.push("/sportswear")
+                  this.props.routerActions.push("/sportswear")
                   break;   
               case 5:
-                  this.context.router.push("/witandint")
+                  this.props.routerActions.push("/witandint")
                   break;
               case 6:
-                  this.context.router.push("/scoreboard")
+                  this.props.routerActions.push("/scoreboard")
                   break;
               case 8:
-                  this.context.router.push("/judgeslist")
+                  this.props.routerActions.push("/judgeslist")
                   break;
               default:
                   return;
@@ -72,9 +75,33 @@ export default class Admin extends React.Component {
                         <NavItem eventKey={8}>Judges List</NavItem>
                     </Nav>
                     {this.props.children}
+                    <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>
+                    <ConfirmDialog {...this.props.confirm} dialogActions={this.props.dialogActions}/>
+                    <PromptDialog {...this.props.prompt} dialogActions={this.props.dialogActions}/>
                 </div>
+
             </Well>
 
         );
     }
 }
+
+
+function mapStateToProps(state) {
+
+    return {
+        alert:state.dialogs.alert,
+        confirm:state.dialogs.confirm,
+        prompt:state.dialogs.prompt
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dialogActions: bindActionCreators(dialogActions, dispatch),
+        routerActions: bindActionCreators(routerActions, dispatch),
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Admin);

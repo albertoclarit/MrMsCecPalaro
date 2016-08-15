@@ -4,7 +4,9 @@ import {hashHistory,
         Route,
         IndexRoute,
         Router} from 'react-router'
-    
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore from './store/configureStore';
 
 import App from './App'
 import Welcome from './Welcome'
@@ -21,28 +23,32 @@ import './App.css'
 import './styles/bootstrap.css'
 
 
-
+const store = configureStore();
+const history = syncHistoryWithStore(hashHistory, store);
 
 const Components=(
-    <Router history={hashHistory}>
-    
-      <Route path="/admin" component={Admin}>
-            <Route path="/talent" component={Talent}/>
-            <Route path="/gown" component={Gown}/>
-            <Route path="/sportswear" component={Sportswear}/>
-            <Route path="/witandint" component={Witandint}/>
-            <Route path="/scoreboard" component={Scoreboard}/>
-            <Route path="/judgeslist" component={JudgeList}/>
-            <IndexRoute component={Welcome}/>
-        </Route>    
-        <Route path="/" component={App}>
+    <Provider store={store}>
+        <Router history={history}>
+
+            <Route path="/admin" component={Admin}>
+                <Route path="/talent" component={Talent}/>
+                <Route path="/gown" component={Gown}/>
+                <Route path="/sportswear" component={Sportswear}/>
+                <Route path="/witandint" component={Witandint}/>
+                <Route path="/scoreboard" component={Scoreboard}/>
+                <Route path="/judgeslist" component={JudgeList}/>
+                <IndexRoute component={Welcome}/>
+            </Route>
+            <Route path="/" component={App}>
                 <Route path="logIn" component={LogIn}/>
                 <Route path="admin" component={Admin}/>
-                <IndexRoute component={Welcome}/>  
-        </Route>    
-       
-        
-    </Router>
+                <IndexRoute component={Welcome}/>
+            </Route>
+
+
+        </Router>
+    </Provider>
+
 );
 
 
