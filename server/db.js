@@ -7,7 +7,7 @@ var Sequelize = require('sequelize');
 module.exports = function (sequelize) {
 
     // =============================  Judge  =============================
-    var Judge = sequelize.define('judge', {
+    var Judge = sequelize.define('judges', {
         id: {
             type: Sequelize.INTEGER,
             field: 'id',

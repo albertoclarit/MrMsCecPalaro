@@ -60,6 +60,8 @@ module.exports = function (Judge) {
 
             judge.updateAttributes(req.body).then(function(judge) {
                 res.status(200).json(judge);
+            }).catch(function(error){
+                res.sendStatus(500);
             });
 
 
