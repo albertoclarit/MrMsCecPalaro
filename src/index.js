@@ -19,6 +19,7 @@ import Witandint from './Witandint'
 import Scoreboard from './Scoreboard'
 import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
+import CandidateList from './components/candidates/CandidateList'
 import './App.css'
 import './styles/bootstrap.css'
 
@@ -29,7 +30,6 @@ const history = syncHistoryWithStore(hashHistory, store);
 const Components=(
     <Provider store={store}>
         <Router history={history}>
-
             <Route path="/admin" component={Admin}>
                 <Route path="/talent" component={Talent}/>
                 <Route path="/gown" component={Gown}/>
@@ -39,6 +39,7 @@ const Components=(
                 <Route path="/judgeslist" component={JudgeList}/>
                 <Route path="/judgeslist_add" component={JudgeEditor}/>
                 <Route path="/judgeslist/:id" component={JudgeEditor}/>
+                <Route path="/candidateslist" component={CandidateList}/>
                 <IndexRoute component={Welcome}/>
             </Route>
             <Route path="/" component={App}>
