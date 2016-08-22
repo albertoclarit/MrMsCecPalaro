@@ -20,6 +20,7 @@ import Scoreboard from './Scoreboard'
 import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
 import CandidateList from './components/candidates/CandidateList'
+import CandidateEditor from './components/candidates/CandidateEditor'
 import './App.css'
 import './styles/bootstrap.css'
 
@@ -40,6 +41,8 @@ const Components=(
                 <Route path="/judgeslist_add" component={JudgeEditor}/>
                 <Route path="/judgeslist/:id" component={JudgeEditor}/>
                 <Route path="/candidateslist" component={CandidateList}/>
+                <Route path="/candidateslist_add" component={CandidateEditor}/>
+                <Route path="/candidateslist/:id" component={CandidateEditor}/>
                 <IndexRoute component={Welcome}/>
             </Route>
             <Route path="/" component={App}>

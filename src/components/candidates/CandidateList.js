@@ -40,9 +40,7 @@ class CandidateList extends React.Component{
 
             return (
                 <tr key={i}>
-                     <td>{item.candidateNo != 999 ?
-                         <Button bsSize="small"  bsStyle="warning" onClick={this.editCandidate(item.id)}>Edit</Button>
-                         :null} </td>
+                     <td>{item.candidateno}</td>
                      <td>{item.name}</td>
                      <td>{item.team }</td>
                 </tr>
@@ -51,13 +49,13 @@ class CandidateList extends React.Component{
 
         return (
             <Well>
-                 <h4>Judge Listings</h4>
+                 <h4>Candidate Listings</h4>
 
                 <Table striped bordered condensed >
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Judge No</th>
+                        <th>Candidate No</th>
                         <th>Password</th>
                     </tr>
                     </thead>
@@ -65,7 +63,7 @@ class CandidateList extends React.Component{
                     {rows}
                     </tbody>
                 </Table>
-                <Button bsStyle="primary" onClick={this.addCandidate}>Add a Judge </Button>
+                <Button bsStyle="primary" onClick={this.addCandidate}>Add a Candidate </Button>
 
 
             </Well>
@@ -84,7 +82,7 @@ function mapDispatchToProps(dispatch) {
     return {
         dialogActions: bindActionCreators(dialogActions, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-       candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
     }
 }
 

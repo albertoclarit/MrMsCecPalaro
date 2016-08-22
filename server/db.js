@@ -42,4 +42,46 @@ module.exports = function (sequelize) {
     };
     // =============================  Judge  =============================
 
+ // =============================  Candidate  =============================
+    var Candidate = sequelize.define('candidates', {
+        id: {
+            type: Sequelize.INTEGER,
+            field: 'id',
+            primaryKey: true,
+            autoIncrement: true
+        },
+        candidateNo: {
+            type: Sequelize.INTEGER,
+            unique: true
+        },
+        name: {
+            type: Sequelize.STRING
+        }
+        team: {
+            type: Sequelize.STRING
+        }
+    }, {
+        freezeTableName: true // Model tableName will be the same as the model name
+    });
+
+
+    Candidate.sync({force: false}).then(function () {
+        // Table created
+        return Candidate.create({
+            candidateNo: '111',
+            name: 'Emily Escabusa',
+            team: 'IIAS'
+        });
+    }).catch(function(error) {
+        console.log('111 user already created');
+    });
+
+
+    return {
+        Candidate : Candidate
+    };
+    // =============================  Candidate  =============================
+
+
+
 };

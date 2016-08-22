@@ -49,6 +49,9 @@ class Admin extends React.Component {
               case 8:
                   this.props.routerActions.push("/judgeslist")
                   break;
+              case 9:
+                  this.props.routerActions.push("/candidateslist")
+                  break;    
               default:
                   return;
 
@@ -73,6 +76,7 @@ class Admin extends React.Component {
                         <NavItem eventKey={6}>Score Board</NavItem>
                         <NavItem eventKey={7}>Log out</NavItem>
                         <NavItem eventKey={8}>Judges List</NavItem>
+                        <NavItem eventKey={9}>Candidate List </NavItem>
                     </Nav>
                     {this.props.children}
                     <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>

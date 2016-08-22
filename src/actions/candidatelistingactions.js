@@ -95,7 +95,7 @@ export let loadCandidateSuccess= (candidate)=>{
 
     return {
         type: types.LOAD_CANDIDATE_SUCCESS,
-        judge
+        candidate
     }
 };
 

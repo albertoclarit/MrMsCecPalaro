@@ -41,6 +41,11 @@ var judges = require('./judges')(db.Judge);
 app.use('/api/judges',judges);
 // end rest endpoints
 
+var candidates = require ('./candidates')(db.Candidate);
+
+app.use('/api/candidates',candidates);
+
+
 var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;
