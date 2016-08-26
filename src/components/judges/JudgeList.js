@@ -56,7 +56,10 @@ import { routerActions } from 'react-router-redux'
 
         return (
             <Well>
-                 <h4>Judge Listings</h4>
+            
+                <center>
+                     <h3>Judge Listings</h3>
+                </center>
 
                 <Table striped bordered condensed >
                     <thead>

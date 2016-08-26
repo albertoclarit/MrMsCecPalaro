@@ -54,7 +54,7 @@ module.exports = function (Candidate) {
     router.put('/:id', function(req, res,next) {
 
         Candidate.findById(req.params.id).then(function(candidate){
-            if(judges==null)
+            if(candidate==null)
             {
                 res.sendStatus(404);
                 next();

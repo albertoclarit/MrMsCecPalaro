@@ -40,18 +40,22 @@ class CandidateList extends React.Component{
 
             return (
                 <tr key={i}>
-                     <td>{item.candidateNo != 111 ?
+                     <td>
                          <Button bsSize="small"  bsStyle="warning" onClick={this.editCandidate(item.id)}>Edit</Button>
-                         :null} </td>
+                         </td>
                      <td>{item.candidateNo}</td>
                      <td>{item.name}</td>
+                     <td>{item.team}</td>
                 </tr>
             );
         });
 
         return (
             <Well>
-                 <h4>Candidate Listings</h4>
+            
+                <center>
+                    <h3>Candidate Listings</h3>
+                </center>
 
                 <Table striped bordered condensed >
                     <thead>
@@ -59,6 +63,7 @@ class CandidateList extends React.Component{
                         <th>Options</th>
                         <th>Candidate No</th>
                         <th>Name</th>
+                        <th>Team</th>
                     </tr>
                     </thead>
                     <tbody>

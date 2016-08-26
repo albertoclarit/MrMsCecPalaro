@@ -30,7 +30,8 @@ export let saveData = ()=>{
          if(selectedCandidate.id){
              axios.put('/api/candidates/'+selectedCandidate.id, {
                      candidateNo:selectedCandidate.candidateNo,
-                     name: selectedCandidate.name
+                     name: selectedCandidate.name,
+                     team: selectedCandidate.team
                  }
              )
                  .then(function (response) {

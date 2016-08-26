@@ -23,58 +23,62 @@ export default class Gown extends React.Component {
         
         return (
             <Well style={wellStyle}>
-            
+                
+                <center>
+                    <h2>  Gown </h2>
+                </center>
+                
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
-                        <th>#</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
+                        <th>Candidate #</th>
+                        <th>Judge 1</th>
+                        <th>Judge 2</th>
+                        <th>Judge 3</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                         <td>1</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>85</td>
+                        <td>86</td>
+                        <td>87</td>
                         </tr>
                         <tr>
                         <td>2</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>82</td>
+                        <td>85</td>
+                        <td>80</td>
                         </tr>
                         <tr>
                         <td>3</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>87</td>
+                        <td>84</td>
+                        <td>86</td>
                         </tr>
                         <tr>
                         <td>4</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>85</td>
+                        <td>87</td>
+                        <td>87</td>
                         </tr>
                         <tr>
                         <td>5</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>87</td>
+                        <td>88</td>
+                        <td>84</td>
                         </tr>
                         <tr>
                         <td>6</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>85</td>
+                        <td>86</td>
+                        <td>87</td>
                         </tr>
                         <tr>
                         <td>7</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
+                        <td>87</td>
+                        <td>87</td>
+                        <td>86</td>
                         </tr>
                     </tbody>
               </table> 

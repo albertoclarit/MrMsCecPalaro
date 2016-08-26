@@ -86,6 +86,23 @@ class CandidateForm extends React.Component {
                         <FormControl.Feedback/>
                         <HelpBlock></HelpBlock>
                     </FormGroup> 
+                   
+                    <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Team</ControlLabel>
+                        <FormControl 
+                            componentClass="select" 
+                            placeholder="select" 
+                            value={this.props.selectedCandidate.team || ''} 
+                            onChange={this.onChange('team')}>
+                            <option value="team">select</option>
+                            <option value="IIAS">IIAS</option>
+                            <option value="EdCriBa">EdCriBa</option>
+                            <option value="Chieftains">Chieftains</option>
+                            <option value="Cruisers">Cruisers</option>
+                        </FormControl>
+                    </FormGroup>
+                  
+                    
                     <Button bsStyle="info" onClick={this.saveRecord}>Save Record</Button>
 
                     {
