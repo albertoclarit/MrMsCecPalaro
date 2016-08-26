@@ -37,12 +37,14 @@ module.exports = function (sequelize) {
     });
 
 
-    return {
-        Judge : Judge
-    };
+   
     // =============================  Judge  =============================
 
+
  // =============================  Candidate  =============================
+ 
+
+ 
     var Candidate = sequelize.define('candidates', {
         id: {
             type: Sequelize.INTEGER,
@@ -57,9 +59,6 @@ module.exports = function (sequelize) {
         name: {
             type: Sequelize.STRING
         }
-        team: {
-            type: Sequelize.STRING
-        }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name
     });
@@ -68,20 +67,21 @@ module.exports = function (sequelize) {
     Candidate.sync({force: false}).then(function () {
         // Table created
         return Candidate.create({
-            candidateNo: '111',
-            name: 'Emily Escabusa',
-            team: 'IIAS'
+            candidateNo: 111,
+            name: 'Margie Macalinao'
         });
     }).catch(function(error) {
         console.log('111 user already created');
     });
 
 
-    return {
-        Candidate : Candidate
-    };
+
     // =============================  Candidate  =============================
 
+ return {
+        Judge : Judge,
+        Candidate : Candidate
+    };
 
 
 };

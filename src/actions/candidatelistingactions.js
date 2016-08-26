@@ -30,7 +30,6 @@ export let saveData = ()=>{
          if(selectedCandidate.id){
              axios.put('/api/candidates/'+selectedCandidate.id, {
                      candidateNo:selectedCandidate.candidateNo,
-                     team:selectedCandidate.team,
                      name: selectedCandidate.name
                  }
              )
@@ -49,7 +48,7 @@ export let saveData = ()=>{
                  }
              )
                  .then(function (response) {
-                     dispatcher(routerActions.push("/candidatelist"));
+                     dispatcher(routerActions.push("/candidateslist"));
                  })
                  .catch(function (error) {
                      dispatcher(dialogActions.openAlert("Data Failed to be Added",'Failed','danger'));
