@@ -44,7 +44,7 @@ state={
                   this.context.router.push("/logIn")
                   break;
               case 3:
-                  this.context.router.push("/admin")
+                  this.context.router.push("/judges")
                   break;   
               default:
                   return;
@@ -63,6 +63,7 @@ state={
             <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                 <NavItem eventKey={1}>Home</NavItem>
                 <NavItem eventKey={2}>Log-In</NavItem>
+                <NavItem eventKey={3}>Judges</NavItem>
             </Nav>
             {this.props.children}
             <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>

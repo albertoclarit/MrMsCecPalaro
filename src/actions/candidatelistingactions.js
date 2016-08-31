@@ -44,7 +44,7 @@ export let saveData = ()=>{
         else {
              axios.post('/api/candidates', {
                      candidateNo:selectedCandidate.candidateNo,
-                     team:selectedCandidate.team,
+                     team: selectedCandidate.team,
                      name: selectedCandidate.name
                  }
              )
