@@ -8,7 +8,8 @@ import {Well,
         Button,
         ButtonGroup,
         Nav,
-        NavItem
+        NavItem,
+        Navbar
 } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -57,18 +58,37 @@ state={
 
   render(){
       
+const wellStyle={
+            width: 'auto',
+            height: 'auto',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: 30,
+        }
 
     return (
         <div className="container">
-            <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                <NavItem eventKey={1}>Home</NavItem>
-                <NavItem eventKey={2}>Log-In</NavItem>
-                <NavItem eventKey={3}>Judges</NavItem>
-            </Nav>
-            {this.props.children}
-            <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>
-            <ConfirmDialog {...this.props.confirm} dialogActions={this.props.dialogActions}/>
-            <PromptDialog {...this.props.prompt} dialogActions={this.props.dialogActions}/>
+            <Well style={wellStyle}>
+                <Navbar inverse>
+                            <Navbar.Header>
+                            <Navbar.Brand>
+                                <a href="#">Mr & Ms Ce-c Palaro</a>
+                            </Navbar.Brand>
+                            <Navbar.Toggle />
+                            </Navbar.Header>
+                            <Navbar.Collapse>
+                            <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
+                                <NavItem eventKey={1}>Home</NavItem>
+                                <NavItem eventKey={2}>Log-In</NavItem>
+                                <NavItem eventKey={3}>Judges</NavItem>
+                            </Nav>
+                            </Navbar.Collapse>
+                        </Navbar>
+                {this.props.children}
+                <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>
+                <ConfirmDialog {...this.props.confirm} dialogActions={this.props.dialogActions}/>
+                <PromptDialog {...this.props.prompt} dialogActions={this.props.dialogActions}/>
+            </Well>       
          </div>
     );
   }

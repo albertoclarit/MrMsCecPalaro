@@ -21,7 +21,7 @@ import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
 import CandidateList from './components/candidates/CandidateList'
 import CandidateEditor from './components/candidates/CandidateEditor'
-import Judges from './Judges'
+import Judges from './Judges/Judges'
 import './App.css'
 import './styles/bootstrap.css'
 

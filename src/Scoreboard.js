@@ -44,10 +44,12 @@ class Scoreboard extends React.Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
-                        <th>Candidate #</th>
-                        <th>Judge 1</th>
-                        <th>Judge 2</th>
-                        <th>Judge 3</th>
+                            <th>Candidate #</th>
+                            <th>Talen</th>
+                            <th>Gown</th>
+                            <th>Sportswear</th>
+                            <th>Wit & Intelligent</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
