@@ -12,5 +12,4 @@ build
 npm-debug.log
 .idea/
 /sessions
-/sessions
 /server/data/cecpalaro.db

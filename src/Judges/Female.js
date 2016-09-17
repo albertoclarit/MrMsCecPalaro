@@ -9,9 +9,10 @@ import {Well,
         HelpBlock,
         Button,
         ButtonGroup} from 'react-bootstrap';
-
-
-export default class Female extends React.Component {
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux'
+class Female extends React.Component {
 
     constructor(props){
         super(props);
@@ -24,7 +25,8 @@ export default class Female extends React.Component {
 
     
     goToMale(){
-        this.context.router.push("/male");
+        this.props.routerActions.push("/male")
+
  }
     render(){
         
@@ -127,7 +129,7 @@ export default class Female extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit & Intelligence Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -158,3 +160,19 @@ export default class Female extends React.Component {
     }
 }
 
+
+function mapStateToProps(state) {
+
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Female);

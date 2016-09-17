@@ -111,19 +111,6 @@ import { routerActions } from 'react-router-redux'
             
 }
 
-function mapStateToProps(state) {
-    return {
-        auth:state.auth
-    }
-}
-
-
-function mapDispatchToProps(dispatch) {
-    return {
-        routerActions: bindActionCreators(routerActions, dispatch),
-        authActions:bindActionCreators(AuthActions, dispatch)
-    }
-}
 
 export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
 

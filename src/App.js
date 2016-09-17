@@ -45,14 +45,8 @@ state={
           this.setState({selectedKey});
           switch (selectedKey) {
               case 1:
-                  this.context.router.push("/");
+                  this.props.authActions.logout();
                   break;
-              case 2:
-                  this.context.router.push("/login");
-                  break;
-              case 3:
-                  this.context.router.push("/judges");
-                  break;   
               default:
                   return;
 
@@ -81,6 +75,9 @@ const wellStyle={
                                 <a href="#/">Mr and Ms Ce-c Palaro</a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
+                                <Nav  onSelect={this.handleSelect}>
+                                    <NavItem eventKey={1}>Logout</NavItem>
+                                </Nav>
                             </Navbar.Header>
                             <Navbar.Collapse>
                             <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>

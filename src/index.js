@@ -25,7 +25,8 @@ import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
 import CandidateList from './components/candidates/CandidateList'
 import CandidateEditor from './components/candidates/CandidateEditor'
-import Judges from './Judges/Judges'
+import Female from './Judges/Female'
+import Male from './Judges/Male'
 import './App.css'
 import './styles/bootstrap.css'
 import {requireAuthentication} from './utils/AuthUtils'
@@ -53,7 +54,9 @@ const Components=(
             <Route path="/" component={App}>
                 <Route path="login" component={LogIn}/>
                 <Route path="accessdenied" component={Error}/>
-                <IndexRoute path="judges" component={requireAuthentication(Judges,'ROLE_JUDGE')}/>
+                <Route path="male" component={Male}/>
+                <Route path="female" component={Female}/>
+                <IndexRedirect   to="/female"/>
             </Route>
 
 

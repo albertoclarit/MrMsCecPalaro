@@ -9,10 +9,11 @@ import {Well,
         HelpBlock,
         Button,
         ButtonGroup} from 'react-bootstrap';
-        
 
-
-export default class Male extends React.Component {
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux'
+ class Male extends React.Component {
 
     constructor(props){
         super(props);
@@ -25,7 +26,7 @@ export default class Male extends React.Component {
 
     
      goToFemale(){
-     this.context.router.push("female");
+         this.props.routerActions.push("/female")
  }
 
 
@@ -161,3 +162,18 @@ export default class Male extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Male);
