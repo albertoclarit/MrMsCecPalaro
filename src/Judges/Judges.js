@@ -92,7 +92,7 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit & Intelligence Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Wit and Intelligence Competition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
