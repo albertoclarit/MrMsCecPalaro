@@ -37,9 +37,111 @@ module.exports = function (sequelize) {
     });
 
 
-    return {
-        Judge : Judge
-    };
+   
     // =============================  Judge  =============================
+
+
+ // =============================  Candidate  =============================
+ 
+
+ 
+    var Candidate = sequelize.define('candidates', {
+        id: {
+            type: Sequelize.INTEGER,
+            field: 'id',
+            primaryKey: true,
+            autoIncrement: true
+        },
+        candidateNo: {
+            type: Sequelize.INTEGER,
+            unique: true
+        },
+        name: {
+            type: Sequelize.STRING
+        },
+        team: {
+            type: Sequelize.STRING  
+        }
+    }, {
+        freezeTableName: true // Model tableName will be the same as the model name
+    });
+
+
+    Candidate.sync({force: false}).then(function () {
+        // Table created
+        return Candidate.create({
+            candidateNo: 111,
+            name: 'Margie Macalinao',
+            team: 'IIAS'
+        });
+    }).catch(function(error) {
+        console.log('111 user already created');
+    });
+
+
+
+    // =============================  Candidate  =============================
+
+
+ // =============================  Score  =============================
+ 
+
+ 
+    var Score = sequelize.define('scores', {
+        id: {
+            type: Sequelize.INTEGER,
+            field: 'id',
+            primaryKey: true,
+            autoIncrement: true
+        },
+        candidateNo: {
+            type: Sequelize.INTEGER,
+            unique: true
+        },
+        judgeNo: {
+            type: Sequelize.INTEGER
+        },
+        talent: {
+            type: Sequelize.REAL
+        },
+        production: {
+            type: Sequelize.REAL  
+        },
+        sportswear: {
+            type: Sequelize.REAL
+        },
+        formalWear: {
+            type: Sequelize.REAL
+        }
+    }, {
+        freezeTableName: true // Model tableName will be the same as the model name
+    });
+
+
+    Score.sync({force: false}).then(function () {
+        // Table created
+        return Score.create({
+            candidateNo: 111,
+            judgeNo: 2,
+            talent: 1.1,
+            production: 2.2,
+            sportswear: 3.3,
+            formalWear: 5.5
+        });
+    }).catch(function(error) {
+        console.log('Score table created');
+    });
+
+
+
+    // =============================  Score  =============================
+
+
+ return {
+        Judge : Judge,
+        Candidate : Candidate,
+        Score : Score
+    };
+
 
 };
