@@ -6,19 +6,13 @@ import {Well} from 'react-bootstrap';
 import * as candidatelistingactions  from './actions/candidatelistingactions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { routerActions } from 'react-router-redux';
+import { routerActions } from 'react-router-redux'; 
 
-
-class Gown extends React.Component {
+class Formalwear extends React.Component {
 
     constructor(props){
         super(props);
     }
-
-      componentDidMount(){
-
-          this.props.candidatelistingactions.loadCandidates();
-     }
 
 
     render(){
@@ -43,27 +37,54 @@ class Gown extends React.Component {
             <Well style={wellStyle}>
                 
                 <center>
-                    <h2>  Gown </h2>
+                <h2> Formal Wear</h2>
                 </center>
-                
+            
+                <p>Male</p>
+
                 <table className="table table-striped table-hover ">
+                    
                     <thead>
                         <tr>
                         <th>Candidate #</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>
                         <th>Judge 3</th>
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
                         </tr>
                     </thead>
                     <tbody>
-                     {rows}
+                        {rows}
                     </tbody>
-              </table> 
+              </table>
+              
+              <p>Female</p>
+
+                <table className="table table-striped table-hover ">
+                    
+                    <thead>
+                        <tr>
+                        <th>Candidate #</th>
+                        <th>Judge 1</th>
+                        <th>Judge 2</th>
+                        <th>Judge 3</th>
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+              </table>
             </Well>
             
         );
     }
 }
+
 
 function mapStateToProps(state) {
 
@@ -79,8 +100,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Gown);
-
-
-
-
+export default connect(mapStateToProps,mapDispatchToProps)(Formalwear);

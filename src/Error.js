@@ -10,7 +10,8 @@ export default class Welcome extends React.Component {
     constructor(props){
         super(props);
     }
-    
+
+
     render(){
         
           const wellStyle={
@@ -25,7 +26,10 @@ export default class Welcome extends React.Component {
         
         return (
             <Well style={wellStyle} >
-                <center style={fontSize}>Welcome</center> 
+                <center style={fontSize}>Ooooops! You are</center>
+                <center style={fontSize}>not allowed to Access this page</center> 
+                <center style={fontSize}>Authorized Personnel only.</center>  
+                
             </Well>
         );
     }

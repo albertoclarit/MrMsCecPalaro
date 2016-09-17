@@ -43,20 +43,48 @@ class Talent extends React.Component {
                 <center>
                 <h2> Talent</h2>
                 </center>
-            
+                
+                <p>Male</p>
+
                 <table className="table table-striped table-hover ">
+                    
                     <thead>
                         <tr>
                         <th>Candidate #</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>
                         <th>Judge 3</th>
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows}
                     </tbody>
-              </table> 
+              </table>
+              
+              <p>Female</p>
+
+                <table className="table table-striped table-hover ">
+                    
+                    <thead>
+                        <tr>
+                        <th>Candidate #</th>
+                        <th>Judge 1</th>
+                        <th>Judge 2</th>
+                        <th>Judge 3</th>
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+              </table>
+              
+              
             </Well>
             
         );

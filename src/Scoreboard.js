@@ -47,13 +47,40 @@ class Scoreboard extends React.Component {
             <Well style={wellStyle}>
             
                 <center>
+<<<<<<< HEAD
                 <h2> Final Ranking </h2>
                 </center>
                 <h3> Male </h3>
+=======
+                <h2> Final Rating </h2>
+                </center>
+            
+                <p>Male</p>
+            
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
                             <th>Candidate #</th>
+                            <th>Talent</th>
+                            <th>Production</th>
+                            <th>Sportswear</th>
+                            <th>Formalwear</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+              </table> 
+              
+              <p>Female</p>
+            
+>>>>>>> acf3cba03722702f8c2e75389de5d8a0732c9f57
+                <table className="table table-striped table-hover ">
+                    <thead>
+                        <tr>
+                            <th>Candidate #</th>
+<<<<<<< HEAD
                             <th>Production Number</th>
                             <th>Talent</th>
                             <th>Gown</th>
@@ -242,6 +269,13 @@ class Scoreboard extends React.Component {
                             <th></th>
                             <th></th>
                             <th></th>
+=======
+                            <th>Talent</th>
+                            <th>Production</th>
+                            <th>Sportswear</th>
+                            <th>Formalwear</th>
+                            <th>Total</th>
+>>>>>>> acf3cba03722702f8c2e75389de5d8a0732c9f57
                         </tr>
                         
                     </thead>

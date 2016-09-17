@@ -10,13 +10,24 @@ import {Well,
         Button,
         ButtonGroup} from 'react-bootstrap';
 
-
-export default class Judges extends React.Component {
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux'
+ class Male extends React.Component {
 
     constructor(props){
         super(props);
         
     }
+    
+      static contextTypes = {
+        router: React.PropTypes.object
+    };
+
+    
+     goToFemale(){
+         this.props.routerActions.push("/female")
+ }
 
 
     render(){
@@ -35,13 +46,24 @@ export default class Judges extends React.Component {
             marginLeft: 80
         }
         
+        const boxMargin1={
+            marginLeft: 20
+        }
+   
+        
         return (
-            
                 <Well>
-                  <center style={fontSize}>Scoring </center>
+                    <div>
+                        <ButtonGroup>
+                            <Button bsStyle="primary" style={boxMargin1} onClick={this.goToFemale.bind(this)}>Female</Button>
+                            <Button bsStyle="primary" style={boxMargin1} >Male</Button>
+                        </ButtonGroup>
+                    </div>
+                    
+                  <center style={fontSize}> Male Scoring </center>
                   <form>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}>Talent Competition</ControlLabel>
+                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
                             <FormControl
                                 componentClass="select" 
                                 placeholder="select">
@@ -58,7 +80,7 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -75,7 +97,24 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
+                            <FormControl 
+                                componentClass="select" 
+                                placeholder="select">
+                                <option value="">0</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                            </FormControl>
+                        </FormGroup>
+                          <FormGroup controlId="formControlsSelect">
+                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -92,7 +131,7 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit & Intelligence Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Wit and Intelligence Competition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -114,6 +153,7 @@ export default class Judges extends React.Component {
                                     BACK </Button>
                                     <Button bsSize="large" bsStyle="primary" type="button" style={boxMargin}>
                                     NEXT </Button>
+                                  
                                 </ButtonGroup>
                             </div>
                    </form>
@@ -122,3 +162,18 @@ export default class Judges extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+
+    return {
+
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Male);
