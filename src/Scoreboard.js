@@ -2,9 +2,6 @@
  * Created by albertoclarit on 8/13/16.
  */
 import React from 'react';
-<<<<<<< HEAD
-import {Well} from 'react-bootstrap';
-=======
 import {Well,
         FormGroup,
         FormControl,
@@ -13,17 +10,13 @@ import {Well,
         Button,
         ButtonGroup,
         ButtonToolbar} from 'react-bootstrap';
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 import * as candidatelistingactions  from './actions/candidatelistingactions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 class Scoreboard extends React.Component {
 
     constructor(props){
@@ -39,11 +32,7 @@ class Scoreboard extends React.Component {
             marginLeft: 'auto',
             marginRight: 'auto'
         };
-        
-<<<<<<< HEAD
-=======
-        
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
+
          var rows = this.props.candidatelisting.records.map((item,i)=>{
 
             return (
@@ -57,18 +46,13 @@ class Scoreboard extends React.Component {
             <Well style={wellStyle}>
             
                 <center>
-<<<<<<< HEAD
                 <h2> Overall Scoreboard </h2>
                 </center>
-            
-=======
-<<<<<<< HEAD
+
                 <h2> Final Ranking </h2>
-                </center>
                 <h3> Male </h3>
-=======
+
                 <h2> Final Rating </h2>
-                </center>
             
                 <p>Male</p>
             
@@ -89,26 +73,22 @@ class Scoreboard extends React.Component {
               </table> 
               
               <p>Female</p>
-            
->>>>>>> acf3cba03722702f8c2e75389de5d8a0732c9f57
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
+
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
                             <th>Candidate #</th>
-<<<<<<< HEAD
+
                             <th>Talen</th>
                             <th>Gown</th>
                             <th>Sportswear</th>
-                            <th>Wit & Intelligent</th>
+                            <th>Wit &amp; Intelligent</th>
                             <th>Total</th>
-=======
-<<<<<<< HEAD
                             <th>Production Number</th>
                             <th>Talent</th>
                             <th>Gown</th>
                             <th>Sportswear</th>
-                            <th>Wit & Intelligent</th>
+                            <th>Wit &amp; Intelligent</th>
                             <th>Final Average</th>
                         </tr>
                         <tr>
@@ -137,7 +117,6 @@ class Scoreboard extends React.Component {
                             <th></th>
                             <th></th>
                             <th></th>
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                         </tr>
                         <tr>
                             <th>4</th>
@@ -161,8 +140,6 @@ class Scoreboard extends React.Component {
                     </thead>
                     <tbody>
                         {rows}
-<<<<<<< HEAD
-=======
                     </tbody>
               </table>
               
@@ -175,7 +152,7 @@ class Scoreboard extends React.Component {
                             <th>Talent</th>
                             <th>Gown</th>
                             <th>Sportswear</th>
-                            <th>Wit & Intelligent</th>
+                            <th>Wit &amp; Intelligent</th>
                             <th>Final Average</th>
                         </tr>
                         <tr>
@@ -240,7 +217,7 @@ class Scoreboard extends React.Component {
                    </ButtonGroup>
                 </ButtonToolbar>
        
-              <table className="table table-striped table-hover ">
+              <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Candidate #</th>
@@ -248,7 +225,7 @@ class Scoreboard extends React.Component {
                             <th>Talent</th>
                             <th>Gown</th>
                             <th>Sportswear</th>
-                            <th>Wit & Intelligent</th>
+                            <th>Wit &amp; Intelligent</th>
                             <th>Final Average</th>
                         </tr>
                         <tr>
@@ -295,19 +272,16 @@ class Scoreboard extends React.Component {
                             <th></th>
                             <th></th>
                             <th></th>
-=======
                             <th>Talent</th>
                             <th>Production</th>
                             <th>Sportswear</th>
                             <th>Formalwear</th>
                             <th>Total</th>
->>>>>>> acf3cba03722702f8c2e75389de5d8a0732c9f57
                         </tr>
                         
                     </thead>
                     <tbody>
                         {rows}
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                     </tbody>
               </table> 
             </Well>

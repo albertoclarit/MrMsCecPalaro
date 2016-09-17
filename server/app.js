@@ -22,13 +22,15 @@ app.use('/images',express.static('images')); // create a static link for /images
 app.use(express.static('./build'));  // create a static link for build folder created by react-create-app
 app.use(cookieParser());
 
-app.use(function (err, req, res, next) {
-    if (err.code !== 'EBADCSRFTOKEN') return next(err)
 
-    // handle CSRF token errors here
-    res.status(403)
-    res.send('Wrong CSRF Value: Expected '  + req.csrfToken());
-});
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 app.use(session({
     store: new FileStore(),
@@ -45,36 +47,11 @@ app.use(function(req, res, next) {
 
 app.use(function (err, req, res, next) {
     if (err.code !== 'EBADCSRFTOKEN') return next(err)
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
     // handle CSRF token errors here
     res.status(403)
     res.send('Wrong CSRF Value: Expected '  + req.csrfToken());
 });
 
-app.use(session({
-    store: new FileStore(),
-    secret: 'iloveu',
-    resave: false,
-    saveUninitialized: true/*,
-     cookie: { maxAge: (1000 * 60) }*///expires: new Date(Date.now() + (1000 * 60))
-}));
-
-app.use(function(req, res, next) {
-    req.headers['if-none-match'] = 'no-match-for-this';
-    next();
-});
 
 
 app.use(passport.initialize());
@@ -82,12 +59,6 @@ app.use(passport.session());
 
 
 
-
-
-
-
-
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 var sequelize = new Sequelize('database', 'username', 'password',  {
     dialect: 'sqlite',
     pool: {
@@ -234,16 +205,7 @@ app.use('/api/judges',ensureAuthenticated,judges);
 var candidates = require ('./candidates')(db.Candidate);
 app.use('/api/candidates',ensureAuthenticated,candidates);
 
-<<<<<<< HEAD
-var candidates = require ('./candidates')(db.Candidate);
 
-app.use('/api/candidates',candidates);
-
-
-=======
-
-// end rest endpoints
->>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;

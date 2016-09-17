@@ -3,12 +3,13 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as candidatelistingactions  from './actions/candidatelistingactions.js';
+import * as candidatelistingactions  from '../../actions/candidatelistingactions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { routerActions } from 'react-router-redux'; 
+import { routerActions } from 'react-router-redux';
 
-class Formalwear extends React.Component {
+
+class Sportswear extends React.Component {
 
     constructor(props){
         super(props);
@@ -35,13 +36,11 @@ class Formalwear extends React.Component {
         
         return (
             <Well style={wellStyle}>
-                
-                <center>
-                <h2> Formal Wear</h2>
-                </center>
             
+                <center>
+                <h2> Sportswear </h2>
+                </center>
                 <p>Male</p>
-
                 <table className="table table-striped table-hover ">
                     
                     <thead>
@@ -100,4 +99,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Formalwear);
+export default connect(mapStateToProps,mapDispatchToProps)(Sportswear);
+
+
+

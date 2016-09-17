@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as candidatelistingactions  from './actions/candidatelistingactions.js';
+import * as candidatelistingactions  from '../../actions/candidatelistingactions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
