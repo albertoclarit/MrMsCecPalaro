@@ -61,6 +61,12 @@ module.exports = function (sequelize) {
         },
         team: {
             type: Sequelize.STRING  
+<<<<<<< HEAD
+=======
+        },
+        gender: {
+            type: Sequelize.STRING  
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
         }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name
@@ -72,7 +78,12 @@ module.exports = function (sequelize) {
         return Candidate.create({
             candidateNo: 111,
             name: 'Margie Macalinao',
+<<<<<<< HEAD
             team: 'IIAS'
+=======
+            team: 'Lannister',
+            gender: 'F'
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
         });
     }).catch(function(error) {
         console.log('111 user already created');
@@ -82,6 +93,7 @@ module.exports = function (sequelize) {
 
     // =============================  Candidate  =============================
 
+<<<<<<< HEAD
 
  // =============================  Score  =============================
  
@@ -141,6 +153,11 @@ module.exports = function (sequelize) {
         Judge : Judge,
         Candidate : Candidate,
         Score : Score
+=======
+ return {
+        Judge : Judge,
+        Candidate : Candidate
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
     };
 
 

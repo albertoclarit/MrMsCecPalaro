@@ -5,6 +5,10 @@
 import React from 'react';
 import {
     Well,
+<<<<<<< HEAD
+=======
+    Radio,
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
     Table,
     Button,
     FormGroup,
@@ -17,9 +21,20 @@ class CandidateForm extends React.Component {
 
     constructor(props) {
         super(props);
+<<<<<<< HEAD
 
     }
 
+=======
+        
+
+    }
+
+state={
+    
+}
+
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
     onChange=(name)=>{
 
         return (e)=>{
@@ -68,18 +83,30 @@ class CandidateForm extends React.Component {
                         <ControlLabel>Enter Candidate No.</ControlLabel>
                         <FormControl
                             type="number"
+<<<<<<< HEAD
                             placeholder="Enter the Candidateno"
+=======
+                            placeholder="Enter Candidate no."
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                             value={this.props.selectedCandidate.candidateNo || ''}
                             onChange={this.onChange('candidateNo')}
                             />
                         <FormControl.Feedback/>
                         <HelpBlock></HelpBlock>
                     </FormGroup>
+<<<<<<< HEAD
+=======
+                    
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                     <FormGroup>
                         <ControlLabel>Enter Candidate Name</ControlLabel>
                         <FormControl
                             type="text"
+<<<<<<< HEAD
                             placeholder="Enter the Candidate Name"
+=======
+                            placeholder="Enter Candidate Name"
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                             value={this.props.selectedCandidate.name || ''}
                             onChange={this.onChange('name')}
                             />
@@ -87,6 +114,24 @@ class CandidateForm extends React.Component {
                         <HelpBlock></HelpBlock>
                     </FormGroup> 
                    
+<<<<<<< HEAD
+=======
+                       <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Gender</ControlLabel>
+                        <FormControl 
+                            componentClass="select" 
+                            placeholder="select" 
+                            value={this.props.selectedCandidate.gender || ''} 
+                            onChange={this.onChange('gender')}>
+                            <option value="gender">select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            
+                        </FormControl>
+                    </FormGroup>
+                  
+                   
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                     <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Team</ControlLabel>
                         <FormControl 
@@ -95,10 +140,18 @@ class CandidateForm extends React.Component {
                             value={this.props.selectedCandidate.team || ''} 
                             onChange={this.onChange('team')}>
                             <option value="team">select</option>
+<<<<<<< HEAD
                             <option value="IIAS">IIAS</option>
                             <option value="EdCriBa">EdCriBa</option>
                             <option value="Chieftains">Chieftains</option>
                             <option value="Cruisers">Cruisers</option>
+=======
+                            <option value="Targaryen">Targaryen</option>
+                            <option value="Lannister">Lannister</option>
+                            <option value="Baratheon">Baratheon</option>
+                            <option value="Stark">Stark</option>
+                            <option value="Arryn">Arryn</option>
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                         </FormControl>
                     </FormGroup>
                   

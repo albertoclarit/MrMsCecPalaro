@@ -31,7 +31,12 @@ export let saveData = ()=>{
              axios.put('/api/candidates/'+selectedCandidate.id, {
                      candidateNo:selectedCandidate.candidateNo,
                      name: selectedCandidate.name,
+<<<<<<< HEAD
                      team: selectedCandidate.team
+=======
+                     team: selectedCandidate.team,
+                     gender: selectedCandidate.gender
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                  }
              )
                  .then(function (response) {
@@ -45,7 +50,12 @@ export let saveData = ()=>{
              axios.post('/api/candidates', {
                      candidateNo:selectedCandidate.candidateNo,
                      team: selectedCandidate.team,
+<<<<<<< HEAD
                      name: selectedCandidate.name
+=======
+                     name: selectedCandidate.name,
+                     gender: selectedCandidate.gender
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                  }
              )
                  .then(function (response) {
