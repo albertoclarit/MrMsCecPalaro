@@ -45,8 +45,16 @@ state={
                   this.context.router.push("/logIn")
                   break;
               case 3:
+<<<<<<< HEAD
                   this.context.router.push("/female")
                   break;   
+=======
+                  this.context.router.push("/judges")
+                  break;  
+              case 4:
+                  this.context.router.push("/error")
+                  break;    
+>>>>>>> 85fe011b9e4231a31798dffcc257cfc7485f8dd1
               default:
                   return;
 
@@ -81,6 +89,7 @@ const wellStyle={
                                 <NavItem eventKey={1}>Home</NavItem>
                                 <NavItem eventKey={2}>Log-In</NavItem>
                                 <NavItem eventKey={3}>Judges</NavItem>
+                                <NavItem eventKey={4}>Error</NavItem>
                             </Nav>
                             </Navbar.Collapse>
                         </Navbar>
