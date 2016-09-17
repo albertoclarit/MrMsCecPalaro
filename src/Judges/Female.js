@@ -11,14 +11,21 @@ import {Well,
         ButtonGroup} from 'react-bootstrap';
 
 
-export default class Judges extends React.Component {
+export default class Female extends React.Component {
 
     constructor(props){
         super(props);
         
     }
+    
+      static contextTypes = {
+        router: React.PropTypes.object
+    };
 
-
+    
+    goToMale(){
+        this.context.router.push("/male");
+ }
     render(){
         
         const fontSize={
@@ -35,13 +42,24 @@ export default class Judges extends React.Component {
             marginLeft: 80
         }
         
+        const boxMargin1 ={
+            marginLeft: 20
+        }
+        
+         
         return (
-            
                 <Well>
-                  <center style={fontSize}>Scoring </center>
+                    <div>
+                        <ButtonGroup>
+                            <Button  bsStyle="primary">Female </Button>
+                            <Button style= {boxMargin1} bsStyle="primary" onClick={this.goToMale.bind(this)} type="button"> Male</Button>
+                        </ButtonGroup>
+                    </div>
+                
+                  <center style={fontSize}>Female Scoring </center>
                   <form>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}>Talent Competition</ControlLabel>
+                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
                             <FormControl
                                 componentClass="select" 
                                 placeholder="select">
@@ -58,7 +76,7 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -75,7 +93,24 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
+                            <FormControl 
+                                componentClass="select" 
+                                placeholder="select">
+                                <option value="">0</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                            </FormControl>
+                        </FormGroup>
+                          <FormGroup controlId="formControlsSelect">
+                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -92,7 +127,7 @@ export default class Judges extends React.Component {
                             </FormControl>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit and Intelligence Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}><h5>Wit & Intelligence Competition</h5></ControlLabel>
                             <FormControl 
                                 componentClass="select" 
                                 placeholder="select">
@@ -111,9 +146,10 @@ export default class Judges extends React.Component {
                             <div>
                                 <ButtonGroup>
                                     <Button bsSize="large"  bsStyle="primary" type="submit" style={boxMargin}>
-                                    BACK </Button>
+                                    PREVIOUS </Button>
                                     <Button bsSize="large" bsStyle="primary" type="button" style={boxMargin}>
                                     NEXT </Button>
+                                  
                                 </ButtonGroup>
                             </div>
                    </form>

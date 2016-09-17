@@ -61,6 +61,9 @@ module.exports = function (sequelize) {
         },
         team: {
             type: Sequelize.STRING  
+        },
+        gender: {
+            type: Sequelize.STRING  
         }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name
@@ -72,7 +75,8 @@ module.exports = function (sequelize) {
         return Candidate.create({
             candidateNo: 111,
             name: 'Margie Macalinao',
-            team: 'IIAS'
+            team: 'Lannister',
+            gender: 'F'
         });
     }).catch(function(error) {
         console.log('111 user already created');
