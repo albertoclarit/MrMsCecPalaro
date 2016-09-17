@@ -20,10 +20,6 @@ class Admin extends React.Component {
     state = {
         selectedKey:0
     };
-    
-
-
-
 
     handleSelect= (selectedKey)=>{
 
@@ -35,13 +31,13 @@ class Admin extends React.Component {
                   this.props.routerActions.push("/talent")
                   break;
               case 3:
-                  this.props.routerActions.push("/gown")
+                  this.props.routerActions.push("/production")
                   break;
               case 4:
                   this.props.routerActions.push("/sportswear")
                   break;   
               case 5:
-                  this.props.routerActions.push("/witandint")
+                  this.props.routerActions.push("/Formalwear")
                   break;
               case 6:
                   this.props.routerActions.push("/scoreboard")
@@ -78,10 +74,10 @@ class Admin extends React.Component {
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                             <NavItem eventKey={1}>Home</NavItem>
                             <NavItem eventKey={2}>Best in Talent</NavItem>
-                            <NavItem eventKey={3}>Best in Gown</NavItem>
+                            <NavItem eventKey={3}>Best in Production</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                            <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                            <NavItem eventKey={6}>Score Board</NavItem>
+                            <NavItem eventKey={5}>Formal wear</NavItem>
+                            <NavItem eventKey={6}>Final Ranking</NavItem>
                             <NavItem eventKey={7}>Log out</NavItem>
                             <NavItem eventKey={8}>Judges List</NavItem>
                             <NavItem eventKey={9}>Candidate List </NavItem>

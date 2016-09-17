@@ -13,9 +13,9 @@ import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
 import Talent from './Talent'
-import Gown from './Gown'
+import Production    from './Production'
 import Sportswear from './Sportswear'
-import Witandint from './Witandint'
+import Formalwear from './Formalwear'
 import Scoreboard from './Scoreboard'
 import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
@@ -34,9 +34,9 @@ const Components=(
         <Router history={history}>
             <Route path="/admin" component={Admin}>
                 <Route path="/talent" component={Talent}/>
-                <Route path="/gown" component={Gown}/>
+                <Route path="/production" component={Production}/>
                 <Route path="/sportswear" component={Sportswear}/>
-                <Route path="/witandint" component={Witandint}/>
+                <Route path="/formalwear" component={Formalwear}/>
                 <Route path="/scoreboard" component={Scoreboard}/>
                 <Route path="/judgeslist" component={JudgeList}/>
                 <Route path="/judgeslist_add" component={JudgeEditor}/>
@@ -52,8 +52,6 @@ const Components=(
                 <Route path="judges" component={Judges}/>
                 <IndexRoute component={Welcome}/>
             </Route>
-
-
         </Router>
     </Provider>
 
