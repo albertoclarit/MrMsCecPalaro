@@ -13,6 +13,8 @@ import {Well,
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
+
+import ScoreCombo from './ScoreCombo'
  class Male extends React.Component {
 
     constructor(props){
@@ -64,88 +66,23 @@ import { routerActions } from 'react-router-redux'
                   <form>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>
-                            <FormControl
-                                componentClass="select" 
-                                placeholder="select">
-                                <option value="">0</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                            </FormControl>
+                            <ScoreCombo />
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
-                            <FormControl 
-                                componentClass="select" 
-                                placeholder="select">
-                                <option value="">0</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                            </FormControl>
+                            <ScoreCombo />
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
-                            <FormControl 
-                                componentClass="select" 
-                                placeholder="select">
-                                <option value="">0</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                            </FormControl>
+                            <ScoreCombo />
                         </FormGroup>
                           <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
-                            <FormControl 
-                                componentClass="select" 
-                                placeholder="select">
-                                <option value="">0</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                            </FormControl>
+                              <ScoreCombo />
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}><h5>Wit and Intelligence Competition</h5></ControlLabel>
-                            <FormControl 
-                                componentClass="select" 
-                                placeholder="select">
-                                <option value="">0</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                            </FormControl>
+                            <ScoreCombo />
                         </FormGroup>
                             <div>
                                 <ButtonGroup>
