@@ -2,7 +2,7 @@
  * Created by albertoclarit on 8/13/16.
  */
 import React from 'react';
-import {Well,Nav,NavItem} from 'react-bootstrap';
+import {Well,Nav,NavItem,Navbar} from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as dialogActions  from './actions/dialogactions';
@@ -49,6 +49,9 @@ class Admin extends React.Component {
               case 8:
                   this.props.routerActions.push("/judgeslist")
                   break;
+              case 9:
+                  this.props.routerActions.push("/candidateslist")
+                  break;    
               default:
                   return;
 
@@ -64,22 +67,32 @@ class Admin extends React.Component {
 
             <Well>
                 <div className="container">
-                    <Nav bsStyle="pills" activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                        <NavItem eventKey={1}>Home</NavItem>
-                        <NavItem eventKey={2}>Best in Talent</NavItem>
-                        <NavItem eventKey={3}>Best in Gown</NavItem>
-                        <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                        <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                        <NavItem eventKey={6}>Score Board</NavItem>
-                        <NavItem eventKey={7}>Log out</NavItem>
-                        <NavItem eventKey={8}>Judges List</NavItem>
-                    </Nav>
+                     <Navbar inverse>
+                        <Navbar.Header>
+                        <Navbar.Brand>
+                            <a href="#">Mr & Ms Ce-c Palaro</a>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                        </Navbar.Header>
+                        <Navbar.Collapse>
+                        <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
+                            <NavItem eventKey={1}>Home</NavItem>
+                            <NavItem eventKey={2}>Best in Talent</NavItem>
+                            <NavItem eventKey={3}>Best in Gown</NavItem>
+                            <NavItem eventKey={4}>Best is Sportswear</NavItem>
+                            <NavItem eventKey={5}>Wit and Intelligent</NavItem>
+                            <NavItem eventKey={6}>Score Board</NavItem>
+                            <NavItem eventKey={7}>Log out</NavItem>
+                            <NavItem eventKey={8}>Judges List</NavItem>
+                            <NavItem eventKey={9}>Candidate List </NavItem>
+                        </Nav>
+                        </Navbar.Collapse>
+                    </Navbar>
                     {this.props.children}
                     <AlertModal {...this.props.alert} dialogActions={this.props.dialogActions}/>
                     <ConfirmDialog {...this.props.confirm} dialogActions={this.props.dialogActions}/>
                     <PromptDialog {...this.props.prompt} dialogActions={this.props.dialogActions}/>
                 </div>
-
             </Well>
 
         );

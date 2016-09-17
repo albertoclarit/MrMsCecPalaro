@@ -17,7 +17,7 @@ app.use('/images',express.static('images')); // create a static link for /images
 app.use(express.static('./build'));  // create a static link for build folder created by react-create-app
 
 
-var sequelize = new Sequelize('database', 'username', 'password', {
+var sequelize = new Sequelize('database', 'username', 'password',  {
     dialect: 'sqlite',
     pool: {
         max: 5,
@@ -40,6 +40,11 @@ var judges = require('./judges')(db.Judge);
 
 app.use('/api/judges',judges);
 // end rest endpoints
+
+var candidates = require ('./candidates')(db.Candidate);
+
+app.use('/api/candidates',candidates);
+
 
 var server = app.listen(8080, function () {
     var host = server.address().address;
