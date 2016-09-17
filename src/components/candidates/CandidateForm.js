@@ -5,6 +5,7 @@
 import React from 'react';
 import {
     Well,
+    Radio,
     Table,
     Button,
     FormGroup,
@@ -17,8 +18,13 @@ class CandidateForm extends React.Component {
 
     constructor(props) {
         super(props);
+        
 
     }
+
+state={
+    
+}
 
     onChange=(name)=>{
 
@@ -68,24 +74,40 @@ class CandidateForm extends React.Component {
                         <ControlLabel>Enter Candidate No.</ControlLabel>
                         <FormControl
                             type="number"
-                            placeholder="Enter the Candidateno"
+                            placeholder="Enter Candidate no."
                             value={this.props.selectedCandidate.candidateNo || ''}
                             onChange={this.onChange('candidateNo')}
                             />
                         <FormControl.Feedback/>
                         <HelpBlock></HelpBlock>
                     </FormGroup>
+                    
                     <FormGroup>
                         <ControlLabel>Enter Candidate Name</ControlLabel>
                         <FormControl
                             type="text"
-                            placeholder="Enter the Candidate Name"
+                            placeholder="Enter Candidate Name"
                             value={this.props.selectedCandidate.name || ''}
                             onChange={this.onChange('name')}
                             />
                         <FormControl.Feedback/>
                         <HelpBlock></HelpBlock>
                     </FormGroup> 
+                   
+                       <FormGroup controlId="formControlsSelect">
+                        <ControlLabel>Gender</ControlLabel>
+                        <FormControl 
+                            componentClass="select" 
+                            placeholder="select" 
+                            value={this.props.selectedCandidate.gender || ''} 
+                            onChange={this.onChange('gender')}>
+                            <option value="gender">select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            
+                        </FormControl>
+                    </FormGroup>
+                  
                    
                     <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Team</ControlLabel>
@@ -95,10 +117,11 @@ class CandidateForm extends React.Component {
                             value={this.props.selectedCandidate.team || ''} 
                             onChange={this.onChange('team')}>
                             <option value="team">select</option>
-                            <option value="IIAS">IIAS</option>
-                            <option value="EdCriBa">EdCriBa</option>
-                            <option value="Chieftains">Chieftains</option>
-                            <option value="Cruisers">Cruisers</option>
+                            <option value="Targaryen">Targaryen</option>
+                            <option value="Lannister">Lannister</option>
+                            <option value="Baratheon">Baratheon</option>
+                            <option value="Stark">Stark</option>
+                            <option value="Arryn">Arryn</option>
                         </FormControl>
                     </FormGroup>
                   

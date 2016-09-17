@@ -25,6 +25,7 @@ import Judges from './Judges/Judges'
 import './App.css'
 import './styles/bootstrap.css'
 
+import Error from './Error'
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
@@ -50,6 +51,8 @@ const Components=(
                 <Route path="logIn" component={LogIn}/>
                 <Route path="admin" component={Admin}/>
                 <Route path="judges" component={Judges}/>
+                <Route path="error" component={Error}/>
+                
                 <IndexRoute component={Welcome}/>
             </Route>
 
