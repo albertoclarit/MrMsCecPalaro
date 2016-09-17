@@ -47,9 +47,14 @@ state={
               case 1:
                   this.props.authActions.logout();
                   break;
+<<<<<<< HEAD
+              case 3:
+                  this.context.router.push("/judges")
+                  break;   
+=======
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
               default:
                   return;
-
           }
 
 
@@ -72,6 +77,17 @@ const wellStyle={
                 <Navbar inverse>
                             <Navbar.Header>
                             <Navbar.Brand>
+<<<<<<< HEAD
+                                <a href="#">Mr & Ms Ce-c Palaro</a>
+                            </Navbar.Brand>
+                            <Navbar.Toggle />
+                            </Navbar.Header>
+                            <Navbar.Collapse>
+                            <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
+                                <NavItem eventKey={1}>Home</NavItem>
+                                <NavItem eventKey={2}>Log-In</NavItem>
+                                <NavItem eventKey={3}>Judges</NavItem>
+=======
                                 <a href="#/">Mr and Ms Ce-c Palaro</a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
@@ -84,6 +100,7 @@ const wellStyle={
                                 {/* <NavItem eventKey={1}>Home</NavItem>
                                 <NavItem eventKey={2}>Admin</NavItem>
                                 <NavItem eventKey={3}>Judges</NavItem>*/}
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                             </Nav>
                             </Navbar.Collapse>
                         </Navbar>

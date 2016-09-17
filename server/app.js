@@ -52,6 +52,8 @@ app.use(passport.session());
 
 
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -85,6 +87,7 @@ app.use(passport.session());
 
 
 
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 var sequelize = new Sequelize('database', 'username', 'password',  {
     dialect: 'sqlite',
     pool: {
@@ -231,8 +234,16 @@ app.use('/api/judges',ensureAuthenticated,judges);
 var candidates = require ('./candidates')(db.Candidate);
 app.use('/api/candidates',ensureAuthenticated,candidates);
 
+<<<<<<< HEAD
+var candidates = require ('./candidates')(db.Candidate);
+
+app.use('/api/candidates',candidates);
+
+
+=======
 
 // end rest endpoints
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
 var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;

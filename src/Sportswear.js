@@ -41,19 +41,54 @@ class Sportswear extends React.Component {
                 <h2> Sportswear </h2>
                 </center>
             
+<<<<<<< HEAD
+=======
+                <p>Male</p>
+
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                 <table className="table table-striped table-hover ">
+                    
                     <thead>
                         <tr>
                         <th>Candidate #</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>
                         <th>Judge 3</th>
+<<<<<<< HEAD
+=======
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
                         </tr>
                     </thead>
                     <tbody>
                         {rows}
+<<<<<<< HEAD
+=======
                     </tbody>
-              </table> 
+              </table>
+              
+              <p>Female</p>
+
+                <table className="table table-striped table-hover ">
+                    
+                    <thead>
+                        <tr>
+                        <th>Candidate #</th>
+                        <th>Judge 1</th>
+                        <th>Judge 2</th>
+                        <th>Judge 3</th>
+                        <th>Judge 4</th>
+                        <th>Judge 5</th>
+                        <th>Average</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+>>>>>>> 2bf44f8fd9742a6e4944e3209de249fbc66acc13
+                    </tbody>
+              </table>
             </Well>
             
         );

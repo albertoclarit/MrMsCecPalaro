@@ -7,6 +7,9 @@
     "react-scripts": "0.3.0-alpha"
   },
   "dependencies": {
+    "validatorjs": "^2.0.5",
+    "react-validation-mixin": "^5.3.4",
+    "react-validatorjs-strategy": "^0.1.10",
     "axios": "^0.13.1",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
@@ -19,6 +22,7 @@
     "lodash": "^4.15.0",
     "object-assign": "^4.1.0",
     "passport": "^0.3.2",
+    "classnames":"^2.2.5",
     "passport-local": "^1.0.0",
     "react": "^15.2.1",
     "react-addons-update": "^15.3.0",
