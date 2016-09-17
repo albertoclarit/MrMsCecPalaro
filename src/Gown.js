@@ -3,13 +3,22 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
+import * as candidatelistingactions  from './actions/candidatelistingactions.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { routerActions } from 'react-router-redux';
 
 
-export default class Gown extends React.Component {
+class Gown extends React.Component {
 
     constructor(props){
         super(props);
     }
+
+      componentDidMount(){
+
+          this.props.candidatelistingactions.loadCandidates();
+     }
 
 
     render(){
@@ -21,61 +30,33 @@ export default class Gown extends React.Component {
             marginRight: 'auto'
         };
         
+         var rows = this.props.candidatelisting.records.map((item,i)=>{
+
+            return (
+                <tr key={i}>
+                     <td>{item.candidateNo}</td>
+                </tr>
+            );
+        });
+        
         return (
             <Well style={wellStyle}>
-            
+                
+                <center>
+                    <h2>  Gown </h2>
+                </center>
+                
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
-                        <th>#</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
-                        <th>Column heading</th>
+                        <th>Candidate #</th>
+                        <th>Judge 1</th>
+                        <th>Judge 2</th>
+                        <th>Judge 3</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>1</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>3</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>4</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>5</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>6</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
-                        <tr>
-                        <td>7</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        <td>Column content</td>
-                        </tr>
+                     {rows}
                     </tbody>
               </table> 
             </Well>
@@ -83,6 +64,23 @@ export default class Gown extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+
+    return {
+    candidatelisting:state.candidatelisting
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Gown);
+
 
 
 

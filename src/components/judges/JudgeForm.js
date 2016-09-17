@@ -12,13 +12,91 @@ import {
     FormControl,
     HelpBlock
 } from 'react-bootstrap';
+  import validation from 'react-validation-mixin';
+  import strategy from 'react-validatorjs-strategy';
+  import validatorjs from 'validatorjs';
+  import classnames from 'classnames';
+
 
 class JudgeForm extends React.Component {
 
     constructor(props) {
         super(props);
 
-    }
+    
+    
+    this.validatorTypes=strategy.createSchema(
+        {
+            judgeNo:'required',
+            password: 'required'
+        },
+        {
+            "required":"The field :attribute is required!"
+        },
+        (validator)=>{
+        validator.setAttributeNames({
+            judgeNo: 'Judge Number',
+            password: 'Password'
+        });
+        });
+    
+    }     
+
+ 
+    
+    
+        getValidatorData = ()=> {
+                return this.props.selectedJudge
+            };
+        
+        getClasses = (field)=>{
+        
+                return classnames({
+                    'success': this.props.isValid(field),
+                    'error': !this.props.isValid(field)
+                });
+        };
+        
+        onFormSubmit = (event)=>{
+            event.preventDefault();
+            
+            this.setState({
+            validated:true
+            });
+            
+            this.props.validate(this.onValidate);
+        };
+                
+        getErrorText=(field)=>{
+                var error = this.props.errors[field];
+                if(!error)
+                    return null;
+                if(Array.isArray(error)){
+                    var message = [];
+                    message = error.map((item,i)=>{
+                        return(
+                            <span key={i}>
+                                {item}
+                                <br/>
+                            </span>
+                        )
+                    });
+                    return message;
+                }
+                else
+                    return  (<span>{error || ''}</span>);
+            };
+
+
+        onValidate=(error)=>{
+            if (error) {
+               event.preventDefault();
+            } else {
+            // submit to rest here
+            this.saveRecord()
+            }
+        };
+
 
     onChange=(name)=>{
 
@@ -63,30 +141,47 @@ class JudgeForm extends React.Component {
 
         return (
             <div style={style}>
-                <form>
-                    <FormGroup>
-                        <ControlLabel>Enter JudgeNo</ControlLabel>
+                <form onSubmit={this.onFormSubmit}>
+                    <FormGroup validationState={this.getClasses('judgeNo')}>
+                        <ControlLabel>Enter Judge Number</ControlLabel>
                         <FormControl
-                            type="number"
+                            type="text"
+                            name="judgeNo"
                             placeholder="Enter the Judgeno"
                             value={this.props.selectedJudge.judgeNo || ''}
                             onChange={this.onChange('judgeNo')}
+                             onBlur={()=>{
+                                this.setState({
+                                    validated:true
+                                });
+                                    this.props.validate('judgeNo');
+                                    }
+                                }
                             />
                         <FormControl.Feedback/>
-                        <HelpBlock></HelpBlock>
+                        <HelpBlock>{this.getErrorText('judgeNo')}</HelpBlock>
                     </FormGroup>
-                    <FormGroup>
+                    <FormGroup validationState={this.getClasses('password')}>
                         <ControlLabel>Enter Password</ControlLabel>
                         <FormControl
                             type="text"
-                            placeholder="Enter the password"
+                            name="password"
+                            placeholder="Enter the Password"
                             value={this.props.selectedJudge.password || ''}
                             onChange={this.onChange('password')}
+                            onBlur={()=>{
+                                this.setState({
+                                    validated:true
+                                });
+                                    this.props.validate('password');
+                                    }
+                                }
                             />
+                            
                         <FormControl.Feedback/>
-                        <HelpBlock></HelpBlock>
+                        <HelpBlock>{this.getErrorText('password')}</HelpBlock>
                     </FormGroup>
-                    <Button bsStyle="info" onClick={this.saveRecord}>Save Record</Button>
+                    <Button bsStyle="info" type="submit">Save Record</Button>
 
                     {
                         this.props.selectedJudge.id ?
@@ -101,4 +196,4 @@ class JudgeForm extends React.Component {
     }
 }
 
-export default JudgeForm;
+export default validation(strategy)(JudgeForm);

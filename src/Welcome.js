@@ -15,11 +15,10 @@ export default class Welcome extends React.Component {
     render(){
         
           const wellStyle={
-            width: 400,
-            height: 500,
+            width: 'auto',
+            height: 'auto',
             marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: 80,
+            marginRight: 'auto'
         }
           const fontSize={
             fontSize: 50,  
