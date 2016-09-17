@@ -10,6 +10,8 @@ import AlertModal from './dialogs/alertmodal/AlertModal';
 import ConfirmDialog from './dialogs/confirmdialog/ConfirmDialog';
 import PromptDialog from './dialogs/promptdialog/PromptDialog';
 import { routerActions } from 'react-router-redux'
+import * as HealthChecksAction from './actions/healthchecks';
+import * as authactions  from './actions/authactions';
 class Admin extends React.Component {
 
     constructor(props){
@@ -20,17 +22,18 @@ class Admin extends React.Component {
     state = {
         selectedKey:0
     };
-    
 
+
+    componentDidMount(){
+        this.props.actions.ping();
+    }
 
 
 
     handleSelect= (selectedKey)=>{
 
           switch (selectedKey) {
-              case 1:
-                  this.props.routerActions.push("/")
-                  break;
+
               case 2:
                   this.props.routerActions.push("/talent")
                   break;
@@ -70,13 +73,13 @@ class Admin extends React.Component {
                      <Navbar inverse>
                         <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">Mr & Ms Ce-c Palaro</a>
+                            <a href="#">Mr and  Ms Ce-c Palaro</a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            <NavItem eventKey={1}>Home</NavItem>
+
                             <NavItem eventKey={2}>Best in Talent</NavItem>
                             <NavItem eventKey={3}>Best in Gown</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
@@ -113,6 +116,8 @@ function mapDispatchToProps(dispatch) {
     return {
         dialogActions: bindActionCreators(dialogActions, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
+        authActions: bindActionCreators(authactions, dispatch),
+        actions: bindActionCreators(HealthChecksAction, dispatch)
     }
 }
 

@@ -11,3 +11,5 @@ build
 .DS_Store
 npm-debug.log
 .idea/
+/sessions
+/sessions

@@ -11,7 +11,7 @@ import {Well,
     ButtonGroup
 } from 'react-bootstrap'
 
-export default class Welcome extends React.Component {
+ class LogIn extends React.Component {
     constructor(props){
         super(props);
         
@@ -21,13 +21,11 @@ export default class Welcome extends React.Component {
         router: React.PropTypes.object
     };
 
-    goToAdmin(){
-     this.context.router.push("/admin");
- }
+
  render(){
      const wellStyle={
          width:500,
-         height:500,
+         height:400,
          marginLeft:'auto',
          marginTop:'50px',
          marginRight:'auto'
@@ -39,6 +37,12 @@ export default class Welcome extends React.Component {
             <Well style={wellStyle}>
              <legend>Please LogIn</legend>
          <form>
+             {this.props.auth.isWrongCredentials ?
+                 <Alert bsStyle="danger">Wrong Credentials</Alert>
+                 :null}
+             {this.props.auth.logoutSuccess ?
+                 <Alert bsStyle="success">You are now logged-out</Alert>
+                 :null}
          <FormGroup>
          <ControlLabel>Enter Username</ControlLabel>
          <FormControl
@@ -61,7 +65,7 @@ export default class Welcome extends React.Component {
          
         <div className="btncontainer">
         <ButtonGroup>
-         <Button bsStyle="success" type="submit" onClick={this.goToAdmin.bind(this)}>Login</Button>
+         <Button bsStyle="success" type="submit">Login</Button>
           </ButtonGroup>
           </div>
          </form>
@@ -73,3 +77,35 @@ export default class Welcome extends React.Component {
  
             
 }
+
+function mapStateToProps(state) {
+    return {
+        auth:state.auth
+    }
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+        authActions:bindActionCreators(AuthActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
+
+function mapStateToProps(state) {
+    return {
+        auth:state.auth
+    }
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        routerActions: bindActionCreators(routerActions, dispatch),
+        authActions:bindActionCreators(AuthActions, dispatch)
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
