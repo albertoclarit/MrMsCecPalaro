@@ -12,6 +12,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 
 import App from './App'
+import Error from './Error'
 import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
@@ -51,8 +52,8 @@ const Components=(
             </Route>
             <Route path="/" component={App}>
                 <Route path="login" component={LogIn}/>
-                <Route path="judges" component={requireAuthentication(Judges,'ROLE_JUDGE')}/>
-                <IndexRedirect to="/login" />
+                <Route path="accessdenied" component={Error}/>
+                <IndexRoute path="judges" component={requireAuthentication(Judges,'ROLE_JUDGE')}/>
             </Route>
 
 

@@ -54,7 +54,10 @@ class Admin extends React.Component {
                   break;
               case 9:
                   this.props.routerActions.push("/candidateslist")
-                  break;    
+                  break;
+              case 7:
+                   this.props.authActions.logout();
+                  break;
               default:
                   return;
 
@@ -85,9 +88,9 @@ class Admin extends React.Component {
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                             <NavItem eventKey={6}>Score Board</NavItem>
-                            <NavItem eventKey={7}>Log out</NavItem>
                             <NavItem eventKey={8}>Judges List</NavItem>
                             <NavItem eventKey={9}>Candidate List </NavItem>
+                            <NavItem eventKey={7}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>
                     </Navbar>

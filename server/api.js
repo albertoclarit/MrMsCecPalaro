@@ -15,7 +15,16 @@ module.exports = function (passport) {
         }
         else {
             var userResult = {};
-            console.log(req.user);
+            userResult.judgeNo = req.user.judgeNo;
+            userResult.roles = [];
+
+            if(userResult.judgeNo===999){
+                userResult.roles.push('ROLE_ADMIN');
+            }
+            else {
+                userResult.roles.push('ROLE_JUDGE');
+            }
+
 
             res.json(userResult);
         }

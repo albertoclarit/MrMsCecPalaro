@@ -171,8 +171,16 @@ passport.use(new LocalStrategy({
                 password:password
             }
         }).then(function(judge){
-            judge.password='';
-            done(null,judge);
+
+            if(judge==null)
+            {
+                done(null,false);
+            }
+            else {
+                judge.password='';
+                done(null,judge);
+            }
+
 
         }).catch(function(err){
             done(err,false);
