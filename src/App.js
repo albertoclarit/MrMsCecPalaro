@@ -45,7 +45,7 @@ state={
                   this.context.router.push("/logIn")
                   break;
               case 3:
-                  this.context.router.push("/judges")
+                  this.context.router.push("/female")
                   break;   
               default:
                   return;

@@ -21,7 +21,8 @@ import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
 import CandidateList from './components/candidates/CandidateList'
 import CandidateEditor from './components/candidates/CandidateEditor'
-import Judges from './Judges/Judges'
+import Female from './Judges/Female'
+import Male from './Judges/Male'
 import './App.css'
 import './styles/bootstrap.css'
 
@@ -49,7 +50,8 @@ const Components=(
             <Route path="/" component={App}>
                 <Route path="logIn" component={LogIn}/>
                 <Route path="admin" component={Admin}/>
-                <Route path="judges" component={Judges}/>
+                <Route path="female" component={Female}/>
+                <Route path="male" component={Male}/>
                 <IndexRoute component={Welcome}/>
             </Route>
 

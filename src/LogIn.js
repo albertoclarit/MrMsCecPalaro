@@ -24,6 +24,7 @@ export default class Welcome extends React.Component {
     goToAdmin(){
      this.context.router.push("/admin");
  }
+ 
  render(){
      const wellStyle={
          width:500,

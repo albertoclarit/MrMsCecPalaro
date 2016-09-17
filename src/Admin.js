@@ -10,6 +10,7 @@ import AlertModal from './dialogs/alertmodal/AlertModal';
 import ConfirmDialog from './dialogs/confirmdialog/ConfirmDialog';
 import PromptDialog from './dialogs/promptdialog/PromptDialog';
 import { routerActions } from 'react-router-redux'
+
 class Admin extends React.Component {
 
     constructor(props){
