@@ -71,10 +71,10 @@ import { routerActions } from 'react-router-redux'
                             <Alert bsStyle="success">You are now logged-out</Alert>
                             : null}
                         <FormGroup>
-                            <ControlLabel>Enter Username</ControlLabel>
+                            <ControlLabel>Enter JudgeNo</ControlLabel>
                             <FormControl
                                 type="text"
-                                placeholder="Enter your username"
+                                placeholder="Enter your JudgeNo"
                                 onChange={(e)=>
                                        {this.updateField('j_username',e.target.value)}
                                      }
