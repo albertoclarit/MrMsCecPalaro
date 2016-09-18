@@ -8,7 +8,8 @@ import {Well,
         ControlLabel,
         HelpBlock,
         Button,
-        ButtonGroup} from 'react-bootstrap';
+        ButtonGroup,
+       Image} from 'react-bootstrap';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

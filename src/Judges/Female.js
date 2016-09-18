@@ -9,21 +9,36 @@ import {Well,
         HelpBlock,
         Button,
         ButtonGroup,
-        Image} from 'react-bootstrap';
+        Image,
+       Grid,
+       Col,
+       Row} from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
 
 import ScoreCombo from './ScoreCombo'
-import Picture from '../../images/Female/1.jpg'
+import pic1 from '../../images/Female/1.jpg'
+import pic2 from '../../images/Female/2.jpg'
+import pic3 from '../../images/Female/3.jpg'
+import pic4 from '../../images/Female/4.jpg'
+import pic5 from '../../images/Female/5.jpg'
+
+import * as femaleScoringActions from '../actions/femalescoringactions.js'
 
 
 class Female extends React.Component {
 
     constructor(props){
         super(props);
-        
+
+
+
     }
+
+    state = {
+        pic_reference:[]
+    };
     
       static contextTypes = {
         router: React.PropTypes.object
@@ -33,29 +48,70 @@ class Female extends React.Component {
     goToMale(){
         this.props.routerActions.push("/male")
 
- }
+    }
+
+    componentWillMount(){
+
+        var pics = [];
+        pics.push(pic1);
+        pics.push(pic2);
+        pics.push(pic3);
+        pics.push(pic4);
+        pics.push(pic5);
+
+
+
+        this.setState({
+            pic_reference:pics
+        })
+
+    }
+
+
+    previousCandidate=()=>{
+
+        this.props.femaleScoringActions.previousCandidate(this.props.femalescoring.activeCandidate-1);
+
+    };
+
+    nextCandidate=()=>{
+        this.props.femaleScoringActions.nextCandidate(this.props.femalescoring.activeCandidate + 1);
+    };
+
+
+     componentDidMount(){
+         this.props.femaleScoringActions.loadFemaleCandidates();
+     }
     render(){
         
-        const fontSize={
-            fontSize: 45
-        }
+        const titleStyle={
+            fontSize: 45,
+            textAlign:'center'
+        };
         
         const fontSize2={
             fontWeight: 'bold',
             fontSize: 18
-        }
+        };
         
         
         const boxMargin={
             marginLeft: 80
-        }
+        };
         
         const boxMargin1 ={
             marginLeft: 20
-        }
+        };
         
-         
+         if( this.props.femalescoring.candidates.length==0)
+           return null;
+
+
+
         return (
+
+
+
                 <Well>
                     <div>
                         <ButtonGroup>
@@ -64,42 +120,64 @@ class Female extends React.Component {
                         </ButtonGroup>
                     </div>
                 
-                  <center style={fontSize}>Female Scoring </center>
-                  
-                  <div>
-                        <Image src={Picture} circle />
-                  </div>
-                  <form>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                          <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
-                              <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                            <div>
-                                <ButtonGroup>
-                                    <Button bsSize="large"  bsStyle="primary" type="submit" style={boxMargin}>
-                                    PREVIOUS </Button>
-                                    <Button bsSize="large" bsStyle="primary" type="button" style={boxMargin}>
-                                    NEXT </Button>
-                                  
-                                </ButtonGroup>
-                            </div>
-                   </form>
+                  <div style={titleStyle}>Female Scoring </div>
+
+                    <Grid>
+                        <Row>
+                                <Col md={6}>
+                                    <div>
+                                        <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>
+                                        <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
+                                        <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].team}</h4>
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <form>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <div>
+                                            <ButtonGroup>
+
+                                                {this.props.femalescoring.activeCandidate > 0 ?
+                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" style={boxMargin}>
+                                                    PREVIOUS </Button>)
+                                                    :
+                                                    null}
+
+                                                {this.props.femalescoring.activeCandidate < this.props.femalescoring.candidates.length  -1 ?
+                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" style={boxMargin}>
+                                                        NEXT </Button>)
+                                                    :
+                                                    null}
+
+
+
+                                            </ButtonGroup>
+                                        </div>
+                                    </form>
+                                </Col>
+                        </Row>
+                    </Grid>
+
+
                </Well>
         );
     }
@@ -107,15 +185,15 @@ class Female extends React.Component {
 
 
 function mapStateToProps(state) {
-
     return {
-
+        femalescoring: state.femalescoring
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
+        femaleScoringActions: bindActionCreators(femaleScoringActions, dispatch)
     }
 }
 

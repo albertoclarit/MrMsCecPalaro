@@ -5,7 +5,7 @@ import judgelistingreducers from './judgelistingreducers'
 import candidatelistingreducers from './candidatelistingreducers'
 import healthchecks from './healthchecks';
 import authreducers from './authreducers';
-
+import femalescoringreducers from './femalescoringreducers';
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -13,7 +13,8 @@ const rootReducer = combineReducers({
   candidatelisting: candidatelistingreducers,
   routing,
   healthchecks,
-  auth:authreducers
+  auth:authreducers,
+  femalescoring: femalescoringreducers
 });
 
 export default rootReducer;
