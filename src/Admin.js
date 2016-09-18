@@ -34,29 +34,31 @@ class Admin extends React.Component {
     handleSelect= (selectedKey)=>{
 
           switch (selectedKey) {
-
-              case 2:
+              case 1:
                   this.props.routerActions.push("/talent");
                   break;
-              case 3:
+              case 2:
                   this.props.routerActions.push("/production");
+                  break;
+              case 3:
+                  this.props.routerActions.push("/gown");
                   break;
               case 4:
                   this.props.routerActions.push("/sportswear");
                   break;   
               case 5:
-                  this.props.routerActions.push("/Formalwear");
+                  this.props.routerActions.push("/witandint");
                   break;
               case 6:
-                  this.props.routerActions.push("/scoreboard");
-                  break;
-              case 8:
                   this.props.routerActions.push("/judgeslist");
                   break;
-              case 9:
+              case 7:
                   this.props.routerActions.push("/candidateslist");
                   break;
-              case 7:
+              case 8:
+                  this.props.routerActions.push("/scoreboard");
+                  break;
+              case 9:
                    this.props.authActions.logout();
                   break;
               default:
@@ -84,16 +86,15 @@ class Admin extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            <NavItem eventKey={2}>Best in Talent</NavItem>
-                            <NavItem eventKey={3}>Best in Production</NavItem>
-                            <NavItem eventKey={5}>Best in Gown</NavItem>
+                            <NavItem eventKey={1}>Best in Talent</NavItem>
+                            <NavItem eventKey={2}>Best in Production</NavItem>
+                            <NavItem eventKey={3}>Best in Gown</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                            <NavItem eventKey={6}>Score Board</NavItem>
-                            <NavItem eventKey={8}>Judges List</NavItem>
-                            <NavItem eventKey={9}>Candidate List </NavItem>
-                            <NavItem eventKey={6}>Final Ranking</NavItem>
-                            <NavItem eventKey={7}>Log out</NavItem>
+                            <NavItem eventKey={6}>Judges List</NavItem>
+                            <NavItem eventKey={7}>Candidate List </NavItem>
+                            <NavItem eventKey={8}>Final Ranking</NavItem>
+                            <NavItem eventKey={9}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>
                     </Navbar>

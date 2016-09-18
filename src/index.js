@@ -16,8 +16,8 @@ import Error from './Error'
 import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
-import Talent from './components/specialawards/Gown'
-import Gown from './components/specialawards/Talent'
+import Talent from './components/specialawards/Talent'
+import Gown from './components/specialawards/Gown'
 import Witandint from './components/specialawards/Witandint'
 import Production    from './components/specialawards/Production'
 import Sportswear from './components/specialawards/Sportswear'
@@ -42,18 +42,8 @@ const Components=(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/admin" component={Admin}>
-                <Route path="/talent" component={Talent}/>
-                <Route path="/production" component={Production}/>
-                <Route path="/sportswear" component={Sportswear}/>
-                <Route path="/formalwear" component={Formalwear}/>
-                <Route path="/scoreboard" component={Scoreboard}/>
-                <Route path="/judgeslist" component={JudgeList}/>
-                <Route path="/judgeslist_add" component={JudgeEditor}/>
-                <Route path="/judgeslist/:id" component={JudgeEditor}/>
-                <Route path="/candidateslist" component={CandidateList}/>
-                <Route path="/candidateslist_add" component={CandidateEditor}/>
-                <Route path="/candidateslist/:id" component={CandidateEditor}/>
                 <Route path="/talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
+                <Route path="/production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
                 <Route path="/gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
                 <Route path="/sportswear" component={requireAuthentication(Sportswear,'ROLE_ADMIN')}/>
                 <Route path="/witandint" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
