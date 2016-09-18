@@ -9,19 +9,35 @@ import {Well,
         HelpBlock,
         Button,
         ButtonGroup,
-       Image} from 'react-bootstrap';
+       Image,
+       Grid,
+       Col,
+       Row} from 'react-bootstrap';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
 
 import ScoreCombo from './ScoreCombo'
+
+import pic1 from '../../images/Male/1.jpg'
+import pic2 from '../../images/Male/2.jpg'
+import pic3 from '../../images/Male/3.jpg'
+import pic4 from '../../images/Male/4.jpg'
+import pic5 from '../../images/Male/5.jpg'
+
+import * as maleScoringActions from '../actions/malescoringactions.js'
+
  class Male extends React.Component {
 
     constructor(props){
         super(props);
         
     }
+    
+     state = {
+        pic_reference:[]
+    };
     
       static contextTypes = {
         router: React.PropTypes.object
@@ -31,13 +47,43 @@ import ScoreCombo from './ScoreCombo'
      goToFemale(){
          this.props.routerActions.push("/female")
  }
+     componentWillMount(){
 
+        var pics = [];
+        pics.push(pic1);
+        pics.push(pic2);
+        pics.push(pic3);
+        pics.push(pic4);
+        pics.push(pic5);
+     
+        
+        this.setState({
+            pic_reference:pics
+        })
 
+    }
+    
+    
+    previousCandidate=()=>{
+
+        this.props.maleScoringActions.previousCandidate(this.props.malescoring.activeCandidate-1);
+
+    };
+
+    nextCandidate=()=>{
+        this.props.maleScoringActions.nextCandidate(this.props.malescoring.activeCandidate + 1);
+    };
+
+     componentDidMount(){
+         this.props.maleScoringActions.loadMaleCandidates();
+     }
+     
     render(){
         
-        const fontSize={
-            fontSize: 45
-        }
+        const titleStyle={
+            fontSize: 45,
+            textAlign:'center'
+        };
         
         const fontSize2={
             fontWeight: 'bold',
@@ -53,51 +99,77 @@ import ScoreCombo from './ScoreCombo'
             marginLeft: 20
         }
    
+          if( this.props.malescoring.candidates.length==0)
+          return null;
         
         return (
+               
                 <Well>
                     <div>
-                         <Image src="../../images/Female/1.jpg" circle />
-                    </div>
-                    <div>
                         <ButtonGroup>
-                            <Button bsStyle="primary" style={boxMargin1} onClick={this.goToFemale.bind(this)}>Female</Button>
-                            <Button bsStyle="primary" style={boxMargin1} >Male</Button>
+                            <Button onClick={this.goToFemale.bind(this)}  bsStyle="primary">Female </Button>
+                            <Button style= {boxMargin1} bsStyle="primary" type="button"> Male</Button>
                         </ButtonGroup>
                     </div>
-                    
-                  <center style={fontSize}> Male Scoring </center>
-                  <form>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                          <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
-                              <ScoreCombo />
-                        </FormGroup>
-                        <FormGroup controlId="formControlsSelect">
-                            <ControlLabel style={fontSize2}><h5>Wit and Intelligence Competition</h5></ControlLabel>
-                            <ScoreCombo />
-                        </FormGroup>
-                            <div>
-                                <ButtonGroup>
-                                    <Button bsSize="large"  bsStyle="primary" type="submit" style={boxMargin}>
-                                    BACK </Button>
-                                    <Button bsSize="large" bsStyle="primary" type="button" style={boxMargin}>
-                                    NEXT </Button>
-                                  
-                                </ButtonGroup>
-                            </div>
-                   </form>
+                
+                  <div style={titleStyle}>Male Scoring </div>
+
+                    <Grid>
+                        <Row>
+                                <Col md={6}>
+                                    <div>
+                                        <Image src={this.state.pic_reference[this.props.malescoring.activeCandidate]} circle  width="300" height="400"/>
+                                        <h4>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].name}</h4>
+                                        <h4>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].team}</h4>
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <form>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
+                                            <ScoreCombo />
+                                        </FormGroup>
+                                        <div>
+                                            <ButtonGroup>
+
+                                                {this.props.malescoring.activeCandidate > 0 ?
+                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" style={boxMargin}>
+                                                    PREVIOUS </Button>)
+                                                    :
+                                                    null}
+
+                                                {this.props.malescoring.activeCandidate < this.props.malescoring.candidates.length  -1 ?
+                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" style={boxMargin}>
+                                                        NEXT </Button>)
+                                                    :
+                                                    null}
+
+
+
+                                            </ButtonGroup>
+                                        </div>
+                                    </form>
+                                </Col>
+                        </Row>
+                    </Grid>
+
+
                </Well>
         );
     }
@@ -106,13 +178,14 @@ import ScoreCombo from './ScoreCombo'
 function mapStateToProps(state) {
 
     return {
-
+            malescoring: state.malescoring
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
+        maleScoringActions: bindActionCreators(maleScoringActions, dispatch)
     }
 }
 

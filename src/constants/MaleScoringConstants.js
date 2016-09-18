@@ -1,0 +1,8 @@
+/**
+ * Created by albertoclarit on 9/18/16.
+ */
+
+export const LOAD_MALE_CANDIDATES_SUCCESS = 'LOAD_MALE_CANDIDATES_SUCCESS';
+
+export const NEXT_CANDIDATE = 'NEXT_CANDIDATE';
+export const PREVIOUS_CANDIDATE = 'PREVIOUS_CANDIDATE';
