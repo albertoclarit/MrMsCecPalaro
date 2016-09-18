@@ -8,8 +8,8 @@ import  update from 'react-addons-update';
 const initialState={
 
     candidates:[],
-    activeCandidate:-1 // index ni
-
+    activeCandidate:-1, // index ni
+    currentScore:{}
 };
 
 export default function malescoringreducers(state=initialState, action={}) {
@@ -27,6 +27,13 @@ export default function malescoringreducers(state=initialState, action={}) {
             return update(state, {
                 activeCandidate: {
                     $set: action.candidateIndex
+                }
+            });
+
+        case types.LOAD_SCORE_SUCCESS:
+            return update(state, {
+                currentScore:{
+                    $set:action.scoredata
                 }
             });
 

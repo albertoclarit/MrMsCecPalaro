@@ -80,8 +80,16 @@ class Female extends React.Component {
 
 
      componentDidMount(){
-         this.props.femaleScoringActions.loadFemaleCandidates();
+         this.props.femaleScoringActions.loadFemaleCandidates(this.props.auth.account.judgeNo);
      }
+
+    onScore=(name)=>{
+
+        return (e)=>{
+            this.props.femaleScoringActions.updateAndSave(name,parseFloat(e.target.value));
+        }
+    };
+
     render(){
         
         const titleStyle={
@@ -121,6 +129,27 @@ class Female extends React.Component {
            return null;
 
 
+        var production = "";
+          if(this.props.femalescoring.currentScore.production)
+              production = this.props.femalescoring.currentScore.production.toFixed(1);
+
+        var talent = "";
+        if(this.props.femalescoring.currentScore.talent)
+            talent = this.props.femalescoring.currentScore.talent.toFixed(1);
+
+        var formalWear = "";
+        if(this.props.femalescoring.currentScore.formalWear)
+            formalWear = this.props.femalescoring.currentScore.formalWear.toFixed(1);
+
+        var sportswear = "";
+        if(this.props.femalescoring.currentScore.sportswear)
+            sportswear = this.props.femalescoring.currentScore.sportswear.toFixed(1);
+
+
+        var qa = "";
+        if(this.props.femalescoring.currentScore.qa)
+            qa = this.props.femalescoring.currentScore.qa.toFixed(1);
+
 
         return (
 
@@ -142,6 +171,10 @@ class Female extends React.Component {
                                     <div style={imageStyle}>
                                         <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>
                                         <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].candidateNo}</h4>
+                                            <h5>Candidate #</h5>
+                                        </div>
+                                        <div style={nameStyle}>
                                             <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
                                             <h5>Name</h5>
                                         </div>
@@ -155,23 +188,28 @@ class Female extends React.Component {
                                     <form>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('production')}
+                                                value = {production}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Talent Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('talent')}
+                                                        value = {talent}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('formalWear')}
+                                                        value = {formalWear}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('sportswear')}
+                                                        value = {sportswear}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('qa')}
+                                                        value = {qa}/>
                                         </FormGroup>
                                             <div style={buttonStyle}>
                                                 {this.props.femalescoring.activeCandidate > 0 ?
@@ -186,11 +224,8 @@ class Female extends React.Component {
                                                         NEXT </Button>)
                                                     :
                                                      <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
-<<<<<<< HEAD
-                                                    NEXT </Button>}
-=======
-                                                         NEXT </Button>}
->>>>>>> 775483ec35ce69159ebaf9738d510de7f3e28951
+                                                     NEXT </Button>
+                                                }
                                             </div>              
                                     </form>
                                 </Col>
@@ -205,7 +240,8 @@ class Female extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        femalescoring: state.femalescoring
+        femalescoring: state.femalescoring,
+        auth: state.auth
     }
 }
 

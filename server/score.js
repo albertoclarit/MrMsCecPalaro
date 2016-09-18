@@ -9,23 +9,26 @@ module.exports = function (Score) {
 
 
     // findbyjudgeandcandidate
-    router.get('/getByJudgeAndCandidate', function(req, res,next) {
+    router.get('/getByJudgeAndCandidateAndGender', function(req, res,next) {
 
         var judgeno=req.query.judgeno;
         var candidateno=req.query.candidateno;
+        var gender=req.query.gender;
 
-        if(!judgeno || !candidateno){
+        if(!judgeno || !candidateno || !gender){
             res.status(404).send('Please complete argument');
             return;
         }
 
         Score.findOrCreate({where: {
-            'judgeNo':judgeNo,
-            'candidateNo':candidateno
+            'judgeNo':judgeno,
+            'candidateNo':candidateno,
+            'gender':gender
             }, defaults:
             {
-                'judgeNo':judgeNo,
-                'candidateNo':candidateno
+                'judgeNo':judgeno,
+                'candidateNo':candidateno,
+                'gender':gender
             }
         }).
             spread(function(score,created){

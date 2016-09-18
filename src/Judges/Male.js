@@ -75,8 +75,16 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
     };
 
      componentDidMount(){
-         this.props.maleScoringActions.loadMaleCandidates();
+         this.props.maleScoringActions.loadMaleCandidates(this.props.auth.account.judgeNo);
      }
+
+     onScore=(name)=>{
+
+         return (e)=>{
+             this.props.maleScoringActions.updateAndSave(name,parseFloat(e.target.value));
+         }
+     };
+
      
     render(){
         
@@ -120,6 +128,30 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
    
           if( this.props.malescoring.candidates.length==0)
           return null;
+
+
+        var production = "";
+        if(this.props.malescoring.currentScore.production)
+            production = this.props.malescoring.currentScore.production.toFixed(1);
+
+        var talent = "";
+        if(this.props.malescoring.currentScore.talent)
+            talent = this.props.malescoring.currentScore.talent.toFixed(1);
+
+        var formalWear = "";
+        if(this.props.malescoring.currentScore.formalWear)
+            formalWear = this.props.malescoring.currentScore.formalWear.toFixed(1);
+
+        var sportswear = "";
+        if(this.props.malescoring.currentScore.sportswear)
+            sportswear = this.props.malescoring.currentScore.sportswear.toFixed(1);
+
+
+        var qa = "";
+        if(this.props.malescoring.currentScore.qa)
+            qa = this.props.malescoring.currentScore.qa.toFixed(1);
+
+
         
         return (
                
@@ -139,6 +171,10 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                     <div style={imageStyle} >
                                         <Image src={this.state.pic_reference[this.props.malescoring.activeCandidate]} circle  width="300" height="400"/>
                                         <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].candidateNo}</h4>
+                                            <h5>Candidate #</h5>
+                                        </div>
+                                        <div style={nameStyle}>
                                             <h4 style={textUnderline}>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].name}</h4>
                                             <h5>Name</h5>
                                         </div>
@@ -152,24 +188,30 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                     <form>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('production')}
+                                                        value = {production}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Talent Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('talent')}
+                                                        value = {talent}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('formalWear')}
+                                                        value = {formalWear}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('sportswear')}
+                                                        value = {sportswear}/>
                                         </FormGroup>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
-                                            <ScoreCombo />
+                                            <ScoreCombo onChange ={this.onScore('qa')}
+                                                        value = {qa}/>
                                         </FormGroup>
+
                                        <div style={buttonStyle}>
                                                 {this.props.malescoring.activeCandidate > 0 ?
                                                 (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" block>
@@ -183,11 +225,10 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                                         NEXT </Button>)
                                                     :
                                                      <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
-<<<<<<< HEAD
-                                                    NEXT </Button>}
-=======
-                                                         NEXT </Button>}
->>>>>>> 775483ec35ce69159ebaf9738d510de7f3e28951
+
+                                                     NEXT </Button>
+                                                }
+
                                         </div>
                                     </form>
                                 </Col>

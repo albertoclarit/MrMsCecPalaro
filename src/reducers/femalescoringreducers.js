@@ -9,7 +9,7 @@ const initialState={
 
     candidates:[],
     activeCandidate:-1, // index ni,
-    currentScore:null
+    currentScore:{}
 };
 
 export default function femalescoringreducers(state=initialState, action={}) {
@@ -27,6 +27,13 @@ export default function femalescoringreducers(state=initialState, action={}) {
             return update(state, {
                 activeCandidate: {
                     $set: action.candidateIndex
+                }
+            });
+
+        case types.LOAD_SCORE_SUCCESS:
+            return update(state, {
+                currentScore:{
+                    $set:action.scoredata
                 }
             });
 

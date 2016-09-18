@@ -88,8 +88,7 @@ module.exports = function (sequelize) {
             autoIncrement: true
         },
         candidateNo: {
-            type: Sequelize.INTEGER,
-            unique: true
+            type: Sequelize.INTEGER
         },
         judgeNo: {
             type: Sequelize.INTEGER
