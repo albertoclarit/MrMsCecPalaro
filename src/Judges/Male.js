@@ -98,11 +98,25 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
         
         const boxMargin={
             marginLeft: 80
-        }
+        };
         
         const boxMargin1={
             marginLeft: 20
-        }
+        };
+
+        const nameStyle={
+            padding: 0,
+            marginTop: 40,
+            marginBottom: -20
+        };
+
+        const imageStyle={
+            textAlign: 'center'
+        };
+
+         const textUnderline={
+            textDecoration: 'underline'
+        };
    
           if( this.props.malescoring.candidates.length==0)
           return null;
@@ -121,11 +135,17 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
 
                     <Grid>
                         <Row>
-                                <Col md={6}>
-                                    <div>
+                                <Col md={6} mdPull={1}>
+                                    <div style={imageStyle} >
                                         <Image src={this.state.pic_reference[this.props.malescoring.activeCandidate]} circle  width="300" height="400"/>
-                                        <h4>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].name}</h4>
-                                        <h4>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].team}</h4>
+                                        <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].name}</h4>
+                                            <h5>Name</h5>
+                                        </div>
+                                        <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].team}</h4>
+                                            <h5>House</h5>
+                                        </div>
                                     </div>
                                 </Col>
                                 <Col md={6} mdPull={1}>
@@ -163,7 +183,11 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                                         NEXT </Button>)
                                                     :
                                                      <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+<<<<<<< HEAD
+                                                    NEXT </Button>}
+=======
                                                          NEXT </Button>}
+>>>>>>> 775483ec35ce69159ebaf9738d510de7f3e28951
                                         </div>
                                     </form>
                                 </Col>

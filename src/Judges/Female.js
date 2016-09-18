@@ -100,8 +100,21 @@ class Female extends React.Component {
             marginRight: 'auto'
         };
 
-        const boxMargin1 ={
+        const imageStyle={
+            textAlign: 'center'
+        }
+
+        const boxMargin1={
             marginLeft: 20
+        };
+
+        const nameStyle={
+            padding: 0,
+            marginTop: 40,
+            marginBottom: -20
+        };
+        const textUnderline={
+            textDecoration: 'underline'
         };
         
          if( this.props.femalescoring.candidates.length==0)
@@ -125,11 +138,17 @@ class Female extends React.Component {
 
                     <Grid>
                         
-                                <Col md={6}  >
-                                    <div>
+                                <Col md={6} mdPull={1}  >
+                                    <div style={imageStyle}>
                                         <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>
-                                        <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
-                                        <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].team}</h4>
+                                        <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
+                                            <h5>Name</h5>
+                                        </div>
+                                        <div style={nameStyle}>
+                                            <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].team}</h4>
+                                            <h5>House</h5>
+                                        </div>
                                     </div>
                                 </Col>
                                 <Col md={6}  mdPull={1} >
@@ -167,7 +186,11 @@ class Female extends React.Component {
                                                         NEXT </Button>)
                                                     :
                                                      <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+<<<<<<< HEAD
+                                                    NEXT </Button>}
+=======
                                                          NEXT </Button>}
+>>>>>>> 775483ec35ce69159ebaf9738d510de7f3e28951
                                             </div>              
                                     </form>
                                 </Col>
