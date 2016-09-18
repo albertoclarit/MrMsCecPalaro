@@ -100,9 +100,15 @@ class CandidateForm extends React.Component {
                             placeholder="select" 
                             value={this.props.selectedCandidate.gender || ''} 
                             onChange={this.onChange('gender')}>
+<<<<<<< HEAD
                             <option value="">select</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
+=======
+                            <option value="">----select----</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+>>>>>>> 4eb59316b0ea636aee82eada28b4e418afd1029d
                             
                         </FormControl>
                     </FormGroup>
@@ -115,7 +121,15 @@ class CandidateForm extends React.Component {
                             placeholder="select" 
                             value={this.props.selectedCandidate.team || ''} 
                             onChange={this.onChange('team')}>
+<<<<<<< HEAD
                             <option value="">select</option>
+=======
+                            <option value="">----select---</option>
+                            <option value="IIAS">IIAS</option>
+                            <option value="EdCriBa">EdCriBa</option>
+                            <option value="Chieftains">Chieftains</option>
+                            <option value="Cruisers">Cruisers</option>
+>>>>>>> 4eb59316b0ea636aee82eada28b4e418afd1029d
                             <option value="Targaryen">Targaryen</option>
                             <option value="Lannister">Lannister</option>
                             <option value="Baratheon">Baratheon</option>
