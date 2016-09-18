@@ -8,12 +8,14 @@ import {Well,
         ControlLabel,
         HelpBlock,
         Button,
-        ButtonGroup} from 'react-bootstrap';
+        ButtonGroup,
+        Image} from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
 
 import ScoreCombo from './ScoreCombo'
+import Picture from '../../images/Female/1.jpg'
 
 
 class Female extends React.Component {
@@ -63,6 +65,10 @@ class Female extends React.Component {
                     </div>
                 
                   <center style={fontSize}>Female Scoring </center>
+                  
+                  <div>
+                        <Image src={Picture} circle />
+                  </div>
                   <form>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>

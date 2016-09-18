@@ -46,15 +46,10 @@ class Scoreboard extends React.Component {
             <Well style={wellStyle}>
             
                 <center>
-                <h2> Overall Scoreboard </h2>
-                </center>
-
                 <h2> Final Ranking </h2>
+                </center>
                 <h3> Male </h3>
 
-                <h2> Final Rating </h2>
-            
-                <p>Male</p>
             
                 <table className="table table-striped table-hover ">
                     <thead>

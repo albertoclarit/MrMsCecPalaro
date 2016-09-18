@@ -53,8 +53,7 @@ module.exports = function (sequelize) {
             autoIncrement: true
         },
         candidateNo: {
-            type: Sequelize.INTEGER,
-            unique: true
+            type: Sequelize.INTEGER
         },
         name: {
             type: Sequelize.STRING
@@ -70,17 +69,7 @@ module.exports = function (sequelize) {
     });
 
 
-    Candidate.sync({force: false}).then(function () {
-        // Table created
-        return Candidate.create({
-            candidateNo: 111,
-            name: 'Margie Macalinao',
-            team: 'Lannister',
-            gender: 'F'
-        });
-    }).catch(function(error) {
-        console.log('111 user already created');
-    });
+    Candidate.sync({force: false});
 
 
 
@@ -122,19 +111,7 @@ module.exports = function (sequelize) {
     });
 
 
-    Score.sync({force: false}).then(function () {
-        // Table created
-        return Score.create({
-            candidateNo: 111,
-            judgeNo: 2,
-            talent: 1.1,
-            production: 2.2,
-            sportswear: 3.3,
-            formalWear: 5.5
-        });
-    }).catch(function(error) {
-        console.log('Score table created');
-    });
+    Score.sync({force: false});
 
 
 
@@ -143,7 +120,8 @@ module.exports = function (sequelize) {
 
  return {
      Judge: Judge,
-     Candidate: Candidate
+     Candidate: Candidate,
+     Score : Score
  };
 
 

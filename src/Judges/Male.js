@@ -56,6 +56,9 @@ import ScoreCombo from './ScoreCombo'
         return (
                 <Well>
                     <div>
+                         <Image src="../../images/Female/1.jpg" circle />
+                    </div>
+                    <div>
                         <ButtonGroup>
                             <Button bsStyle="primary" style={boxMargin1} onClick={this.goToFemale.bind(this)}>Female</Button>
                             <Button bsStyle="primary" style={boxMargin1} >Male</Button>
