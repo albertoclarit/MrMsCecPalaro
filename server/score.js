@@ -8,6 +8,36 @@ var router = express.Router();
 module.exports = function (Score) {
 
 
+    // findbyjudgeandcandidate
+    router.get('/getByJudgeAndCandidate', function(req, res,next) {
+
+        var judgeno=req.query.judgeno;
+        var candidateno=req.query.candidateno;
+
+        if(!judgeno || !candidateno){
+            res.status(404).send('Please complete argument');
+            return;
+        }
+
+        Score.findOrCreate({where: {
+            'judgeNo':judgeNo,
+            'candidateNo':candidateno
+            }, defaults:
+            {
+                'judgeNo':judgeNo,
+                'candidateNo':candidateno
+            }
+        }).
+            spread(function(score,created){
+                res.status(201).json(score);
+        }).catch(function(error){
+            res.status(404).send('No score record yet');
+        });
+
+
+    });
+
+
     // get the list of score
     router.get('/', function(req, res,next) {
 

@@ -139,15 +139,15 @@ class Female extends React.Component {
                                             <ScoreCombo />
                                         </FormGroup>
                                         <FormGroup >
-                                            <ControlLabel style={fontSize2}><h5>Talent Compition</h5></ControlLabel>
+                                            <ControlLabel style={fontSize2}><h5>Talent Competition</h5></ControlLabel>
                                             <ScoreCombo />
                                         </FormGroup>
                                         <FormGroup >
-                                            <ControlLabel style={fontSize2}><h5>Gown Compition</h5></ControlLabel>
+                                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
                                             <ScoreCombo />
                                         </FormGroup>
                                         <FormGroup >
-                                            <ControlLabel style={fontSize2}><h5>Sportswear Compition</h5></ControlLabel>
+                                            <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
                                             <ScoreCombo />
                                         </FormGroup>
                                         <FormGroup >

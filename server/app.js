@@ -206,6 +206,10 @@ var candidates = require ('./candidates')(db.Candidate);
 app.use('/api/candidates',ensureAuthenticated,candidates);
 
 
+var scores = require ('./score')(db.Score);
+app.use('/api/scores',ensureAuthenticated,scores);
+
+
 var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;

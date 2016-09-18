@@ -61,6 +61,10 @@ class Admin extends React.Component {
               case 9:
                    this.props.authActions.logout();
                   break;
+                  break;
+              case 10:
+
+                  break;
               default:
                   return;
 
@@ -94,6 +98,7 @@ class Admin extends React.Component {
                             <NavItem eventKey={6}>Judges List</NavItem>
                             <NavItem eventKey={7}>Candidate List </NavItem>
                             <NavItem eventKey={8}>Final Ranking</NavItem>
+                            <NavItem eventKey={10}>Initialize Database</NavItem>
                             <NavItem eventKey={9}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>

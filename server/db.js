@@ -105,6 +105,12 @@ module.exports = function (sequelize) {
         },
         formalWear: {
             type: Sequelize.REAL
+        },
+        qa: {
+            type: Sequelize.REAL
+        },
+        gender: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name

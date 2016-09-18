@@ -8,8 +8,8 @@ import  update from 'react-addons-update';
 const initialState={
 
     candidates:[],
-    activeCandidate:-1 // index ni
-
+    activeCandidate:-1, // index ni,
+    currentScore:null
 };
 
 export default function femalescoringreducers(state=initialState, action={}) {
