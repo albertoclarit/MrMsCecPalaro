@@ -93,12 +93,13 @@ class Female extends React.Component {
             fontWeight: 'bold',
             fontSize: 18
         };
-        
-        
-        const boxMargin={
-            marginLeft: 80
+
+        const buttonStyle={
+            maxWidth: 400,
+            marginLeft: 'auto',
+            marginRight: 'auto'
         };
-        
+
         const boxMargin1 ={
             marginLeft: 20
         };
@@ -120,18 +121,18 @@ class Female extends React.Component {
                         </ButtonGroup>
                     </div>
                 
-                  <div style={titleStyle}>Female Scoring </div>
+                  <h3 style={titleStyle}>Female Scoring </h3>
 
                     <Grid>
-                        <Row>
-                                <Col md={6}>
+                        
+                                <Col md={6}  >
                                     <div>
                                         <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>
                                         <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
                                         <h4>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].team}</h4>
                                     </div>
                                 </Col>
-                                <Col md={6}>
+                                <Col md={6}  mdPull={1} >
                                     <form>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>
@@ -153,28 +154,23 @@ class Female extends React.Component {
                                             <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
                                             <ScoreCombo />
                                         </FormGroup>
-                                        <div>
-                                            <ButtonGroup>
-
+                                            <div style={buttonStyle}>
                                                 {this.props.femalescoring.activeCandidate > 0 ?
-                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" style={boxMargin}>
+                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" block>
                                                     PREVIOUS </Button>)
                                                     :
-                                                    null}
+                                                    <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                                                    PREVIOUS </Button>}
 
                                                 {this.props.femalescoring.activeCandidate < this.props.femalescoring.candidates.length  -1 ?
-                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" style={boxMargin}>
+                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" block>
                                                         NEXT </Button>)
                                                     :
-                                                    null}
-
-
-
-                                            </ButtonGroup>
-                                        </div>
+                                                     <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                                                    PREVIOUS </Button>}
+                                            </div>              
                                     </form>
                                 </Col>
-                        </Row>
                     </Grid>
 
 

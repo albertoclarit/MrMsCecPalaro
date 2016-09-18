@@ -32,7 +32,7 @@ export default  class ScoreCombo extends React.Component {
         return(
             <FormControl
                 style={{
-                 width:'200px'
+                 width:300
                 }}
                 componentClass="select"
                 placeholder="select"

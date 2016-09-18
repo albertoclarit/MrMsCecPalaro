@@ -90,6 +90,11 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
             fontSize: 18
         }
         
+        const buttonStyle={
+            maxWidth: 400,
+            marginLeft: 'auto',
+            marginRight: 'auto'
+        };
         
         const boxMargin={
             marginLeft: 80
@@ -123,7 +128,7 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                         <h4>{this.props.malescoring.candidates[this.props.malescoring.activeCandidate].team}</h4>
                                     </div>
                                 </Col>
-                                <Col md={6}>
+                                <Col md={6} mdPull={1}>
                                     <form>
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}>Production Number</ControlLabel>
@@ -145,24 +150,20 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                             <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
                                             <ScoreCombo />
                                         </FormGroup>
-                                        <div>
-                                            <ButtonGroup>
-
+                                       <div style={buttonStyle}>
                                                 {this.props.malescoring.activeCandidate > 0 ?
-                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" style={boxMargin}>
+                                                (<Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" block>
                                                     PREVIOUS </Button>)
                                                     :
-                                                    null}
+                                                    <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                                                    PREVIOUS </Button>}
 
                                                 {this.props.malescoring.activeCandidate < this.props.malescoring.candidates.length  -1 ?
-                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" style={boxMargin}>
+                                                    ( <Button bsSize="large" onClick={this.nextCandidate} bsStyle="primary" type="button" block>
                                                         NEXT </Button>)
                                                     :
-                                                    null}
-
-
-
-                                            </ButtonGroup>
+                                                     <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                                                    PREVIOUS </Button>}
                                         </div>
                                     </form>
                                 </Col>
