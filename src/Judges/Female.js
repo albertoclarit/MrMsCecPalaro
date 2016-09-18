@@ -167,7 +167,7 @@ class Female extends React.Component {
                                                         NEXT </Button>)
                                                     :
                                                      <Button bsSize="large" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
-                                                    PREVIOUS </Button>}
+                                                         NEXT </Button>}
                                             </div>              
                                     </form>
                                 </Col>
