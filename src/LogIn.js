@@ -107,12 +107,8 @@ import { routerActions } from 'react-router-redux'
          
      );
  }
- 
-            
 }
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(LogIn);
 
 function mapStateToProps(state) {
     return {
