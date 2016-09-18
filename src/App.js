@@ -63,25 +63,30 @@ const wellStyle={
             marginRight: 'auto',
             marginTop: 30,
         }
+        
+const marginPull={
+            marginRight: 50
+}
 
     return (
         <div className="container">
             <Well style={wellStyle}>
-                <Navbar inverse>
+              <Navbar inverse>
                             <Navbar.Header>
                             <Navbar.Brand>
-                                <a href="#/">Mr and Ms Ce-c Palaro</a>
+                                <a>Mr and Ms Ce-c</a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
-                                <Nav  onSelect={this.handleSelect}>
-                                    <NavItem eventKey={1}>Logout</NavItem>
-                                </Nav>
+                                
                             </Navbar.Header>
                             <Navbar.Collapse>
                             <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                                 {/* <NavItem eventKey={1}>Home</NavItem>
                                 <NavItem eventKey={2}>Admin</NavItem>
                                 <NavItem eventKey={3}>Judges</NavItem>*/}
+                            </Nav>
+                            <Nav pullRight onSelect={this.handleSelect} style={marginPull}>
+                                    <NavItem eventKey={1}>Logout</NavItem>
                             </Nav>
                             </Navbar.Collapse>
                         </Navbar>

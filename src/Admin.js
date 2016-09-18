@@ -79,7 +79,7 @@ class Admin extends React.Component {
                      <Navbar inverse>
                         <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#">Mr and  Ms Ce-c Palaro</a>
+                            <a>Mr and  Ms Ce-c </a>
 
                         </Navbar.Brand>
                         <Navbar.Toggle />
@@ -88,7 +88,7 @@ class Admin extends React.Component {
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                             <NavItem eventKey={1}>Best in Talent</NavItem>
                             <NavItem eventKey={2}>Best in Production</NavItem>
-                            <NavItem eventKey={3}>Best in Gown</NavItem>
+                            <NavItem eventKey={3}>Best in Formal Wear</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                             <NavItem eventKey={6}>Judges List</NavItem>
