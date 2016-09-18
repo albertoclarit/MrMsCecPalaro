@@ -84,25 +84,15 @@ class Admin extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            <NavItem eventKey={1}>Home</NavItem>
-                            <NavItem eventKey={2}>Best in Talent</NavItem>
-                            <NavItem eventKey={3}>Best in Gown</NavItem>
-                            <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                            <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                            <NavItem eventKey={6}>Score Board</NavItem>
-                            <NavItem eventKey={7}>Log out</NavItem>
-                            <NavItem eventKey={8}>Judges List</NavItem>
-                            <NavItem eventKey={9}>Candidate List </NavItem>
                             <NavItem eventKey={2}>Best in Talent</NavItem>
                             <NavItem eventKey={3}>Best in Production</NavItem>
+                            <NavItem eventKey={5}>Best in Gown</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                            <NavItem eventKey={5}>Formal wear</NavItem>
-                            <NavItem eventKey={6}>Final Ranking</NavItem>
-                            <NavItem eventKey={7}>Log out</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                             <NavItem eventKey={6}>Score Board</NavItem>
                             <NavItem eventKey={8}>Judges List</NavItem>
                             <NavItem eventKey={9}>Candidate List </NavItem>
+                            <NavItem eventKey={6}>Final Ranking</NavItem>
                             <NavItem eventKey={7}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>
