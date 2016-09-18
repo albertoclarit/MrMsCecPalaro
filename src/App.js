@@ -81,13 +81,14 @@ const marginPull={
                             </Navbar.Header>
                             <Navbar.Collapse>
                             <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                                {/* <NavItem eventKey={1}>Home</NavItem>
-                                <NavItem eventKey={2}>Admin</NavItem>
-                                <NavItem eventKey={3}>Judges</NavItem>*/}
                             </Nav>
-                            <Nav pullRight onSelect={this.handleSelect} style={marginPull}>
-                                    <NavItem eventKey={1}>Logout</NavItem>
-                            </Nav>
+                                {this.props.auth.isAuthenticated ?
+                                    <Nav pullRight onSelect={this.handleSelect} style={marginPull}>
+                                        <NavItem eventKey={1}>Logout</NavItem>
+                                    </Nav>:
+                                     null
+                                }
+
                             </Navbar.Collapse>
                         </Navbar>
                 {this.props.children}
@@ -106,7 +107,8 @@ function mapStateToProps(state) {
     return {
         alert:state.dialogs.alert,
         confirm:state.dialogs.confirm,
-        prompt:state.dialogs.prompt
+        prompt:state.dialogs.prompt,
+        auth:state.auth
     }
 }
 

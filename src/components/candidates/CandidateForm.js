@@ -100,7 +100,7 @@ class CandidateForm extends React.Component {
                             placeholder="select" 
                             value={this.props.selectedCandidate.gender || ''} 
                             onChange={this.onChange('gender')}>
-                            <option value="gender">select</option>
+                            <option value="">----select----</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             
@@ -115,7 +115,7 @@ class CandidateForm extends React.Component {
                             placeholder="select" 
                             value={this.props.selectedCandidate.team || ''} 
                             onChange={this.onChange('team')}>
-                            <option value="team">select</option>
+                            <option value="">----select---</option>
                             <option value="IIAS">IIAS</option>
                             <option value="EdCriBa">EdCriBa</option>
                             <option value="Chieftains">Chieftains</option>
