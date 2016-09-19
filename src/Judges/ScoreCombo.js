@@ -38,7 +38,7 @@ export default  class ScoreCombo extends React.Component {
                 placeholder="select"
                 {...this.props}
                 >
-                <option value="">---</option>
+                <option value="0">---</option>
                 {options}
             </FormControl>
         );

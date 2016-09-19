@@ -28,7 +28,12 @@ module.exports = function (Score) {
             {
                 'judgeNo':judgeno,
                 'candidateNo':candidateno,
-                'gender':gender
+                'gender':gender,
+                talent:0,
+                production:0,
+                sportswear:0,
+                formalWear:0,
+                qa:0
             }
         }).
             spread(function(score,created){
