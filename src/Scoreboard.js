@@ -37,7 +37,7 @@ class Scoreboard extends React.Component {
 
             return (
                 <tr key={i}>
-                     <td>{item.candidateNo}</td>
+                     <td>{item.name}</td>
                 </tr>
             );
         });
@@ -50,41 +50,17 @@ class Scoreboard extends React.Component {
                 </center>
                 <h3> Male </h3>
 
-            
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
-                            <th>Candidate #</th>
+                            <th>Candidate Name</th>
+
                             <th>Talent</th>
                             <th>Production</th>
-                            <th>Sportswear</th>
-                            <th>Formalwear</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rows}
-                    </tbody>
-              </table> 
-              
-              <p>Female</p>
-
-                <table className="table table-striped table-hover ">
-                    <thead>
-                        <tr>
-                            <th>Candidate #</th>
-
-                            <th>Talen</th>
-                            <th>Gown</th>
+                            <th>Formal Wear</th>
                             <th>Sportswear</th>
                             <th>Wit &amp; Intelligent</th>
                             <th>Total</th>
-                            <th>Production Number</th>
-                            <th>Talent</th>
-                            <th>Gown</th>
-                            <th>Sportswear</th>
-                            <th>Wit &amp; Intelligent</th>
-                            <th>Final Average</th>
                         </tr>
                         <tr>
                             <th>1</th>
@@ -142,7 +118,7 @@ class Scoreboard extends React.Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
-                            <th>Candidate #</th>
+                            <th>Candidate Name</th>
                             <th>Production Number</th>
                             <th>Talent</th>
                             <th>Gown</th>
@@ -215,10 +191,10 @@ class Scoreboard extends React.Component {
               <table className="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Candidate #</th>
-                            <th>Production Number</th>
+                            <th>Candidate Name</th>
                             <th>Talent</th>
-                            <th>Gown</th>
+                            <th>Production</th>
+                            <th>FormalWear</th>
                             <th>Sportswear</th>
                             <th>Wit &amp; Intelligent</th>
                             <th>Final Average</th>
@@ -267,11 +243,6 @@ class Scoreboard extends React.Component {
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>Talent</th>
-                            <th>Production</th>
-                            <th>Sportswear</th>
-                            <th>Formalwear</th>
-                            <th>Total</th>
                         </tr>
                         
                     </thead>

@@ -32,7 +32,7 @@ class Talent extends React.Component {
 
             return (
                 <tr key={i}>
-                     <td>{item.candidateNo}</td>
+                     <td>{item.name}</td>
                 </tr>
             );
         });
@@ -43,13 +43,13 @@ class Talent extends React.Component {
                 <center>
                 <h2> Talent</h2>
                 </center>
-                <p>Male</p>
+                <h3>Male</h3>
 
                 <table className="table table-striped table-hover ">
                     
                     <thead>
                         <tr>
-                        <th>Candidate #</th>
+                        <th>Candidate Name</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>
                         <th>Judge 3</th>
@@ -63,13 +63,13 @@ class Talent extends React.Component {
                     </tbody>
               </table>
               
-              <p>Female</p>
+              <h3>Female</h3>
 
                 <table className="table table-striped table-hover ">
                     
                     <thead>
                         <tr>
-                        <th>Candidate #</th>
+                        <th>Candidate Name</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>
                         <th>Judge 3</th>
