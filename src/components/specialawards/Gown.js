@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as candidatelistingactions  from '../../actions/candidatelistingactions.js';
+import * as loadmalecandidatesaction  from '../../actions/loadmalecandidatesaction.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -17,7 +17,7 @@ class Gown extends React.Component {
 
       componentDidMount(){
 
-          this.props.candidatelistingactions.loadCandidates();
+          this.props.loadmalecandidatesaction.loadMaleCandidates();
      }
 
 
@@ -30,7 +30,17 @@ class Gown extends React.Component {
             marginRight: 'auto'
         };
         
-         var rows = this.props.candidatelisting.records.map((item,i)=>{
+          var rowsMale = this.props.loadmalecandidates.maleCandidates.map((item,i)=>{
+
+            return (
+                <tr key={i}>
+                     <td>{item.name}</td>
+                </tr>
+            );
+        });
+
+        
+          var rowsFemale = this.props.loadmalecandidates.femaleCandidates.map((item,i)=>{
 
             return (
                 <tr key={i}>
@@ -61,7 +71,7 @@ class Gown extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                     {rows}
+                     {rowsMale}
                     </tbody>
               </table> 
 
@@ -80,7 +90,7 @@ class Gown extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                     {rows}
+                     {rowsFemale}
                     </tbody>
               </table> 
             </Well>
@@ -92,14 +102,14 @@ class Gown extends React.Component {
 function mapStateToProps(state) {
 
     return {
-    candidatelisting:state.candidatelisting
+         loadmalecandidates:state.loadmalecandidates
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+        loadmalecandidatesaction: bindActionCreators(loadmalecandidatesaction, dispatch),
     }
 }
 

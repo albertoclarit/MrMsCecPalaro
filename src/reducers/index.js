@@ -7,6 +7,7 @@ import healthchecks from './healthchecks';
 import authreducers from './authreducers';
 import femalescoringreducers from './femalescoringreducers';
 import malescoringreducers from './malescoringreducers';
+import loadmalecandidatesreducers from './loadmalecandidatesreducers';
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   healthchecks,
   auth:authreducers,
   femalescoring: femalescoringreducers,
-  malescoring : malescoringreducers
+  malescoring : malescoringreducers,
+  loadmalecandidates: loadmalecandidatesreducers
 });
 
 export default rootReducer;

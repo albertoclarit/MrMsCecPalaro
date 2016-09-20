@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as candidatelistingactions  from '../../actions/candidatelistingactions.js';
+import * as loadmalecandidatesaction  from '../../actions/loadmalecandidatesaction.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -14,7 +14,10 @@ class Sportswear extends React.Component {
     constructor(props){
         super(props);
     }
+    componentDidMount(){
 
+          this.props.loadmalecandidatesaction.loadMaleCandidates();
+     }
 
     render(){
         
@@ -25,7 +28,17 @@ class Sportswear extends React.Component {
             marginRight: 'auto'
         };
         
-         var rows = this.props.candidatelisting.records.map((item,i)=>{
+         var rowsMale = this.props.loadmalecandidates.maleCandidates.map((item,i)=>{
+
+            return (
+                <tr key={i}>
+                     <td>{item.name}</td>
+                </tr>
+            );
+        });
+
+        
+          var rowsFemale = this.props.loadmalecandidates.femaleCandidates.map((item,i)=>{
 
             return (
                 <tr key={i}>
@@ -55,7 +68,7 @@ class Sportswear extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {rows}
+                        {rowsMale}
                     </tbody>
               </table>
 
@@ -74,29 +87,10 @@ class Sportswear extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {rows}
+                        {rowsFemale}
                     </tbody>
               </table>
               
-              <p>Female</p>
-
-                <table className="table table-striped table-hover ">
-                    
-                    <thead>
-                        <tr>
-                        <th>Candidate #</th>
-                        <th>Judge 1</th>
-                        <th>Judge 2</th>
-                        <th>Judge 3</th>
-                        <th>Judge 4</th>
-                        <th>Judge 5</th>
-                        <th>Average</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rows}
-                    </tbody>
-              </table>
             </Well>
             
         );
@@ -107,14 +101,14 @@ class Sportswear extends React.Component {
 function mapStateToProps(state) {
 
     return {
-    candidatelisting:state.candidatelisting
+        loadmalecandidates:state.loadmalecandidates
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+        loadmalecandidatesaction: bindActionCreators(loadmalecandidatesaction, dispatch),
     }
 }
 

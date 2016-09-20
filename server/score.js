@@ -3,9 +3,18 @@
  */
 var express = require('express');
 var router = express.Router();
-
+var Sequelize = require('sequelize');
 
 module.exports = function (Score) {
+
+
+
+    router.get('/getScoresRecordWithCandidateName', function(req, res,next) {
+ 
+        Sequelize.query("select  t2.name, t1.* from scores t1, candidates t2 where t1.candidateNo=t2.candidateNo").spread(function(records, metadata) {
+            res.status(200).json(records);
+        })
+    });
 
 
     // findbyjudgeandcandidate
