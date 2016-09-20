@@ -42,19 +42,19 @@ const Components=(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/admin" component={Admin}>
-                <Route path="/talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
-                <Route path="/production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
-                <Route path="/gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
-                <Route path="/sportswear" component={requireAuthentication(Sportswear,'ROLE_ADMIN')}/>
-                <Route path="/witandint" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
-                <Route path="/scoreboard" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
-                <Route path="/judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
-                <Route path="/judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
-                <Route path="/judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
-                <Route path="/candidateslist" component={requireAuthentication(CandidateList,'ROLE_ADMIN')}/>
-                <Route path="/candidateslist_add" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
-                <Route path="/candidateslist/:id" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
-                <IndexRedirect to="/talent" />
+                <Route path="talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
+                <Route path="production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
+                <Route path="gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
+                <Route path="sportswear" component={requireAuthentication(Sportswear,'ROLE_ADMIN')}/>
+                <Route path="witandint" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
+                <Route path="scoreboard" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
+                <Route path="judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
+                <Route path="judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
+                <Route path="judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
+                <Route path="candidateslist" component={requireAuthentication(CandidateList,'ROLE_ADMIN')}/>
+                <Route path="candidateslist_add" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
+                <Route path="candidateslist/:id" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
+                <IndexRedirect to="/admin/production" />
             </Route>
             <Route path="/" component={App}>
                 <Route path="login" component={LogIn}/>

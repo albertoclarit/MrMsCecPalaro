@@ -35,28 +35,28 @@ class Admin extends React.Component {
 
           switch (selectedKey) {
               case 1:
-                  this.props.routerActions.push("/talent");
+                  this.props.routerActions.push("/admin/talent");
                   break;
               case 2:
-                  this.props.routerActions.push("/production");
+                  this.props.routerActions.push("/admin/production");
                   break;
               case 3:
-                  this.props.routerActions.push("/gown");
+                  this.props.routerActions.push("/admin/gown");
                   break;
               case 4:
-                  this.props.routerActions.push("/sportswear");
+                  this.props.routerActions.push("/admin/sportswear");
                   break;   
               case 5:
-                  this.props.routerActions.push("/witandint");
+                  this.props.routerActions.push("/admin/witandint");
                   break;
               case 6:
-                  this.props.routerActions.push("/judgeslist");
+                  this.props.routerActions.push("/admin/judgeslist");
                   break;
               case 7:
-                  this.props.routerActions.push("/candidateslist");
+                  this.props.routerActions.push("/admin/candidateslist");
                   break;
               case 8:
-                  this.props.routerActions.push("/scoreboard");
+                  this.props.routerActions.push("/admin/scoreboard");
                   break;
               case 9:
                    this.props.authActions.logout();
@@ -90,8 +90,8 @@ class Admin extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            <NavItem eventKey={1}>Best in Talent</NavItem>
                             <NavItem eventKey={2}>Best in Production</NavItem>
+                            <NavItem eventKey={1}>Best in Talent</NavItem>
                             <NavItem eventKey={3}>Best in Formal Wear</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>

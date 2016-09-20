@@ -31,3 +31,33 @@ export let loadbesttalentmaleSuccess = (records)=>{
  }
 
 };
+
+
+
+export let loadbesttalentfemale = ()=>{
+
+    return dispatcher=>{
+
+        axios.get('/api/scores/besttalentfemale')
+            .then(function (response) {
+                var data = response.data;
+
+                dispatcher(loadbesttalentfemaleSuccess(data));
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    };
+
+};
+
+export let loadbesttalentfemaleSuccess = (records)=>{
+
+    return {
+        type:types.LOAD_BEST_TALENT_FEMALE_SUCCESS,
+        records
+    }
+
+};

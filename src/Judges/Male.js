@@ -196,16 +196,19 @@ import * as maleScoringActions from '../actions/malescoringactions.js'
                                             <ScoreCombo onChange ={this.onScore('talent')}
                                                         value = {talent}/>
                                         </FormGroup>
-                                        <FormGroup >
-                                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
-                                            <ScoreCombo onChange ={this.onScore('formalWear')}
-                                                        value = {formalWear}/>
-                                        </FormGroup>
+
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
                                             <ScoreCombo onChange ={this.onScore('sportswear')}
                                                         value = {sportswear}/>
                                         </FormGroup>
+
+                                        <FormGroup >
+                                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
+                                            <ScoreCombo onChange ={this.onScore('formalWear')}
+                                                        value = {formalWear}/>
+                                        </FormGroup>
+
                                         <FormGroup >
                                             <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
                                             <ScoreCombo onChange ={this.onScore('qa')}
