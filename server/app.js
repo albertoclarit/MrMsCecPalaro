@@ -206,7 +206,7 @@ var candidates = require ('./candidates')(db.Candidate);
 app.use('/api/candidates',ensureAuthenticated,candidates);
 
 
-var scores = require ('./score')(db.Score);
+var scores = require ('./score')(sequelize,db.Score,db.Candidate,db.Judge);
 app.use('/api/scores',ensureAuthenticated,scores);
 
 

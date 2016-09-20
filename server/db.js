@@ -129,6 +129,4 @@ module.exports = function (sequelize) {
      Score : Score
  };
 
-
-
 };

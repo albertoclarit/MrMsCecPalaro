@@ -8,6 +8,7 @@ import authreducers from './authreducers';
 import femalescoringreducers from './femalescoringreducers';
 import malescoringreducers from './malescoringreducers';
 import loadmalecandidatesreducers from './loadmalecandidatesreducers';
+import besttalentreducers from './besttalentreducers';
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   auth:authreducers,
   femalescoring: femalescoringreducers,
   malescoring : malescoringreducers,
-  loadmalecandidates: loadmalecandidatesreducers
+  loadmalecandidates: loadmalecandidatesreducers,
+  besttalent:besttalentreducers
 });
 
 export default rootReducer;

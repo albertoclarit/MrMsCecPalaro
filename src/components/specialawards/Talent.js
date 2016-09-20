@@ -4,7 +4,7 @@
 import React from 'react';
 import {Well
         } from 'react-bootstrap';
-import * as loadmalecandidatesaction  from '../../actions/loadmalecandidatesaction.js';
+import * as besttalentactions  from '../../actions/besttalentactions.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -21,7 +21,7 @@ class Talent extends React.Component {
 
     componentDidMount(){
 
-          this.props.loadmalecandidatesaction.loadMaleCandidates();
+          this.props.besttalentactions.loadbesttalentmale();
      }
 
     
@@ -34,7 +34,7 @@ class Talent extends React.Component {
             marginRight: 'auto'
         };
         
-           var rowsMale = this.props.loadmalecandidates.maleCandidates.map((item,i)=>{
+           var rows = this.props.besttalent.records.map((item,i)=>{
 
             return (
                 <tr key={i}>
@@ -44,14 +44,6 @@ class Talent extends React.Component {
         });
 
         
-          var rowsFemale = this.props.loadmalecandidates.femaleCandidates.map((item,i)=>{
-
-            return (
-                <tr key={i}>
-                     <td>{item.name}</td>
-                </tr>
-            );
-        });
         
         return (
             <Well style={wellStyle}>
@@ -75,7 +67,7 @@ class Talent extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {rowsMale}
+                        {rows}
                     </tbody>
               </table>
               
@@ -95,7 +87,7 @@ class Talent extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {rowsFemale}
+                        
                     </tbody>
               </table>
               
@@ -110,14 +102,14 @@ class Talent extends React.Component {
 function mapStateToProps(state) {
 
     return {
-        loadmalecandidates:state.loadmalecandidates
+        besttalent:state.besttalent
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        loadmalecandidatesaction: bindActionCreators(loadmalecandidatesaction, dispatch),
+        besttalentactions: bindActionCreators(besttalentactions, dispatch),
     }
 }
 

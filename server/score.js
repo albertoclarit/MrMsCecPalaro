@@ -3,15 +3,79 @@
  */
 var express = require('express');
 var router = express.Router();
-var Sequelize = require('sequelize');
+var co = require('co');
 
-module.exports = function (Score) {
+module.exports = function (sequelize,Score,Candidate,Judge) {
 
+   router.get('/besttalentmale', function(req, res,next) {
+ 
+
+    co(function *(){
+      var candidates  =  yield Candidate.findAll({
+           where:{
+               gender:'M'
+           }
+      });
+
+     var judges  =  yield Judge.findAll({
+          where:{
+               judgeNo: {
+                   $ne: 999
+               }
+           },
+          order: [       
+                ['judgeNo', 'ASC']
+          ]
+      });
+
+       
+     var output = [];
+
+       for(var c=0; c< candidates.length;c++){
+              var candidate = candidates[c];
+              var newItem = {};
+                 newItem.name=candidate.name;
+                 newItem.candidateNo=candidate.candidateNo;
+                 newItem.judgeTotal = judges.length;
+
+                    for(var j=0; j < judges.length;j++){
+                        var judge  = judges[j];
+
+                      
+                         var talent = 
+                          yield  sequelize.query("select talent from scores where candidateNo=? and judgeNo=? limit 1",
+                           { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+
+                            if(talent.length>0)
+                             newItem["judge"+(j+1)] = talent[0];
+                            else 
+                             newItem["judge"+(j+1)] = {talent:0};
+
+                    }
+
+              output.push(newItem);
+       }
+
+    
+
+    return output;
+    
+    }) .then(function(output){
+         res.status(200).json(output);;
+
+
+        }).catch(function(error){
+
+            res.status(404).send('No talent record yet');
+        });
+     
+  
+    });
 
 
     router.get('/getScoresRecordWithCandidateName', function(req, res,next) {
  
-        Sequelize.query("select  t2.name, t1.* from scores t1, candidates t2 where t1.candidateNo=t2.candidateNo").spread(function(records, metadata) {
+        sequelize.query("select  t2.name, t1.* from scores t1, candidates t2 where t1.candidateNo=t2.candidateNo").spread(function(records, metadata) {
             res.status(200).json(records);
         })
     });
