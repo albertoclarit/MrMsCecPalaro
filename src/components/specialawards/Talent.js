@@ -14,6 +14,9 @@ class Talent extends React.Component {
 
     constructor(props){
         super(props);
+
+       // loadinitial
+        this.props.besttalentactions.loadbesttalentmale();
     }
     State={
         selectedKey:1
@@ -21,9 +24,21 @@ class Talent extends React.Component {
 
     componentDidMount(){
 
-          this.props.besttalentactions.loadbesttalentmale();
+
+
+        this.interval = setInterval(()=>{
+
+            this.props.besttalentactions.loadbesttalentmale();
+
+        },1500); // every 1.5 seconds refresg
+
      }
 
+    componentWillUnmount(){
+
+        if( this.interval)
+        clearInterval( this.interval);
+    }
     
     render(){
         
@@ -36,9 +51,20 @@ class Talent extends React.Component {
         
            var rows = this.props.besttalent.records.map((item,i)=>{
 
+               var othertds = [];
+
+                var noOfJudge = item.judgeTotal;
+
+                for(var x=0;x<noOfJudge;x++){
+                    othertds.push(<td key={x}>{(item['judge'+(x+1)].talent)}</td>)
+                }
+
             return (
                 <tr key={i}>
+                     <td>{item.candidateNo}</td>
                      <td>{item.name}</td>
+                    {othertds}
+                    <td>{item.average}</td>
                 </tr>
             );
         });
@@ -57,6 +83,7 @@ class Talent extends React.Component {
                     
                     <thead>
                         <tr>
+                        <th>Candidate No</th>
                         <th>Candidate Name</th>
                         <th>Judge 1</th>
                         <th>Judge 2</th>

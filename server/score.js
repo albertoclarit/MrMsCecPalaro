@@ -38,27 +38,48 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                  newItem.candidateNo=candidate.candidateNo;
                  newItem.judgeTotal = judges.length;
 
+                // compute the average of talent
+
+                   var total = 0;
                     for(var j=0; j < judges.length;j++){
                         var judge  = judges[j];
 
                       
                          var talent = 
-                          yield  sequelize.query("select talent from scores where candidateNo=? and judgeNo=? limit 1",
+                          yield  sequelize.query("select talent from scores where candidateNo=? and judgeNo=?  and gender='M' limit 1",
                            { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
 
+
                             if(talent.length>0)
-                             newItem["judge"+(j+1)] = talent[0];
+                            {
+                                newItem["judge"+(j+1)] = talent[0];
+                                total +=talent[0].talent;
+                            }
                             else 
-                             newItem["judge"+(j+1)] = {talent:0};
+                            {
+                                newItem["judge"+(j+1)] = {talent:0.0};
+                                total +=0;
+                            }
 
                     }
+               newItem.average = (total/judges.length).toFixed(2);
 
-              output.push(newItem);
+           output.push(newItem);
        }
 
-    
 
-    return output;
+        return  output.sort(function(a,b){
+              if (parseFloat(a.average) > parseFloat(b.average))
+               return -1;
+
+            if (parseFloat(a.average) < parseFloat(b.average))
+                return 1;
+
+            return 0;
+        });
+
+
+
     
     }) .then(function(output){
          res.status(200).json(output);;
