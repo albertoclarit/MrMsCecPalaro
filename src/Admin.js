@@ -92,8 +92,8 @@ class Admin extends React.Component {
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                             <NavItem eventKey={2}>Best in Production</NavItem>
                             <NavItem eventKey={1}>Best in Talent</NavItem>
-                            <NavItem eventKey={3}>Best in Formal Wear</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
+                            <NavItem eventKey={3}>Best in Formal Wear</NavItem>
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                             <NavItem eventKey={8}>Final Ranking</NavItem>
                             <NavItem eventKey={6}>Judges List</NavItem>
