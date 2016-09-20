@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as loadmalecandidatesaction  from '../../actions/loadmalecandidatesaction.js';
+import * as bestqaactions  from '../../actions/bestqaactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux'; 
@@ -12,14 +12,29 @@ class Witandint extends React.Component {
 
     constructor(props){
         super(props);
+
+        this.props.bestqaactions.loadbestqamale();
+        this.props.bestqaactions.loadbestqafemale();
+        
     }
 
 
     componentDidMount(){
 
-          this.props.loadmalecandidatesaction.loadMaleCandidates();
+        this.interval = setInterval(()=>{
+
+            this.props.bestqaactions.loadbestqamale();
+            this.props.bestqaactions.loadbestqafemale();
+        },1500); // every 1.5 seconds refresh
      }
 
+    componentWillUnmount(){
+
+        if( this.interval)
+            clearInterval( this.interval);
+    }
+
+    
 
     render(){
         
@@ -29,26 +44,62 @@ class Witandint extends React.Component {
             marginLeft: 'auto',
             marginRight: 'auto'
         };
-        
-        
-           var rowsMale = this.props.loadmalecandidates.maleCandidates.map((item,i)=>{
+
+
+        var totalJudgeTd = [];
+
+        if(this.props.bestqa.recordsMale.length>0){
+
+            var countJudge = this.props.bestqa.recordsMale[0].judgeTotal;
+
+            for(var i=0;i<countJudge;i++)
+                totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
+        }
+
+
+        var rowsMale = this.props.bestqa.recordsMale.map((item,i)=>{
+
+            var othertds = [];
+
+            var noOfJudge = item.judgeTotal;
+
+            for(var x=0;x<noOfJudge;x++){
+                othertds.push(<td key={x}>{(item['judge'+(x+1)].qa)}</td>)
+            }
 
             return (
-                <tr key={i}>
-                     <td>{item.name}</td>
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    {othertds}
+                    <td>{item.average}</td>
+                    <td>{i+1}</td>
                 </tr>
             );
         });
 
-        
-          var rowsFemale = this.props.loadmalecandidates.femaleCandidates.map((item,i)=>{
+
+        var rowsFemale = this.props.bestqa.recordsFemale.map((item,i)=>{
+
+            var othertds = [];
+
+            var noOfJudge = item.judgeTotal;
+
+            for(var x=0;x<noOfJudge;x++){
+                othertds.push(<td key={x}>{(item['judge'+(x+1)].qa)}</td>)
+            }
 
             return (
-                <tr key={i}>
-                     <td>{item.name}</td>
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    {othertds}
+                    <td>{item.average}</td>
+                    <td>{i+1}</td>
                 </tr>
             );
         });
+        
         
         return (
             <Well style={wellStyle}>
@@ -61,18 +112,16 @@ class Witandint extends React.Component {
             
                 <table className="table table-striped table-hover ">
                     <thead>
-                        <tr>
+                    <tr>
+                        <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Judge 1</th>
-                        <th>Judge 2</th>
-                        <th>Judge 3</th>
-                        <th>Judge 4</th>
-                        <th>Judge 5</th>
+                        {totalJudgeTd}
                         <th>Average</th>
-                        </tr>
+                        <th>Rank</th>
+                    </tr>
                     </thead>
                     <tbody>
-                       {rowsMale}
+                    {rowsMale}
                     </tbody>
               </table> 
 
@@ -80,18 +129,16 @@ class Witandint extends React.Component {
             
                 <table className="table table-striped table-hover ">
                     <thead>
-                        <tr>
+                    <tr>
+                        <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Judge 1</th>
-                        <th>Judge 2</th>
-                        <th>Judge 3</th>
-                        <th>Judge 4</th>
-                        <th>Judge 5</th>
+                        {totalJudgeTd}
                         <th>Average</th>
-                        </tr>
+                        <th>Rank</th>
+                    </tr>
                     </thead>
                     <tbody>
-                       {rowsFemale}
+                    {rowsFemale}
                     </tbody>
               </table> 
             </Well>
@@ -104,14 +151,14 @@ class Witandint extends React.Component {
 function mapStateToProps(state) {
 
     return {
-        loadmalecandidates:state.loadmalecandidates
+        bestqa:state.bestqa
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        loadmalecandidatesaction: bindActionCreators(loadmalecandidatesaction, dispatch),
+        bestqaactions: bindActionCreators(bestqaactions, dispatch),
     }
 }
 

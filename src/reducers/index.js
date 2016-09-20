@@ -11,7 +11,8 @@ import loadmalecandidatesreducers from './loadmalecandidatesreducers';
 import besttalentreducers from './besttalentreducers';
 import bestproductionreducers from './bestproductionreducers';
 import bestsportswearreducers from './bestsportswearreducers';
-
+import bestformalWearreducers from './bestformalWearreducers';
+import bestqareducers from './bestqareducers';
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -25,7 +26,9 @@ const rootReducer = combineReducers({
   loadmalecandidates: loadmalecandidatesreducers,
   besttalent:besttalentreducers,
   bestproduction:bestproductionreducers,
-  bestsportswear:bestsportswearreducers
+  bestsportswear:bestsportswearreducers,
+  bestformalWear:bestformalWearreducers,
+  bestqa:bestqareducers
 });
 
 export default rootReducer;
