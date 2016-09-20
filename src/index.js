@@ -31,6 +31,7 @@ import CandidateEditor from './components/candidates/CandidateEditor'
 import Female from './Judges/Female'
 import Male from './Judges/Male'
 
+require('./fonts/Roboto/css/fonts.css');
 import './App.css'
 import './styles/bootstrap.css'
 import {requireAuthentication} from './utils/AuthUtils'

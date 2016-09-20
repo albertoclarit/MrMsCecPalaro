@@ -48,66 +48,23 @@ class Scoreboard extends React.Component {
                 <center>
                 <h2> Final Ranking </h2>
                 </center>
+                <Button block bsStyle="warning">Reset Scores</Button>
                 <h3> Male </h3>
+
 
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
                             <th>Candidate Name</th>
+                            <th>Production 15%</th>
+                            <th>Talent 15%</th>
+                            <th>Sportswear 10%</th>
+                            <th>Formal Wear 20%</th>
+                            <th>Wit &amp; Intelligent 40%</th>
+                            <th>Total 100%</th>
+                            <th>Ranking</th>
+                        </tr>
 
-                            <th>Talent</th>
-                            <th>Production</th>
-                            <th>Formal Wear</th>
-                            <th>Sportswear</th>
-                            <th>Wit &amp; Intelligent</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        
                     </thead>
                     <tbody>
                         {rows}
@@ -117,139 +74,25 @@ class Scoreboard extends React.Component {
               <h3> Female </h3>
                 <table className="table table-striped table-hover ">
                     <thead>
-                        <tr>
-                            <th>Candidate Name</th>
-                            <th>Production Number</th>
-                            <th>Talent</th>
-                            <th>Gown</th>
-                            <th>Sportswear</th>
-                            <th>Wit &amp; Intelligent</th>
-                            <th>Final Average</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        
+                    <tr>
+                        <th>Candidate Name</th>
+                        <th>Production 15%</th>
+                        <th>Talent 15%</th>
+                        <th>Sportswear 10%</th>
+                        <th>Formal Wear 20%</th>
+                        <th>Wit &amp; Intelligent 40%</th>
+                        <th>Total 100%</th>
+                        <th>Ranking</th>
+                    </tr>
                     </thead>
                     <tbody>
                         {rows}
                     </tbody>
-              </table> 
-              <h3> Judges </h3>
-                <ButtonToolbar>
-                  <ButtonGroup>
-                    <Button bsSize="large">1</Button>
-                    <Button bsSize="large">2</Button>
-                    <Button bsSize="large">3</Button>
-                    <Button bsSize="large">4</Button>
-                    <Button bsSize="large">5</Button>
-                   </ButtonGroup>
-                </ButtonToolbar>
-       
-              <table className="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Candidate Name</th>
-                            <th>Talent</th>
-                            <th>Production</th>
-                            <th>FormalWear</th>
-                            <th>Sportswear</th>
-                            <th>Wit &amp; Intelligent</th>
-                            <th>Final Average</th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>2</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>4</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <th>5</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        
-                    </thead>
-                    <tbody>
-                        {rows}
-                    </tbody>
-              </table> 
+              </table>
+
+
+
+
             </Well>
             
         );
