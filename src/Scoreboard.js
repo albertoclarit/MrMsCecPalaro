@@ -11,6 +11,7 @@ import {Well,
         ButtonGroup,
         ButtonToolbar} from 'react-bootstrap';
 import * as finalrankingactions  from './actions/finalrankingactions';
+import * as dialogactions  from './actions/dialogactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -39,6 +40,23 @@ class Scoreboard extends React.Component {
         if( this.interval)
             clearInterval( this.interval);
     }
+
+    resetScores=()=>{
+
+        this.props.dialogactions.openConfirm('Are you sure you wanted to reset Scores?','Please Confirm','YES','NO',(result)=>{
+
+            if(result){
+
+                this.props.dialogactions.openConfirm('Are you REALLY REALLY REALLY Sure?','Please Confirm','YES','NO',(result1)=>{
+
+                    if(result1){
+
+                    }
+                });
+
+            }
+        });
+    };
 
 
     render(){
@@ -91,7 +109,7 @@ class Scoreboard extends React.Component {
                 <center>
                 <h2> Final Ranking </h2>
                 </center>
-                <Button block bsStyle="warning">Reset Scores</Button>
+                <Button block bsStyle="warning" onClick={this.resetScores}>Reset Scores</Button>
                 <h3> Male </h3>
 
 
@@ -158,6 +176,7 @@ function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
         finalrankingactions: bindActionCreators(finalrankingactions, dispatch),
+        dialogactions:bindActionCreators(dialogactions, dispatch)
     }
 }
 
