@@ -4,6 +4,23 @@ import * as dialogActions  from '../actions/dialogactions';
 import { routerActions } from 'react-router-redux'
 
 
+export let resetscores=()=>{
+
+    return dispatcher=>{
+
+        axios.get('/api/scores/resetscores')
+            .then(function (response) {
+
+                dispatcher(dialogActions.openAlert('Scores was successfully reset','Reset','success'));
+
+            })
+            .catch(function (error) {
+                dispatcher(dialogActions.openAlert('Scores failed to reset','Reset','danger'));
+            });
+
+    };
+};
+
 export let loadfinalranking = ()=>{
 
     return dispatcher=>{

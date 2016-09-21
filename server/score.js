@@ -9,6 +9,17 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
 
 
+    router.get('/resetscores', function(req, res,next) {
+
+        sequelize.query("UPDATE scores SET production = 0.0,talent = 0.0,sportswear = 0.0,formalWear = 0.0,qa = 0.0  ")
+            .spread(function(results, metadata) {
+               res.status(200).json("OK");
+             }).catch(function(error){
+                res.status(500).send(error.message);
+             });
+
+    });
+
     //====================final ranking===============================
     router.get('/finalranking', function(req, res,next) {
 

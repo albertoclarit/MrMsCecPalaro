@@ -8,7 +8,7 @@ export default  class ResultsGrid extends React.Component {
 
 
     render(){
-        
+
          var maleRows = this.props.judgeData.data.maleResults.map((item,i)=>{
 
              return (

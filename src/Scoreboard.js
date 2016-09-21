@@ -53,7 +53,7 @@ class Scoreboard extends React.Component {
                 this.props.dialogactions.openConfirm('Are you REALLY REALLY REALLY Sure?','Please Confirm','YES','NO',(result1)=>{
 
                     if(result1){
-
+                        this.props.finalrankingactions.resetscores();
                     }
                 });
 
