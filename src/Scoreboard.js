@@ -9,12 +9,15 @@ import {Well,
         HelpBlock,
         Button,
         ButtonGroup,
-        ButtonToolbar} from 'react-bootstrap';
+        ButtonToolbar,
+        Tabs,
+        Tab} from 'react-bootstrap';
 import * as finalrankingactions  from './actions/finalrankingactions';
 import * as dialogactions  from './actions/dialogactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
+import ResultsGrid from './ResultsGrid'
 
 
 
@@ -102,6 +105,21 @@ class Scoreboard extends React.Component {
             );
         });
 
+
+        // Tabs
+
+         var tabs = [];
+       //
+       // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
+          for(var i=0;i<this.props.finalranking.judgeScores.length;i++){
+
+              tabs.push(
+                  <Tab key={i} eventKey={i+1} title={"Judge" + (i+1)}>
+                  <ResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.judgeScores[i]}/>
+                 </Tab>
+              );
+
+          }
         
         return (
             <Well style={wellStyle}>
@@ -154,6 +172,11 @@ class Scoreboard extends React.Component {
               </table>
 
 
+                <hr/>
+                <hr/>    <hr/>
+                <Tabs defaultActiveKey={1} id="judgeTabs">
+                    {tabs}
+                </Tabs>
 
 
             </Well>

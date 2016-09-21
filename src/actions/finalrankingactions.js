@@ -12,7 +12,19 @@ export let loadfinalranking = ()=>{
             .then(function (response) {
                 var data = response.data;
 
-                dispatcher(loadfinalrankingSuccess(data));
+                var judgeTotal = data.judgeTotal;
+
+                var judgeScores=[];
+                for(var i=0;i<judgeTotal;i++){
+                    judgeScores.push({
+                        judgeNo:(i+1),
+                        data:data["judge"+(i+1)]
+                        }
+                    );
+
+                }
+
+                dispatcher(loadfinalrankingSuccess(data,judgeScores));
 
             })
             .catch(function (error) {
@@ -23,11 +35,12 @@ export let loadfinalranking = ()=>{
 
 };
 
-export let loadfinalrankingSuccess = (data)=>{
+export let loadfinalrankingSuccess = (data,judgeScores)=>{
 
  return {
      type:types.LOAD_FINAL_RANKING_SUCCESS,
-     data
+     data,
+     judgeScores
  }
 
 };

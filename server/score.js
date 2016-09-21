@@ -49,6 +49,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                rankingfemale:[],
                judgeTotal:judges.length
             };
+             // after there is per judge property that list the score
 
 
             // ==================== get ranking for males ====================
@@ -150,6 +151,181 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 result.rankingfemale.push(newItem);
             }
             // ==================== get ranking for females ====================
+
+
+
+            // ======================================
+
+            for(var j=0; j< judges.length;j++) {
+
+                var judge = judges[j];
+
+                result["judge"+judge.judgeNo] = {};
+
+
+                // === for male results
+                var maleResults = [];
+                for(var c=0; c< candidatesMale.length;c++) {
+
+                    var  candidate = candidatesMale[c];
+
+
+                    var perjudgescore = [];
+                    try {
+
+                        perjudgescore = yield sequelize.query("select  production , " +
+                            " talent, sportswear, " +
+                            " formalWear, qa " +
+                            "  from scores where candidateNo=? and judgeNo=?  and gender='M' limit 1",
+                            { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+
+
+                        newItem.production  = (average.avg_production || 0) * 0.15;
+                        newItem.talent  = (average.avg_talent || 0) * 0.15;
+                        newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
+                        newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
+                        newItem.qa  =  (average.avg_qa || 0) * 0.40;
+
+                        if(perjudgescore.length>0)
+                        {
+                            var x = perjudgescore[0];
+
+                            maleResults.push({
+                                candidateNo: candidate.candidateNo,
+                                name:candidate.name,
+                                production:x.production,
+                                talent:x.talent,
+                                sportswear:x.sportswear,
+                                formalWear:x.formalWear,
+                                qa:x.qa,
+                                totalaverage:
+                                    (
+                                        ((x.production) * 0.15) +
+                                        ((x.talent) * 0.15) +
+                                        ((x.sportswear) * 0.10) +
+                                        ((x.formalWear) * 0.20) +
+                                        ((x.qa) * 0.40)
+                                    )
+                            });
+                        }
+                        else
+                        {
+                            maleResults.push({
+                                candidateNo: candidate.candidateNo,
+                                name:candidate.name,
+                                production:0.0,
+                                talent:0.0,
+                                sportswear:0.0,
+                                formalWear:0.0,
+                                qa:0.0,
+                                totalaverage:0.0
+                            });
+
+                        }
+
+
+                        maleResults.sort(function(a,b){
+                            if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
+                                return -1;
+
+                            if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
+                                return 1;
+
+                            return 0;
+                        });
+
+                        result["judge"+judge.judgeNo].maleResults=maleResults;
+
+
+
+
+
+                    }catch(e){
+                        console.log(e.message);
+                    }
+                }
+
+
+                   // === for female results
+                var femaleResults = [];
+                for(var c=0; c< candidatesFemale.length;c++) {
+
+                    var  candidate = candidatesFemale[c];
+
+
+                    var perjudgescore = [];
+                    try {
+
+                        perjudgescore = yield sequelize.query("select  production , " +
+                            " talent, sportswear, " +
+                            " formalWear, qa " +
+                            "  from scores where candidateNo=? and judgeNo=?  and gender='F' limit 1",
+                            { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+
+
+                        if(perjudgescore.length>0)
+                        {
+                            var x = perjudgescore[0];
+
+                            femaleResults.push({
+                                candidateNo: candidate.candidateNo,
+                                name:candidate.name,
+                                production:x.production,
+                                talent:x.talent,
+                                sportswear:x.sportswear,
+                                formalWear:x.formalWear,
+                                qa:x.qa,
+                                totalaverage:
+                                    (
+                                        ((x.production) * 0.15) +
+                                        ((x.talent) * 0.15) +
+                                        ((x.sportswear) * 0.10) +
+                                        ((x.formalWear) * 0.20) +
+                                        ((x.qa) * 0.40)
+                                    )
+                            });
+                        }
+                        else
+                        {
+                            femaleResults.push({
+                                candidateNo: candidate.candidateNo,
+                                name:candidate.name,
+                                production:0.0,
+                                talent:0.0,
+                                sportswear:0.0,
+                                formalWear:0.0,
+                                qa:0.0,
+                                totalaverage:0.0
+                            });
+
+                        }
+
+
+                        femaleResults.sort(function(a,b){
+                            if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
+                                return -1;
+
+                            if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
+                                return 1;
+
+                            return 0;
+                        });
+
+                        result["judge"+judge.judgeNo].femaleResults=femaleResults;
+
+
+
+                    }catch(e){
+                        console.log(e.message);
+                    }
+                }
+
+
+            }
+           // =========================================
+
+
+
 
 
             result.rankingfemale.sort(function(a,b){

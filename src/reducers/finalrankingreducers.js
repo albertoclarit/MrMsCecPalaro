@@ -6,7 +6,8 @@ import  update from 'react-addons-update';
 const initialState={
     recordsMale:[],
     recordsFemale:[],
-    judgeTotal:0
+    judgeTotal:0,
+    judgeScores:[]
 
 };
 
@@ -14,17 +15,23 @@ export default function finalrankingreducers(state=initialState, action={}) {
 
     switch (action.type) {
         case types.LOAD_FINAL_RANKING_SUCCESS:
+        {
             return update(state,{
                 recordsMale:{
-                   $set:action.data.rankingmale
-               },
+                    $set:action.data.rankingmale
+                },
                 recordsFemale:{
                     $set:action.data.rankingfemale
                 },
                 judgeTotal:{
                     $set:action.data.judgeTotal
+                },
+                judgeScores:{
+                    $set:action.judgeScores
                 }
             });
+        }
+
 
 
         default :
