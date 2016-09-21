@@ -106,7 +106,7 @@ class Gown extends React.Component {
                     <h2> Formal Wear</h2>
                 </center>
 
-                <p>Male</p>
+                <h3>Male</h3>
 
                 <table className="table table-striped table-hover ">
 
@@ -124,7 +124,7 @@ class Gown extends React.Component {
                     </tbody>
                 </table>
 
-                <p>Female</p>
+                <h33>Female</h33>
 
                 <table className="table table-striped table-hover ">
 

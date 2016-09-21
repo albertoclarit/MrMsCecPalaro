@@ -10,7 +10,7 @@ import {Well,
         Button,
         ButtonGroup,
         ButtonToolbar} from 'react-bootstrap';
-import * as candidatelistingactions  from './actions/candidatelistingactions.js';
+import * as finalrankingactions  from './actions/finalrankingactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -21,6 +21,23 @@ class Scoreboard extends React.Component {
 
     constructor(props){
         super(props);
+
+        this.props.finalrankingactions.loadfinalranking();
+
+    }
+
+    componentDidMount(){
+
+        this.interval = setInterval(()=>{
+
+            this.props.finalrankingactions.loadfinalranking();
+        },1500); // every 1.5 seconds refresh
+    }
+
+    componentWillUnmount(){
+
+        if( this.interval)
+            clearInterval( this.interval);
     }
 
 
@@ -33,14 +50,40 @@ class Scoreboard extends React.Component {
             marginRight: 'auto'
         };
 
-         var rows = this.props.candidatelisting.records.map((item,i)=>{
+        var rowsMale = this.props.finalranking.recordsMale.map((item,i)=>{
 
             return (
-                <tr key={i}>
-                     <td>{item.name}</td>
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    <td>{item.production.toFixed(2)}</td>
+                    <td>{item.talent.toFixed(2)}</td>
+                    <td>{item.sportswear.toFixed(2)}</td>
+                    <td>{item.formalWear.toFixed(2)}</td>
+                    <td>{item.qa.toFixed(2)}</td>
+                    <td>{item.totalAverage.toFixed(2)}</td>
+                    <td>{i+1}</td>
                 </tr>
             );
         });
+
+        var rowsFemale = this.props.finalranking.recordsFemale.map((item,i)=>{
+
+            return (
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    <td>{item.production.toFixed(2)}</td>
+                    <td>{item.talent.toFixed(2)}</td>
+                    <td>{item.sportswear.toFixed(2)}</td>
+                    <td>{item.formalWear.toFixed(2)}</td>
+                    <td>{item.qa.toFixed(2)}</td>
+                    <td>{item.totalAverage.toFixed(2)}</td>
+                    <td>{i+1}</td>
+                </tr>
+            );
+        });
+
         
         return (
             <Well style={wellStyle}>
@@ -55,6 +98,7 @@ class Scoreboard extends React.Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                         <tr>
+                            <th>Candidate No</th>
                             <th>Candidate Name</th>
                             <th>Production 15%</th>
                             <th>Talent 15%</th>
@@ -67,7 +111,7 @@ class Scoreboard extends React.Component {
 
                     </thead>
                     <tbody>
-                        {rows}
+                    {rowsMale}
                     </tbody>
               </table>
               
@@ -75,6 +119,7 @@ class Scoreboard extends React.Component {
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr>
+                        <th>Candidate No</th>
                         <th>Candidate Name</th>
                         <th>Production 15%</th>
                         <th>Talent 15%</th>
@@ -86,7 +131,7 @@ class Scoreboard extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {rows}
+                    {rowsFemale}
                     </tbody>
               </table>
 
@@ -105,14 +150,14 @@ class Scoreboard extends React.Component {
 function mapStateToProps(state) {
 
     return {
-    candidatelisting:state.candidatelisting
+        finalranking:state.finalranking
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+        finalrankingactions: bindActionCreators(finalrankingactions, dispatch),
     }
 }
 

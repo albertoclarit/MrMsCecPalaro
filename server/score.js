@@ -6,6 +6,188 @@ var router = express.Router();
 var co = require('co');
 
 module.exports = function (sequelize,Score,Candidate,Judge) {
+
+
+
+    //====================final ranking===============================
+    router.get('/finalranking', function(req, res,next) {
+
+        co(function *(){
+
+            var judges  =  yield Judge.findAll({
+                where:{
+                    judgeNo: {
+                        $ne: 999
+                    }
+                },
+                order: [
+                    ['judgeNo', 'ASC']
+                ]
+            });
+
+            var candidatesMale  =  yield Candidate.findAll({
+                where:{
+                    gender:'M'
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
+            });
+
+            var candidatesFemale  =  yield Candidate.findAll({
+                where:{
+                    gender:'F'
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
+            });
+
+
+            var result={
+               rankingmale:[],
+               rankingfemale:[],
+               judgeTotal:judges.length
+            };
+
+
+            // ==================== get ranking for males ====================
+            for(var c=0; c< candidatesMale.length;c++) {
+                var candidate = candidatesMale[c];
+                var newItem = {};
+                newItem.name=candidate.name;
+                newItem.candidateNo=candidate.candidateNo;
+
+                var allaverage = [];
+                try {
+
+                     allaverage = yield sequelize.query("select avg(production) as avg_production, " +
+                            " avg(talent) as avg_talent, avg(sportswear) as avg_sportswear, " +
+                            " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
+                            "  from scores where candidateNo=?  and gender='M' limit 1",
+                            { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+                }catch(e){
+                    console.log(e.message);
+                }
+
+
+
+
+                if(allaverage.length > 0){
+                    var average = allaverage[0];
+
+                    newItem.production  = (average.avg_production || 0) * 0.15;
+                    newItem.talent  = (average.avg_talent || 0) * 0.15;
+                    newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
+                    newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
+                    newItem.qa  =  (average.avg_qa || 0) * 0.40;
+                    newItem.totalAverage= newItem.production +  newItem.talent +
+                        newItem.sportswear + newItem.formalWear +
+                        newItem.qa  ;
+
+                }
+                else {
+                    newItem.production  = 0;
+                    newItem.talent  = 0;
+                    newItem.sportswear  = 0;
+                    newItem.formalWear  = 0;
+                    newItem.qa  = 0;
+                    newItem.totalAverage= 0;
+                }
+
+                result.rankingmale.push(newItem);
+            }
+
+
+            // ==================== get ranking for males ====================
+
+            // ==================== get ranking for females ====================
+            for(var c=0; c< candidatesFemale.length;c++) {
+                var candidate = candidatesFemale[c];
+                var newItem = {};
+                newItem.name=candidate.name;
+                newItem.candidateNo=candidate.candidateNo;
+
+                var allaverage = [];
+                try {
+
+                    allaverage = yield sequelize.query("select avg(production) as avg_production, " +
+                        " avg(talent) as avg_talent, avg(sportswear) as avg_sportswear, " +
+                        " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
+                        "  from scores where candidateNo=?  and gender='F' limit 1",
+                        { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+                }catch(e){
+                    console.log(e.message);
+                }
+
+
+
+
+                if(allaverage.length > 0){
+                    var average = allaverage[0];
+
+                    newItem.production  = (average.avg_production || 0) * 0.15;
+                    newItem.talent  = (average.avg_talent || 0) * 0.15;
+                    newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
+                    newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
+                    newItem.qa  =  (average.avg_qa || 0) * 0.40;
+                    newItem.totalAverage= newItem.production +  newItem.talent +
+                        newItem.sportswear + newItem.formalWear +
+                        newItem.qa  ;
+
+                }
+                else {
+                    newItem.production  = 0;
+                    newItem.talent  = 0;
+                    newItem.sportswear  = 0;
+                    newItem.formalWear  = 0;
+                    newItem.qa  = 0;
+                    newItem.totalAverage= 0;
+                }
+
+                result.rankingfemale.push(newItem);
+            }
+            // ==================== get ranking for females ====================
+
+
+            result.rankingfemale.sort(function(a,b){
+                if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
+                    return -1;
+
+                if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
+                    return 1;
+
+                return 0;
+            });
+
+            result.rankingmale.sort(function(a,b){
+                if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
+                    return -1;
+
+                if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
+                    return 1;
+
+                return 0;
+            });
+
+
+
+            return result;
+        }).then((result)=>{
+            res.status(200).json(result);
+        }).catch(function(error){
+
+            res.status(404).send(error.message);
+        });
+
+
+    });
+
+    //====================final ranking===============================
+
+
     //====================qa===============================
     router.get('/bestqafemale', function(req, res,next) {
 
@@ -14,7 +196,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'F'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -82,7 +267,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
 
         }) .then(function(output){
-            res.status(200).json(output);;
+            res.status(200).json(output);
 
 
         }).catch(function(error){
@@ -101,7 +286,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'M'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -191,7 +379,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'F'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -278,7 +469,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'M'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -369,7 +563,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'F'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -456,7 +653,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'M'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -546,7 +746,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'F'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -633,7 +836,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'M'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -724,7 +930,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
             var candidates  =  yield Candidate.findAll({
                 where:{
                     gender:'F'
-                }
+                },
+                order: [
+                    ['candidateNo', 'ASC']
+                ]
             });
 
             var judges  =  yield Judge.findAll({
@@ -811,7 +1020,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
       var candidates  =  yield Candidate.findAll({
            where:{
                gender:'M'
-           }
+           },
+          order: [
+              ['candidateNo', 'ASC']
+          ]
       });
 
      var judges  =  yield Judge.findAll({
