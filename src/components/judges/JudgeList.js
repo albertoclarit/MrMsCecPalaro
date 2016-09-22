@@ -28,13 +28,13 @@ import { routerActions } from 'react-router-redux'
      addJudge = ()=>{
 
 
-         this.props.routerActions.push('/judgeslist_add');
+         this.props.routerActions.push('/admin/judgeslist_add');
      };
 
      editJudge = (id)=>{
 
          return ()=>{
-             this.props.routerActions.push('/judgeslist/'+ id);
+             this.props.routerActions.push('/admin/judgeslist/'+ id);
          };
      };
 
