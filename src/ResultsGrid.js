@@ -17,10 +17,10 @@ export default  class ResultsGrid extends React.Component {
                      <td>{item.name}</td>
                      <td>{item.production}</td>
                      <td>{item.talent}</td>
-                     <td>{item.name}</td>
                      <td>{item.sportswear}</td>
                      <td>{item.formalWear}</td>
                      <td>{item.qa}</td>
+                     <td>{item.totalaverage.toFixed(2)}</td>
                      <td>{i+1}</td>
                  </tr>
              );
@@ -33,10 +33,10 @@ export default  class ResultsGrid extends React.Component {
                     <td>{item.name}</td>
                     <td>{item.production}</td>
                     <td>{item.talent}</td>
-                    <td>{item.name}</td>
                     <td>{item.sportswear}</td>
                     <td>{item.formalWear}</td>
                     <td>{item.qa}</td>
+                    <td>{item.totalaverage.toFixed(2)}</td>
                     <td>{i+1}</td>
                 </tr>
             );
