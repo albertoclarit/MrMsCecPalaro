@@ -15,7 +15,7 @@ export let deleteJudge = (id)=>{
 
             axios.delete('/api/judges/'+ id)
                 .then(function (response) {
-                    dispatcher(routerActions.push("/judgeslist"));
+                    dispatcher(routerActions.push("/admin/judgeslist"));
                 })
                 .catch(function (error) {
                     dispatcher(dialogActions.openAlert("Data Failed to be deleted",'Failed','danger'));
@@ -37,7 +37,7 @@ export let saveData = ()=>{
                  }
              )
                  .then(function (response) {
-                     dispatcher(routerActions.push("/judgeslist"));
+                     dispatcher(routerActions.push("/admin/judgeslist"));
                  })
                  .catch(function (error) {
                      dispatcher(dialogActions.openAlert("Data Failed to be Edited",'Failed','danger'));
@@ -50,7 +50,7 @@ export let saveData = ()=>{
                  }
              )
                  .then(function (response) {
-                     dispatcher(routerActions.push("/judgeslist"));
+                     dispatcher(routerActions.push("/admin/judgeslist"));
                  })
                  .catch(function (error) {
                      dispatcher(dialogActions.openAlert("Data Failed to be Added",'Failed','danger'));

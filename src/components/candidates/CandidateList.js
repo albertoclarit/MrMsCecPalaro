@@ -23,13 +23,13 @@ class CandidateList extends React.Component{
       addCandidate = ()=>{
 
 
-         this.props.routerActions.push('/candidateslist_add');
+         this.props.routerActions.push('/admin/candidateslist_add');
      };
 
      editCandidate = (id)=>{
 
          return ()=>{
-             this.props.routerActions.push('/candidateslist/'+ id);
+             this.props.routerActions.push('/admin/candidateslist/'+ id);
          };
      };
 
