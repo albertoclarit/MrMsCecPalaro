@@ -91,8 +91,8 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
                     newItem.production  = (average.avg_production || 0) * 0.15;
                     newItem.talent  = (average.avg_talent || 0) * 0.15;
-                    newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
-                    newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
+                    newItem.sportswear  =  (average.avg_sportswear || 0) * 0.10;
+                    newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
                     newItem.qa  =  (average.avg_qa || 0) * 0.40;
                     newItem.totalAverage= newItem.production +  newItem.talent +
                         newItem.sportswear + newItem.formalWear +
@@ -142,8 +142,8 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
                     newItem.production  = (average.avg_production || 0) * 0.15;
                     newItem.talent  = (average.avg_talent || 0) * 0.15;
-                    newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
-                    newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
+                    newItem.sportswear  =  (average.avg_sportswear || 0) * 0.10;
+                    newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
                     newItem.qa  =  (average.avg_qa || 0) * 0.40;
                     newItem.totalAverage= newItem.production +  newItem.talent +
                         newItem.sportswear + newItem.formalWear +
