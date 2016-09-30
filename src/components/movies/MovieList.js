@@ -6,10 +6,10 @@ import {Well,
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as dialogActions  from '../../actions/dialogactions';
-import * as candidatelistingactions  from '../../actions/candidatelistingactions';
+import * as movielistingactions  from '../../actions/movielistingactions';
 import { routerActions } from 'react-router-redux'
 
-class CandidateList extends React.Component{
+class MovieList extends React.Component{
     constructor (props){
         super(props);
     }
@@ -17,36 +17,34 @@ class CandidateList extends React.Component{
     
      componentDidMount(){
 
-          this.props.candidatelistingactions.loadCandidates();
+          this.props.movielistingactions.loadMovies();
      }
      
-      addCandidate = ()=>{
+      addMovie = ()=>{
 
 
-         this.props.routerActions.push('/admin/candidateslist_add');
+         this.props.routerActions.push('/admin/movieslist_add');
      };
 
-     editCandidate = (id)=>{
+     editMovie = (id)=>{
 
          return ()=>{
-             this.props.routerActions.push('/admin/candidateslist/'+ id);
+             this.props.routerActions.push('/admin/movieslist/'+ id);
          };
      };
 
 
     render(){
 
-        var rows = this.props.candidatelisting.records.map((item,i)=>{
+        var rows = this.props.movielisting.records.map((item,i)=>{
 
             return (
                 <tr key={i}>
                      <td>
-                         <Button bsSize="small"  bsStyle="warning" onClick={this.editCandidate(item.id)}>Edit</Button>
+                         <Button bsSize="small"  bsStyle="warning" onClick={this.editMovie(item.id)}>Edit</Button>
                          </td>
-                     <td>{item.candidateNo}</td>
-                     <td>{item.name}</td>
-                     <td>{item.team}</td>
-                     <td>{item.gender}</td>
+                     <td>{item.movieNo}</td>
+                     <td>{item.title}</td>
                 </tr>
             );
         });
@@ -55,24 +53,22 @@ class CandidateList extends React.Component{
             <Well>
             
                 <center>
-                    <h3>Candidate Listings</h3>
+                    <h3>Movie Listings</h3>
                 </center>
 
                 <Table striped bordered condensed >
                     <thead>
                     <tr>
                         <th>Options</th>
-                        <th>Candidate No</th>
-                        <th>Name</th>
-                        <th>Team</th>
-                        <th>Gender</th>
+                        <th>Movie No</th>
+                        <th>Title</th>
                     </tr>
                     </thead>
                     <tbody>
                     {rows}
                     </tbody>
                 </Table>
-                <Button bsStyle="primary" onClick={this.addCandidate}>Add a Candidate </Button>
+                <Button bsStyle="primary" onClick={this.addMovie}>Add a Movie </Button>
 
 
             </Well>
@@ -83,7 +79,7 @@ class CandidateList extends React.Component{
 function mapStateToProps(state) {
 
     return {
-    candidatelisting:state.candidatelisting
+    movielisting:state.movielisting
     }
 }
 
@@ -91,11 +87,11 @@ function mapDispatchToProps(dispatch) {
     return {
         dialogActions: bindActionCreators(dialogActions, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch),
+        movielistingactions: bindActionCreators(movielistingactions, dispatch),
     }
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CandidateList);
+export default connect(mapStateToProps,mapDispatchToProps)(MovieList);
 
 

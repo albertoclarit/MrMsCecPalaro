@@ -25,8 +25,8 @@ import Formalwear from './components/specialawards/Formalwear'
 import Scoreboard from './Scoreboard'
 import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
-import CandidateList from './components/candidates/CandidateList'
-import CandidateEditor from './components/candidates/CandidateEditor'
+import MovieList from './components/movies/MovieList'
+import MovieEditor from './components/movies/MovieEditor'
 
 import Female from './Judges/Female'
 import Male from './Judges/Male'
@@ -52,9 +52,9 @@ const Components=(
                 <Route path="judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
                 <Route path="judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
                 <Route path="judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
-                <Route path="candidateslist" component={requireAuthentication(CandidateList,'ROLE_ADMIN')}/>
-                <Route path="candidateslist_add" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
-                <Route path="candidateslist/:id" component={requireAuthentication(CandidateEditor,'ROLE_ADMIN')}/>
+                <Route path="movieslist" component={requireAuthentication(MovieList,'ROLE_ADMIN')}/>
+                <Route path="movieslist_add" component={requireAuthentication(MovieEditor,'ROLE_ADMIN')}/>
+                <Route path="movieslist/:id" component={requireAuthentication(MovieEditor,'ROLE_ADMIN')}/>
                 <IndexRedirect to="/admin/production" />
             </Route>
             <Route path="/" component={App}>

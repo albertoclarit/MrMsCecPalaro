@@ -10,11 +10,12 @@ import {
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as dialogActions  from '../../actions/dialogactions';
-import * as candidatelistingactions  from '../../actions/candidatelistingactions';
+import * as movielistingactions  from '../../actions/movielistingactions';
 import { routerActions } from 'react-router-redux'
 
-import CandidateForm from './CandidateForm'
-class CandidateEditor extends React.Component {
+import MovieForm from './MovieForm'
+
+class MovieEditor extends React.Component {
 
     constructor(props) {
         super(props);
@@ -22,14 +23,14 @@ class CandidateEditor extends React.Component {
     }
 
     back = ()=>{
-        this.props.routerActions.push("/candidateslist")
+        this.props.routerActions.push("/movieslist")
 
     };
 
     componentDidMount=()=>{
 
         if(this.props.params.id)
-          this.props.candidatelistingactions.loadCandidate(this.props.params.id);
+          this.props.movielistingactions.loadMovie(this.props.params.id);
 
     };
 
@@ -37,10 +38,10 @@ class CandidateEditor extends React.Component {
 
         return (
             <Well>
-                <h4>{this.props.params.id ? 'Edit':'Add'} a Candidate </h4>
+                <h4>{this.props.params.id ? 'Edit':'Add'} a Movie </h4>
 
-                <CandidateForm selectedCandidate={this.props.selectedCandidate}
-                           candidatelistingactions={this.props.candidatelistingactions}
+                <MovieForm selectedMovie={this.props.selectedMovie}
+                           movielistingactions={this.props.movielistingactions}
                            dialogActions={this.props.dialogActions}/>
                 <Button bsStyle="primary" onClick={this.back}>Back to List</Button>
             </Well>
@@ -52,7 +53,7 @@ class CandidateEditor extends React.Component {
 function mapStateToProps(state) {
 
     return {
-     selectedCandidate:state.candidatelisting.selectedCandidate
+     selectedMovie:state.movielisting.selectedMovie
     }
 }
 
@@ -60,9 +61,9 @@ function mapDispatchToProps(dispatch) {
     return {
         dialogActions: bindActionCreators(dialogActions, dispatch),
         routerActions: bindActionCreators(routerActions, dispatch),
-        candidatelistingactions: bindActionCreators(candidatelistingactions, dispatch)
+        movielistingactions: bindActionCreators(movielistingactions, dispatch)
     }
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(CandidateEditor);
+export default connect(mapStateToProps,mapDispatchToProps)(MovieEditor);
