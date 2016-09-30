@@ -53,7 +53,7 @@ class Admin extends React.Component {
                   this.props.routerActions.push("/admin/judgeslist");
                   break;
               case 7:
-                  this.props.routerActions.push("/admin/movieslist");
+                  this.props.routerActions.push("/admin/candidateslist");
                   break;
               case 8:
                   this.props.routerActions.push("/admin/scoreboard");
@@ -97,7 +97,7 @@ class Admin extends React.Component {
                             <NavItem eventKey={5}>Wit and Intelligent</NavItem>
                             <NavItem eventKey={8}>Final Ranking</NavItem>
                             <NavItem eventKey={6}>Judges List</NavItem>
-                            <NavItem eventKey={7}>Movie List </NavItem>
+                            <NavItem eventKey={7}>Candidate List </NavItem>
                             <NavItem eventKey={9}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>

@@ -1,18 +1,18 @@
-import * as types from '../constants/MovieListingActionTypes';
+import * as types from '../constants/CandidateListingActionTypes';
 import axios from 'axios'
 import * as dialogActions  from '../actions/dialogactions';
 import { routerActions } from 'react-router-redux'
 
 
-export let deleteMovie = (id)=>{
+export let deleteCandidate = (id)=>{
 
     return dispatcher=>{
 
 
 
-            axios.delete('/api/movies/'+ id)
+            axios.delete('/api/candidates/'+ id)
                 .then(function (response) {
-                    dispatcher(routerActions.push("/admin/movieslist"));
+                    dispatcher(routerActions.push("/admin/candidateslist"));
                 })
                 .catch(function (error) {
                     dispatcher(dialogActions.openAlert("Data Failed to be deleted",'Failed','danger'));
@@ -25,29 +25,33 @@ export let saveData = ()=>{
 
     return (dispatcher,getState)=>{
 
-        var {selectedMovie} = getState().movielisting;
+        var {selectedCandidate} = getState().candidatelisting;
 
-         if(selectedMovie.id){
-             axios.put('/api/movies/'+selectedMovie.id, {
-                     movieNo:selectedMovie.movieNo,
-                     title: selectedMovie.title
+         if(selectedCandidate.id){
+             axios.put('/api/candidates/'+selectedCandidate.id, {
+                     candidateNo:selectedCandidate.candidateNo,
+                     name: selectedCandidate.name,
+                     team: selectedCandidate.team,
+                     gender: selectedCandidate.gender
                  }
              )
                  .then(function (response) {
-                     dispatcher(routerActions.push("/admin/movieslist"));
+                     dispatcher(routerActions.push("/admin/candidateslist"));
                  })
                  .catch(function (error) {
                      dispatcher(dialogActions.openAlert("Data Failed to be Edited",'Failed','danger'));
                  });
          }
         else {
-             axios.post('/api/movies', {
-                     movieNo:selectedMovie.movieNo,
-                     title: selectedMovie.title
+             axios.post('/api/candidates', {
+                     candidateNo:selectedCandidate.candidateNo,
+                     team: selectedCandidate.team,
+                     name: selectedCandidate.name,
+                     gender: selectedCandidate.gender
                  }
              )
                  .then(function (response) {
-                     dispatcher(routerActions.push("/admin/movieslist"));
+                     dispatcher(routerActions.push("/admin/candidateslist"));
                  })
                  .catch(function (error) {
                      dispatcher(dialogActions.openAlert("Data Failed to be Added",'Failed','danger'));
@@ -63,21 +67,21 @@ export let saveData = ()=>{
 export let updateField = (data)=>{
 
     return {
-        type:types.LOAD_MOVIE_UPDATE_FIELD,
+        type:types.LOAD_CANDIDATE_UPDATE_FIELD,
         data
     };
 
 };
 
-export let loadMovie = (id)=>{
+export let loadCandidate = (id)=>{
 
     return dispatcher=>{
 
-        axios.get('/api/movies/'+id)
+        axios.get('/api/candidates/'+id)
             .then(function (response) {
                 var data = response.data;
 
-                dispatcher(loadMovieSuccess(data));
+                dispatcher(loadCandidateSuccess(data));
 
             })
             .catch(function (error) {
@@ -89,25 +93,25 @@ export let loadMovie = (id)=>{
 };
 
 
-export let loadMovieSuccess= (movie)=>{
+export let loadCandidateSuccess= (candidate)=>{
 
     return {
-        type: types.LOAD_MOVIE_SUCCESS,
-        movie
+        type: types.LOAD_CANDIDATE_SUCCESS,
+        candidate
     }
 };
 
 
-export let loadMovies = ()=>{
+export let loadCandidates = ()=>{
 
 
     return dispatcher=>{
 
-        axios.get('/api/movies')
+        axios.get('/api/candidates')
             .then(function (response) {
                 var data = response.data;
 
-                dispatcher(loadMoviesSuccess(data));
+                dispatcher(loadCandidatesSuccess(data));
 
             })
             .catch(function (error) {
@@ -118,10 +122,10 @@ export let loadMovies = ()=>{
 
 };
 
-export let loadMoviesSuccess = (records)=>{
+export let loadCandidatesSuccess = (records)=>{
 
     return {
-        type: types.LOAD_MOVIES_SUCCESS,
+        type: types.LOAD_CANDIDATES_SUCCESS,
         records
     }
 };

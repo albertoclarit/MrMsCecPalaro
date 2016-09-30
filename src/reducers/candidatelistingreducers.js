@@ -1,36 +1,36 @@
 /**
  * Created by albertoclarit on 8/15/16.
  */
-import * as types from '../constants/MovieListingActionTypes';
+import * as types from '../constants/CandidateListingActionTypes';
 import  update from 'react-addons-update';
 
 
 const initialState={
     records:[],
-    selectedMovie:{}
+    selectedCandidate:{}
 };
 
-export default function movielistingreducers(state=initialState, action={}) {
+export default function candidatelistingreducers(state=initialState, action={}) {
 
     switch (action.type) {
-        case types.LOAD_MOVIES_SUCCESS:
+        case types.LOAD_CANDIDATES_SUCCESS:
             return update(state,{
                records:{
                    $set:action.records
                },
-               selectedMovie:{
+               selectedCandidate:{
                    $set:{}
                }
             });
-        case types.LOAD_MOVIE_SUCCESS:
+        case types.LOAD_CANDIDATE_SUCCESS:
             return update(state,{
-                selectedMovie:{
-                    $set:action.movie
+                selectedCandidate:{
+                    $set:action.candidate
                 }
             });
-        case types.LOAD_MOVIE_UPDATE_FIELD:
+        case types.LOAD_CANDIDATE_UPDATE_FIELD:
             return update(state,{
-                selectedMovie:{
+                selectedCandidate:{
                     $merge:action.data
                 }
             });
