@@ -90,9 +90,6 @@ class Talent extends React.Component {
             textDecoration: 'underline'
         };
 
-         if( this.props.femalescoring.candidates.length==0)
-           return null;
-
         var talent = "";
         if(this.props.femalescoring.currentScore.talent)
             talent = this.props.femalescoring.currentScore.talent.toFixed(1);
