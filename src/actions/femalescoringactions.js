@@ -7,7 +7,7 @@ import * as dialogActions  from './dialogactions';
 import Promise from 'bluebird'
 import objectAssign from 'object-assign'
 
-export let loadFemaleCandidates = (judgeno)=>{
+export let loadFemaleCandidates = (judgeno,event)=>{
 
     return dispatcher=>{
 
@@ -34,9 +34,11 @@ export let loadFemaleCandidates = (judgeno)=>{
                     params:{
                         judgeno,
                         candidateno:firstItem.candidateNo,
-                        gender:firstItem.gender
+                        gender:firstItem.gender,
+                        event
                     }
                 });
+                console.log(response.data);
 
                 var scoredata = response.data;
                 return {
@@ -81,7 +83,8 @@ export let loadFemaleCandidatesSuccess  = (femaleCandidates)=>{
 
 export let loadScore=( judgeno,
                        candidateno,
-                       gender)=>{
+                       gender,
+                       event)=>{
 
     return dispatch =>{
 
@@ -90,7 +93,8 @@ export let loadScore=( judgeno,
                 params:{
                     judgeno,
                     candidateno,
-                    gender
+                    gender,
+                    event
                 }
             });
 
@@ -126,7 +130,7 @@ export let nextCandidate= (candidateIndex)=>{
 
         var targetCandidate = femalescoring.candidates[candidateIndex];
 
-        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender));
+        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender,auth.account.event));
         dispatch(nextCandidateSuccess(candidateIndex));
     };
 };
@@ -147,7 +151,7 @@ export let previousCandidate= (candidateIndex)=>{
 
         var targetCandidate = femalescoring.candidates[candidateIndex];
 
-        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender));
+        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender,auth.account.event));
         dispatch(previousCandidateSuccess(candidateIndex));
     };
 
@@ -161,17 +165,16 @@ export let previousCandidateSuccess= (candidateIndex)=>{
 };
 
 
-export let updateAndSave = (name,value)=>{
+export let updateAndSave = (name,value,eventName)=>{
 
     return (dispatch,getState)=>{
-
 
         Promise.coroutine( function *(){
 
             var {femalescoring} = getState();
             var currentScore = objectAssign({},femalescoring.currentScore);
+            currentScore.event = eventName;
             currentScore[name] = value;
-
 
             var response = axios.put('/api/scores/'+ currentScore.id,currentScore);
 

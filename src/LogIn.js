@@ -21,7 +21,7 @@ import { routerActions } from 'react-router-redux'
  class LogIn extends React.Component {
     constructor(props){
         super(props);
-        
+
     }
 
      state={
@@ -71,10 +71,10 @@ import { routerActions } from 'react-router-redux'
                             <Alert bsStyle="success">You are now logged-out</Alert>
                             : null}
                         <FormGroup>
-                            <ControlLabel>Enter JudgeNo</ControlLabel>
+                            <ControlLabel>Enter Judge Username</ControlLabel>
                             <FormControl
                                 type="text"
-                                placeholder="Enter your JudgeNo"
+                                placeholder="Enter your Judge Username"
                                 onChange={(e)=>
                                        {this.updateField('j_username',e.target.value)}
                                      }
@@ -104,7 +104,7 @@ import { routerActions } from 'react-router-redux'
                     </form>
                 </Well>
             </div>
-         
+
      );
  }
 }

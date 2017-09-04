@@ -23,12 +23,14 @@ class JudgeForm extends React.Component {
     constructor(props) {
         super(props);
 
-    
-    
+
+
     this.validatorTypes=strategy.createSchema(
         {
             judgeNo:'required',
-            password: 'required'
+            password: 'required',
+            event: 'required',
+            username: 'required',
         },
         {
             "required":"The field :attribute is required!"
@@ -36,37 +38,39 @@ class JudgeForm extends React.Component {
         (validator)=>{
         validator.setAttributeNames({
             judgeNo: 'Judge Number',
-            password: 'Password'
+            password: 'Password',
+            event: 'Event',
+            username: 'Username'
         });
         });
-    
-    }     
 
- 
-    
-    
+    }
+
+
+
+
         getValidatorData = ()=> {
                 return this.props.selectedJudge
             };
-        
+
         getClasses = (field)=>{
-        
+
                 return classnames({
                     'success': this.props.isValid(field),
                     'error': !this.props.isValid(field)
                 });
         };
-        
+
         onFormSubmit = (event)=>{
             event.preventDefault();
-            
+
             this.setState({
             validated:true
             });
-            
+
             this.props.validate(this.onValidate);
         };
-                
+
         getErrorText=(field)=>{
                 var error = this.props.errors[field];
                 if(!error)
@@ -143,6 +147,25 @@ class JudgeForm extends React.Component {
             <div style={style}>
                 <form onSubmit={this.onFormSubmit}>
                     <FormGroup validationState={this.getClasses('judgeNo')}>
+                        <ControlLabel>Enter Judge Username</ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="username"
+                            placeholder="Enter the Judge Username"
+                            value={this.props.selectedJudge.username || ''}
+                            onChange={this.onChange('username')}
+                             onBlur={()=>{
+                                this.setState({
+                                    validated:true
+                                });
+                                    this.props.validate('username');
+                                    }
+                                }
+                            />
+                        <FormControl.Feedback/>
+                        <HelpBlock>{this.getErrorText('username')}</HelpBlock>
+                    </FormGroup>
+                    <FormGroup validationState={this.getClasses('judgeNo')}>
                         <ControlLabel>Enter Judge Number</ControlLabel>
                         <FormControl
                             type="text"
@@ -177,9 +200,30 @@ class JudgeForm extends React.Component {
                                     }
                                 }
                             />
-                            
+
                         <FormControl.Feedback/>
                         <HelpBlock>{this.getErrorText('password')}</HelpBlock>
+                    </FormGroup>
+                    <FormGroup controlId="formControlsSelect" validationState={this.getClasses('password')}>
+                        <ControlLabel>Team</ControlLabel>
+                        <FormControl
+                            componentClass="select"
+                            placeholder="Select Event"
+                            value={this.props.selectedJudge.event || ''}
+                            onChange={this.onChange('event')}
+                            onBlur={()=>{
+                                this.setState({
+                                    validated:true
+                                });
+                                    this.props.validate('event');
+                                    }
+                                }>
+                            <option value="">----select---</option>
+                            <option value="Pre-pageant">Pre-pageant</option>
+                            <option value="Talent">Talent</option>
+                            <option value="Coronation">Coronation</option>
+                        </FormControl>
+                        <HelpBlock>{this.getErrorText('event')}</HelpBlock>
                     </FormGroup>
                     <Button bsStyle="info" type="submit">Save Record</Button>
 

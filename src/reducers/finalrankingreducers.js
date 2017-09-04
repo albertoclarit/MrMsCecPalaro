@@ -6,8 +6,18 @@ import  update from 'react-addons-update';
 const initialState={
     recordsMale:[],
     recordsFemale:[],
-    judgeTotal:0,
-    judgeScores:[]
+    prePageant:{
+      judgeTotal:0,
+      judgeScores:[]
+    },
+    talent:{
+      judgeTotal:0,
+      judgeScores:[]
+    },
+    coronation:{
+      judgeTotal:0,
+      judgeScores:[]
+    }
 
 };
 
@@ -23,12 +33,30 @@ export default function finalrankingreducers(state=initialState, action={}) {
                 recordsFemale:{
                     $set:action.data.rankingfemale
                 },
-                judgeTotal:{
-                    $set:action.data.judgeTotal
+                prePageant:{
+                  judgeTotal:{
+                    $set: action.data.prepageant.judgeTotal
+                  },
+                  judgeScores:{
+                    $set: action.judgeScores.prepageant
+                  }
                 },
-                judgeScores:{
-                    $set:action.judgeScores
-                }
+                talent:{
+                  judgeTotal:{
+                    $set: action.data.talent.judgeTotal
+                  },
+                  judgeScores:{
+                    $set: action.judgeScores.talent
+                  }
+                },
+                coronation:{
+                  judgeTotal:{
+                    $set: action.data.coronation.judgeTotal
+                  },
+                  judgeScores:{
+                    $set: action.judgeScores.coronation
+                  }
+                },
             });
         }
 

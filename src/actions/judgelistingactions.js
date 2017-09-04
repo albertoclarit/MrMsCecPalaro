@@ -32,8 +32,10 @@ export let saveData = ()=>{
 
          if(selectedJudge.id){
              axios.put('/api/judges/'+selectedJudge.id, {
+                      username: selectedJudge.username,
                      judgeNo:selectedJudge.judgeNo,
-                     password:selectedJudge.password
+                     password:selectedJudge.password,
+                     event: selectedJudge.event,
                  }
              )
                  .then(function (response) {
@@ -45,8 +47,10 @@ export let saveData = ()=>{
          }
         else {
              axios.post('/api/judges', {
+                     username: selectedJudge.username,
                      judgeNo:selectedJudge.judgeNo,
-                     password:selectedJudge.password
+                     password:selectedJudge.password,
+                     event: selectedJudge.event
                  }
              )
                  .then(function (response) {

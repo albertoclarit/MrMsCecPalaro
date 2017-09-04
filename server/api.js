@@ -16,6 +16,7 @@ module.exports = function (passport) {
         else {
             var userResult = {};
             userResult.judgeNo = req.user.judgeNo;
+            userResult.event = req.user.event;
             userResult.roles = [];
 
             if(userResult.judgeNo===999){

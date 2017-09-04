@@ -11,7 +11,11 @@ module.exports = function (Judge) {
     // get the list of judge
     router.get('/', function(req, res,next) {
 
-        Judge.findAll().then(function(judges){
+        Judge.findAll({
+          order:[
+            ['event','ASC']
+          ]
+        }).then(function(judges){
             res.json(judges);
         }).catch(function(error){
             res.status(404);
@@ -98,4 +102,3 @@ module.exports = function (Judge) {
 
     return router;
 };
-

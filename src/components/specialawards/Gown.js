@@ -106,24 +106,6 @@ class Gown extends React.Component {
                     <h2> Formal Wear</h2>
                 </center>
 
-                <h3>Male</h3>
-
-                <table className="table table-striped table-hover ">
-
-                    <thead>
-                    <tr>
-                        <th>Candidate No</th>
-                        <th>Candidate Name</th>
-                        {totalJudgeTd}
-                        <th>Average</th>
-                        <th>Rank</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {rowsMale}
-                    </tbody>
-                </table>
-
                 <h33>Female</h33>
 
                 <table className="table table-striped table-hover ">
@@ -140,6 +122,24 @@ class Gown extends React.Component {
                     <tbody>
                     {rowsFemale}
                     </tbody>
+                </table>
+
+                <h3>Male</h3>
+
+                <table className="table table-striped table-hover ">
+
+                  <thead>
+                    <tr>
+                      <th>Candidate No</th>
+                      <th>Candidate Name</th>
+                      {totalJudgeTd}
+                      <th>Average</th>
+                      <th>Rank</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rowsMale}
+                  </tbody>
                 </table>
             </Well>
 

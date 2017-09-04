@@ -87,7 +87,7 @@ passport.use(new LocalStrategy({
         var Judge=  db.Judge;
         Judge.findOne({
             where: {
-                judgeNo: username,
+                username: username,
                 password:password
             }
         }).then(function(judge){
@@ -141,7 +141,7 @@ passport.use(new LocalStrategy({
         var Judge=  db.Judge;
         Judge.findOne({
             where: {
-                judgeNo: username,
+                username: username,
                 password:password
             }
         }).then(function(judge){

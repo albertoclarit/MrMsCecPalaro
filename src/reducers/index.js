@@ -14,6 +14,7 @@ import bestsportswearreducers from './bestsportswearreducers';
 import bestformalWearreducers from './bestformalWearreducers';
 import bestqareducers from './bestqareducers';
 import finalrankingreducers from './finalrankingreducers';
+import prepageantreducers from './prepageantreducers';
 
 
 const rootReducer = combineReducers({
@@ -31,7 +32,8 @@ const rootReducer = combineReducers({
   bestsportswear:bestsportswearreducers,
   bestformalWear:bestformalWearreducers,
   bestqa:bestqareducers,
-  finalranking:finalrankingreducers
+  finalranking:finalrankingreducers,
+  prepageant: prepageantreducers,
 });
 
 export default rootReducer;

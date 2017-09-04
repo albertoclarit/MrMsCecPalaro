@@ -22,7 +22,7 @@ class CandidateEditor extends React.Component {
     }
 
     back = ()=>{
-        this.props.routerActions.push("/candidateslist")
+        this.props.routerActions.push("/admin/candidateslist")
 
     };
 

@@ -13,13 +13,13 @@ class CandidateList extends React.Component{
     constructor (props){
         super(props);
     }
-    
-    
+
+
      componentDidMount(){
 
           this.props.candidatelistingactions.loadCandidates();
      }
-     
+
       addCandidate = ()=>{
 
 
@@ -53,12 +53,12 @@ class CandidateList extends React.Component{
 
         return (
             <Well>
-            
+
                 <center>
                     <h3>Candidate Listings</h3>
                 </center>
 
-                <Table striped bordered condensed >
+                <Table striped bordered condensed id="candidates">
                     <thead>
                     <tr>
                         <th>Options</th>
@@ -97,5 +97,3 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(CandidateList);
-
-

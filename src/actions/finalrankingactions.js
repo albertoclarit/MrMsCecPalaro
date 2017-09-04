@@ -29,17 +29,41 @@ export let loadfinalranking = ()=>{
             .then(function (response) {
                 var data = response.data;
 
-                var judgeTotal = data.judgeTotal;
+                var coronation = data.coronation;
+                var talent = data.talent;
+                var prepageant = data.prepageant;
 
-                var judgeScores=[];
-                for(var i=0;i<judgeTotal;i++){
-                    judgeScores.push({
-                        judgeNo:(i+1),
-                        data:data["judge"+(i+1)]
+                var judgeScores={
+                  coronation:[],
+                  talent:[],
+                  prepageant:[]
+                };
+
+                for(var i=0;i<coronation.judgeTotal;i++){
+                    judgeScores.coronation.push({
+                        data:data.coronation["judge"+(i+1)]
                         }
                     );
 
                 }
+
+                for(var i=0;i<talent.judgeTotal;i++){
+                    judgeScores.talent.push({
+                        data:data.talent["judge"+(i+1)]
+                        }
+                    );
+
+                }
+
+                for(var i=0;i<prepageant.judgeTotal;i++){
+                    judgeScores.prepageant.push({
+                        data:data.prepageant["judge"+(i+1)]
+                        }
+                    );
+
+                }
+
+
 
                 dispatcher(loadfinalrankingSuccess(data,judgeScores));
 
@@ -61,6 +85,3 @@ export let loadfinalrankingSuccess = (data,judgeScores)=>{
  }
 
 };
-
-
-

@@ -14,11 +14,17 @@ module.exports = function (sequelize) {
             primaryKey: true,
             autoIncrement: true
         },
+        username:{
+            type: Sequelize.STRING,
+            unique: true,
+        },
         judgeNo: {
             type: Sequelize.INTEGER,
-            unique: true
         },
         password: {
+            type: Sequelize.STRING
+        },
+        event: {
             type: Sequelize.STRING
         }
     }, {
@@ -30,21 +36,23 @@ module.exports = function (sequelize) {
         // Table created
         return Judge.create({
             judgeNo: '999',
-            password: 'itsawesome'
+            username: 'amazingAdmin',
+            password: 'itsawesome',
+            event: 'ADMIN',
         });
     }).catch(function(error) {
         console.log('999 user already created');
     });
 
 
-   
+
     // =============================  Judge  =============================
 
 
  // =============================  Candidate  =============================
- 
 
- 
+
+
     var Candidate = sequelize.define('candidates', {
         id: {
             type: Sequelize.INTEGER,
@@ -77,9 +85,9 @@ module.exports = function (sequelize) {
 
 
  // =============================  Score  =============================
- 
 
- 
+
+
     var Score = sequelize.define('scores', {
         id: {
             type: Sequelize.INTEGER,
@@ -87,17 +95,23 @@ module.exports = function (sequelize) {
             primaryKey: true,
             autoIncrement: true
         },
+        event:{
+            type: Sequelize.STRING
+        },
         candidateNo: {
             type: Sequelize.INTEGER
         },
         judgeNo: {
             type: Sequelize.INTEGER
         },
+        prepageant:{
+            type: Sequelize.REAL
+        },
         talent: {
             type: Sequelize.REAL
         },
         production: {
-            type: Sequelize.REAL  
+            type: Sequelize.REAL
         },
         sportswear: {
             type: Sequelize.REAL

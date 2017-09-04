@@ -17,7 +17,9 @@ import * as dialogactions  from './actions/dialogactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
-import ResultsGrid from './ResultsGrid'
+import CoronationResultsGrid from './ResultsGrid/Coronation';
+import PrePageantResultsGrid from './ResultsGrid/PrePageant';
+import TalentResultsGrid from './ResultsGrid/Talent';
 
 
 
@@ -63,7 +65,7 @@ class Scoreboard extends React.Component {
 
 
     render(){
-        
+
         const wellStyle={
             width: 'auto',
             height: 'auto',
@@ -77,6 +79,7 @@ class Scoreboard extends React.Component {
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
+                    <td>{item.prepageant.toFixed(2)}</td>
                     <td>{item.production.toFixed(2)}</td>
                     <td>{item.talent.toFixed(2)}</td>
                     <td>{item.sportswear.toFixed(2)}</td>
@@ -94,6 +97,7 @@ class Scoreboard extends React.Component {
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
+                    <td>{item.prepageant.toFixed(2)}</td>
                     <td>{item.production.toFixed(2)}</td>
                     <td>{item.talent.toFixed(2)}</td>
                     <td>{item.sportswear.toFixed(2)}</td>
@@ -108,60 +112,66 @@ class Scoreboard extends React.Component {
 
         // Tabs
 
-         var tabs = [];
+         var prePageantTabs = [];
        //
        // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
-          for(var i=0;i<this.props.finalranking.judgeScores.length;i++){
+          for(var i=0;i<this.props.finalranking.prePageant.judgeScores.length;i++){
 
-              tabs.push(
-                  <Tab key={i} eventKey={i+1} title={"Judge" + (i+1)}>
-                  <ResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.judgeScores[i]}/>
-                 </Tab>
+              prePageantTabs.push(
+                  <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.prePageant.judgeScores[i].data.judgeNo}>
+                    <PrePageantResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.prePageant.judgeScores[i]}/>
+                  </Tab>
               );
 
           }
-        
+
+          var talentTabs = [];
+        //
+        // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
+      for(var i=0;i<this.props.finalranking.talent.judgeScores.length;i++){
+
+               talentTabs.push(
+                   <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.talent.judgeScores[i].data.judgeNo}>
+                     <TalentResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.talent.judgeScores[i]}/>
+                   </Tab>
+               );
+
+           }
+
+           var coronationTabs = [];
+         //
+         // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
+       for(var i=0;i<this.props.finalranking.coronation.judgeScores.length;i++){
+
+                coronationTabs.push(
+                    <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.coronation.judgeScores[i].data.judgeNo}>
+                      <CoronationResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.coronation.judgeScores[i]}/>
+                    </Tab>
+                );
+
+            }
+
         return (
             <Well style={wellStyle}>
-            
+
                 <center>
                 <h2> Final Ranking </h2>
                 </center>
                 <Button block bsStyle="warning" onClick={this.resetScores}>Reset Scores</Button>
-                <h3> Male </h3>
-
-
-                <table className="table table-striped table-hover ">
-                    <thead>
-                        <tr>
-                            <th>Candidate No</th>
-                            <th>Candidate Name</th>
-                            <th>Production 15%</th>
-                            <th>Talent 15%</th>
-                            <th>Sportswear 10%</th>
-                            <th>Formal Wear 20%</th>
-                            <th>Wit &amp; Intelligent 40%</th>
-                            <th>Total 100%</th>
-                            <th>Ranking</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                    {rowsMale}
-                    </tbody>
-              </table>
-              
+                <br />
+                
               <h3> Female </h3>
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
+                        <th>Pre-Pageant 10%</th>
                         <th>Production 15%</th>
                         <th>Talent 15%</th>
                         <th>Sportswear 10%</th>
                         <th>Formal Wear 20%</th>
-                        <th>Wit &amp; Intelligent 40%</th>
+                        <th>Wit &amp; Intelligent 30%</th>
                         <th>Total 100%</th>
                         <th>Ranking</th>
                     </tr>
@@ -171,16 +181,52 @@ class Scoreboard extends React.Component {
                     </tbody>
               </table>
 
+              <h3> Male </h3>
+
+              <table className="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                    <th>Pre-Pageant 10%</th>
+                    <th>Production 15%</th>
+                    <th>Talent 15%</th>
+                    <th>Sportswear 10%</th>
+                    <th>Formal Wear 20%</th>
+                    <th>Wit &amp; Intelligent 30%</th>
+                    <th>Total 100%</th>
+                    <th>Ranking</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  {rowsMale}
+                </tbody>
+              </table>
+
 
                 <hr/>
                 <hr/>    <hr/>
+                <h4>Pre-Pageant</h4>
                 <Tabs defaultActiveKey={1} id="judgeTabs">
-                    {tabs}
+                    {prePageantTabs}
+                </Tabs>
+
+                <br />
+                <h4>Talent</h4>
+                <Tabs defaultActiveKey={1} id="judgeTabs">
+                    {talentTabs}
+                </Tabs>
+
+                <br />
+                <h4>Coronation</h4>
+                <Tabs defaultActiveKey={1} id="judgeTabs">
+                    {coronationTabs}
                 </Tabs>
 
 
             </Well>
-            
+
         );
     }
 }
@@ -204,5 +250,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Scoreboard);
-
-

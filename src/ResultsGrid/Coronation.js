@@ -4,7 +4,7 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
 
-export default  class ResultsGrid extends React.Component {
+export default  class Coronation extends React.Component {
 
 
     render(){
@@ -15,9 +15,7 @@ export default  class ResultsGrid extends React.Component {
                  <tr key={i} className={i==0 ? "success":null}>
                      <td>{item.candidateNo}</td>
                      <td>{item.name}</td>
-                     <td>{item.prepageant}</td>
                      <td>{item.production}</td>
-                     <td>{item.talent}</td>
                      <td>{item.sportswear}</td>
                      <td>{item.formalWear}</td>
                      <td>{item.qa}</td>
@@ -32,9 +30,7 @@ export default  class ResultsGrid extends React.Component {
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
-                    <td>{item.prepageant}</td>
                     <td>{item.production}</td>
-                    <td>{item.talent}</td>
                     <td>{item.sportswear}</td>
                     <td>{item.formalWear}</td>
                     <td>{item.qa}</td>
@@ -47,29 +43,6 @@ export default  class ResultsGrid extends React.Component {
 
         return (
             <div>
-                <h5> Male </h5>
-
-
-                <table className="table table-striped table-hover ">
-                    <thead>
-                    <tr>
-                        <th>Candidate No</th>
-                        <th>Candidate Name</th>
-                        <th>Pre-Pageant</th>
-                        <th>Production</th>
-                        <th>Talent</th>
-                        <th>Sportswear</th>
-                        <th>Formal Wear</th>
-                        <th>Wit &amp; Intelligent</th>
-                        <th>Average</th>
-                        <th>Ranking</th>
-                    </tr>
-
-                    </thead>
-                    <tbody>
-                    {maleRows}
-                    </tbody>
-                </table>
 
                 <h5> Female </h5>
                 <table className="table table-striped table-hover ">
@@ -77,13 +50,11 @@ export default  class ResultsGrid extends React.Component {
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Pre-Pageant</th>
-                        <th>Production</th>
-                        <th>Talent</th>
-                        <th>Sportswear</th>
-                        <th>Formal Wear</th>
-                        <th>Wit &amp; Intelligent</th>
-                        <th>Average</th>
+                        <th>Production 15%</th>
+                        <th>Sportswear 10%</th>
+                        <th>Formal Wear 20%</th>
+                        <th>Wit &amp; Intelligent 30%</th>
+                        <th>Total</th>
                         <th>Ranking</th>
                     </tr>
                     </thead>
@@ -92,6 +63,26 @@ export default  class ResultsGrid extends React.Component {
                     </tbody>
                 </table>
 
+                <h5> Male </h5>
+
+                <table className="table table-striped table-hover ">
+                <thead>
+                <tr>
+                <th>Candidate No</th>
+                <th>Candidate Name</th>
+                <th>Production 15%</th>
+                <th>Sportswear 10%</th>
+                <th>Formal Wear 20%</th>
+                <th>Wit &amp; Intelligent 30%</th>
+                <th>Total</th>
+                <th>Ranking</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                {maleRows}
+                </tbody>
+                </table>
             </div>
         );
     }

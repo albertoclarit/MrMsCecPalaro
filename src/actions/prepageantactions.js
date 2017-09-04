@@ -1,18 +1,17 @@
-import * as types from '../constants/BestProductionActionTypes';
+import * as types from '../constants/PrepageantActionTypes';
 import axios from 'axios'
 import * as dialogActions  from '../actions/dialogactions';
 import { routerActions } from 'react-router-redux'
 
 
-export let loadbestproductionmale = ()=>{
+export let loadprepageantmale = ()=>{
 
     return dispatcher=>{
 
-        axios.get('/api/scores/bestproductionmale')
+        axios.get('/api/scores/prepageantmale')
             .then(function (response) {
                 var data = response.data;
-
-                dispatcher(loadbestproductionmaleSuccess(data));
+                dispatcher(loadprepageantSuccess(data));
 
             })
             .catch(function (error) {
@@ -23,10 +22,11 @@ export let loadbestproductionmale = ()=>{
 
 };
 
-export let loadbestproductionmaleSuccess = (records)=>{
+export let loadprepageantSuccess = (records)=>{
+  console.log(records);
 
  return {
-     type:types.LOAD_BEST_PRODUCTION_SUCCESS,
+     type:types.LOAD_BEST_PREPAGEANT_SUCCESS,
      records
  }
 
@@ -34,15 +34,15 @@ export let loadbestproductionmaleSuccess = (records)=>{
 
 
 
-export let loadbestproductionfemale = ()=>{
+export let loadprepageantfemale = ()=>{
 
     return dispatcher=>{
 
-        axios.get('/api/scores/bestproductionfemale')
+        axios.get('/api/scores/prepageantfemale')
             .then(function (response) {
                 var data = response.data;
 
-                dispatcher(loadbestproductionfemaleSuccess(data));
+                dispatcher(loadrrepageantfemaleSuccess(data));
 
             })
             .catch(function (error) {
@@ -53,10 +53,10 @@ export let loadbestproductionfemale = ()=>{
 
 };
 
-export let loadbestproductionfemaleSuccess = (records)=>{
+export let loadrrepageantfemaleSuccess = (records)=>{
 
     return {
-        type:types.LOAD_BEST_PRODUCTION_FEMALE_SUCCESS,
+        type:types.LOAD_BEST_PREPAGEANT_FEMALE_SUCCESS,
         records
     }
 

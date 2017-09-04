@@ -17,7 +17,7 @@ class Sportswear extends React.Component {
 
         this.props.bestsportswearactions.loadbestsportswearmale();
         this.props.bestsportswearactions.loadbestsportswearfemale();
-        
+
     }
     componentDidMount(){
 
@@ -34,10 +34,10 @@ class Sportswear extends React.Component {
             clearInterval( this.interval);
     }
 
-    
+
 
     render(){
-        
+
         const wellStyle={
             width: 'auto',
             height: 'auto',
@@ -101,30 +101,14 @@ class Sportswear extends React.Component {
         });
 
 
-        
+
 
         return (
             <Well style={wellStyle}>
-            
+
                 <center>
                 <h2> Sportswear </h2>
                 </center>
-                <h3>Male</h3>
-                <table className="table table-striped table-hover ">
-
-                    <thead>
-                    <tr>
-                        <th>Candidate No</th>
-                        <th>Candidate Name</th>
-                        {totalJudgeTd}
-                        <th>Average</th>
-                        <th>Rank</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {rowsMale}
-                    </tbody>
-              </table>
 
               <h3>Female</h3>
                 <table className="table table-striped table-hover ">
@@ -143,8 +127,24 @@ class Sportswear extends React.Component {
                     </tbody>
               </table>
               
+              <h3>Male</h3>
+              <table className="table table-striped table-hover ">
+
+                <thead>
+                  <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                    {totalJudgeTd}
+                    <th>Average</th>
+                    <th>Rank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsMale}
+                </tbody>
+              </table>
             </Well>
-            
+
         );
     }
 }
@@ -165,6 +165,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Sportswear);
-
-
-

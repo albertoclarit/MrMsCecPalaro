@@ -48,15 +48,17 @@ import { routerActions } from 'react-router-redux'
                      <td>{item.judgeNo != 999 ?
                          <Button bsSize="small"  bsStyle="warning" onClick={this.editJudge(item.id)}>Edit</Button>
                          :null} </td>
+                     <td>{item.username}</td>
                      <td>{item.judgeNo}</td>
                      <td>{item.password}</td>
+                     <td>{item.event}</td>
                 </tr>
             );
         });
 
         return (
             <Well>
-            
+
                 <center>
                      <h3>Judge Listings</h3>
                 </center>
@@ -65,8 +67,10 @@ import { routerActions } from 'react-router-redux'
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>Judge Username</th>
                         <th>Judge No</th>
                         <th>Password</th>
+                        <th>Event</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,4 +102,3 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(JudgeList);
-

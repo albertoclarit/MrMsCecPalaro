@@ -165,15 +165,16 @@ export let previousCandidateSuccess= (candidateIndex)=>{
 };
 
 
-export let updateAndSave = (name,value)=>{
-
+export let updateAndSave = (name,value,eventName)=>{
     return (dispatch,getState)=>{
 
 
         Promise.coroutine( function *(){
-
+            console.log(eventName);
             var {malescoring} = getState();
             var currentScore = objectAssign({},malescoring.currentScore);
+
+            currentScore.event = eventName;
             currentScore[name] = value;
 
 

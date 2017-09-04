@@ -22,6 +22,7 @@ import Witandint from './components/specialawards/Witandint'
 import Production    from './components/specialawards/Production'
 import Sportswear from './components/specialawards/Sportswear'
 import Formalwear from './components/specialawards/Formalwear'
+import PrePageant from './components/specialawards/PrePageant'
 import Scoreboard from './Scoreboard'
 import JudgeList from './components/judges/JudgeList'
 import JudgeEditor from './components/judges/JudgeEditor'
@@ -43,6 +44,7 @@ const Components=(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/admin" component={Admin}>
+                <Route path="prepageant" component={requireAuthentication(PrePageant,'ROLE_ADMIN')} />
                 <Route path="talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
                 <Route path="production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
                 <Route path="gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>

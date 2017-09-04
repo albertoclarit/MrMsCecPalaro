@@ -2,7 +2,9 @@
  * Created by albertoclarit on 8/13/16.
  */
 import React from 'react';
-import {Well
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import {Well ,Button
         } from 'react-bootstrap';
 import * as besttalentactions  from '../../actions/besttalentactions.js';
 import { connect } from 'react-redux';
@@ -41,9 +43,9 @@ class Talent extends React.Component {
         if( this.interval)
         clearInterval( this.interval);
     }
-    
+
     render(){
-        
+
         const wellStyle={
             width: 'auto',
             height: 'auto',
@@ -61,7 +63,7 @@ class Talent extends React.Component {
                  totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
          }
 
-        
+
            var rowsMale = this.props.besttalent.recordsMale.map((item,i)=>{
 
                var othertds = [];
@@ -109,33 +111,16 @@ class Talent extends React.Component {
 
 
         return (
-            <Well style={wellStyle}>
-            
+            <Well style={wellStyle} id="talent">
+
                 <center>
                 <h2> Talent</h2>
                 </center>
-                <h3>Male</h3>
 
-                <table className="table table-striped table-hover ">
-                    
-                    <thead>
-                        <tr>
-                        <th>Candidate No</th>
-                        <th>Candidate Name</th>
-                            {totalJudgeTd}
-                        <th>Average</th>
-                        <th>Rank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rowsMale}
-                    </tbody>
-              </table>
-              
               <h3>Female</h3>
 
                 <table className="table table-striped table-hover ">
-                    
+
                     <thead>
                         <tr>
                         <th>Candidate No</th>
@@ -150,9 +135,25 @@ class Talent extends React.Component {
                     </tbody>
               </table>
               
-              
+              <h3>Male</h3>
+
+              <table className="table table-striped table-hover ">
+
+                <thead>
+                  <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                    {totalJudgeTd}
+                    <th>Average</th>
+                    <th>Rank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsMale}
+                </tbody>
+              </table>
             </Well>
-            
+
         );
     }
 }
@@ -173,6 +174,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Talent);
-
-
-

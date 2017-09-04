@@ -95,35 +95,35 @@ class CandidateForm extends React.Component {
 
                        <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Gender</ControlLabel>
-                        <FormControl 
-                            componentClass="select" 
-                            placeholder="select" 
-                            value={this.props.selectedCandidate.gender || ''} 
+                        <FormControl
+                            componentClass="select"
+                            placeholder="select"
+                            value={this.props.selectedCandidate.gender || ''}
                             onChange={this.onChange('gender')}>
                             <option value="">----select----</option>
                             <option value="M">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="F">Female</option>
                         </FormControl>
                     </FormGroup>
-                  
+
 
                     <FormGroup controlId="formControlsSelect">
                         <ControlLabel>Team</ControlLabel>
-                        <FormControl 
-                            componentClass="select" 
-                            placeholder="select" 
-                            value={this.props.selectedCandidate.team || ''} 
+                        <FormControl
+                            componentClass="select"
+                            placeholder="select"
+                            value={this.props.selectedCandidate.team || ''}
                             onChange={this.onChange('team')}>
                             <option value="">----select---</option>
-                            <option value="Targaryen">Targaryen</option>
-                            <option value="Lannister">Lannister</option>
-                            <option value="Baratheon">Baratheon</option>
-                            <option value="Stark">Stark</option>
-                            <option value="Arryn">Arryn</option>
+                            <option value="Dauntless">Dauntless</option>
+                            <option value="Erudite">Erudite</option>
+                            <option value="Amity">Amity</option>
+                            <option value="Abnegation">Abnegation</option>
+                            <option value="Candor">Candor</option>
                         </FormControl>
                     </FormGroup>
-                  
-                    
+
+
                     <Button bsStyle="info" onClick={this.saveRecord}>Save Record</Button>
 
                     {

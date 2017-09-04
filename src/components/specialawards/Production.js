@@ -2,8 +2,11 @@
  * Created by albertoclarit on 8/13/16.
  */
 import React from 'react';
-import {Well} from 'react-bootstrap';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import {Well, Button} from 'react-bootstrap';
 import * as bestproductionactions  from '../../actions/bestproductionactions';
+import Promise from 'bluebird';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -38,9 +41,8 @@ class Production extends React.Component {
             clearInterval( this.interval);
     }
 
-
     render(){
-        
+
         const wellStyle={
             width: 'auto',
             height: 'auto',
@@ -104,36 +106,18 @@ class Production extends React.Component {
         });
 
 
-        
+
         return (
             <Well style={wellStyle}>
-                
-                <center>
-                    <h2>  Production </h2>
-                </center>
-                
-                <h3>Male</h3>
 
-                <table className="table table-striped table-hover ">
-                    
-                    <thead>
-                        <tr>
-                        <th>Candidate No</th>
-                        <th>Candidate Name</th>
-                            {totalJudgeTd}
-                        <th>Average</th>
-                        <th>Rank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {rowsMale}
-                    </tbody>
-              </table>
-              
+                <center>
+                  <h2>  Production </h2>
+                </center>
+
               <h3>Female</h3>
 
                 <table className="table table-striped table-hover ">
-                    
+
                     <thead>
                         <tr>
                         <th>Candidate No</th>
@@ -147,8 +131,26 @@ class Production extends React.Component {
                         {rowsFemale}
                     </tbody>
               </table>
-            </Well>
-            
+
+              <h3>Male</h3>
+
+              <table className="table table-striped table-hover ">
+
+                <thead>
+                  <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                    {totalJudgeTd}
+                    <th>Average</th>
+                    <th>Rank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsMale}
+                </tbody>
+              </table>
+              </Well>
+
         );
     }
 }
@@ -168,7 +170,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Production);
-
-
-
-

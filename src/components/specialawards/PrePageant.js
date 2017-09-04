@@ -3,28 +3,28 @@
  */
 import React from 'react';
 import {Well} from 'react-bootstrap';
-import * as bestqaactions  from '../../actions/bestqaactions';
+import * as prepageantactions  from '../../actions/prepageantactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
 
-class Witandint extends React.Component {
+
+class PrePageant extends React.Component {
 
     constructor(props){
         super(props);
 
-        this.props.bestqaactions.loadbestqamale();
-        this.props.bestqaactions.loadbestqafemale();
+
+        this.props.prepageantactions.loadprepageantmale();
+        this.props.prepageantactions.loadprepageantfemale();
 
     }
-
-
     componentDidMount(){
 
         this.interval = setInterval(()=>{
 
-            this.props.bestqaactions.loadbestqamale();
-            this.props.bestqaactions.loadbestqafemale();
+            this.props.prepageantactions.loadprepageantmale();
+            this.props.prepageantactions.loadprepageantfemale();
         },1500); // every 1.5 seconds refresh
      }
 
@@ -48,23 +48,23 @@ class Witandint extends React.Component {
 
         var totalJudgeTd = [];
 
-        if(this.props.bestqa.recordsMale.length>0){
+        if(this.props.prepageant.recordsMale.length>0){
 
-            var countJudge = this.props.bestqa.recordsMale[0].judgeTotal;
+            var countJudge = this.props.prepageant.recordsMale[0].judgeTotal;
 
             for(var i=0;i<countJudge;i++)
                 totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
         }
 
 
-        var rowsMale = this.props.bestqa.recordsMale.map((item,i)=>{
+        var rowsMale = this.props.prepageant.recordsMale.map((item,i)=>{
 
             var othertds = [];
 
             var noOfJudge = item.judgeTotal;
 
             for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].qa)}</td>)
+                othertds.push(<td key={x}>{(item['judge'+(x+1)].prepageant)}</td>)
             }
 
             return (
@@ -79,14 +79,14 @@ class Witandint extends React.Component {
         });
 
 
-        var rowsFemale = this.props.bestqa.recordsFemale.map((item,i)=>{
+        var rowsFemale = this.props.prepageant.recordsFemale.map((item,i)=>{
 
             var othertds = [];
 
             var noOfJudge = item.judgeTotal;
 
             for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].qa)}</td>)
+                othertds.push(<td key={x}>{(item['judge'+(x+1)].prepageant)}</td>)
             }
 
             return (
@@ -99,19 +99,20 @@ class Witandint extends React.Component {
                 </tr>
             );
         });
+
+
 
 
         return (
             <Well style={wellStyle}>
 
                 <center>
-                <h2> Wit &amp; Intelligence</h2>
+                <h2> Pre-Pageant </h2>
                 </center>
 
-
               <h3>Female</h3>
-
                 <table className="table table-striped table-hover ">
+
                     <thead>
                     <tr>
                         <th>Candidate No</th>
@@ -122,12 +123,13 @@ class Witandint extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {rowsFemale}
+                        {rowsFemale}
                     </tbody>
               </table>
-              <h3>Male</h3>
 
+              <h3>Male</h3>
               <table className="table table-striped table-hover ">
+
                 <thead>
                   <tr>
                     <th>Candidate No</th>
@@ -140,7 +142,7 @@ class Witandint extends React.Component {
                 <tbody>
                   {rowsMale}
                 </tbody>
-              </table> 
+              </table>
             </Well>
 
         );
@@ -151,15 +153,15 @@ class Witandint extends React.Component {
 function mapStateToProps(state) {
 
     return {
-        bestqa:state.bestqa
+        prepageant:state.prepageant
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        bestqaactions: bindActionCreators(bestqaactions, dispatch),
+        prepageantactions: bindActionCreators(prepageantactions, dispatch),
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Witandint);
+export default connect(mapStateToProps,mapDispatchToProps)(PrePageant);

@@ -45,7 +45,7 @@ class Admin extends React.Component {
                   break;
               case 4:
                   this.props.routerActions.push("/admin/sportswear");
-                  break;   
+                  break;
               case 5:
                   this.props.routerActions.push("/admin/witandint");
                   break;
@@ -63,7 +63,7 @@ class Admin extends React.Component {
                   break;
                   break;
               case 10:
-
+                  this.props.routerActions.push("/admin/prepageant");
                   break;
               default:
                   return;
@@ -72,10 +72,10 @@ class Admin extends React.Component {
 
 
       };
-    
+
     render(){
-        
-        
+
+
         return (
 
             <Well>
@@ -90,6 +90,7 @@ class Admin extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
+                            <NavItem eventKey={10}>Pre-Pageant</NavItem>
                             <NavItem eventKey={2}>Best in Production</NavItem>
                             <NavItem eventKey={1}>Best in Talent</NavItem>
                             <NavItem eventKey={4}>Best is Sportswear</NavItem>
