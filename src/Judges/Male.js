@@ -68,17 +68,17 @@ import PrePageant from './PrePageant';
      }
 
     componentDidMount(){
-      this.props.maleScoringActions.loadMaleCandidates(this.props.auth.account.judgeNo,this.props.auth.account.event);
+      this.props.maleScoringActions.loadMaleCandidates(this.props.auth.account.judgeNo);
     }
 
     previousCandidate=()=>{
 
-        this.props.maleScoringActions.previousCandidate(this.props.malescoring.activeCandidate-1,this.props.auth.account.event);
+        this.props.maleScoringActions.previousCandidate(this.props.malescoring.activeCandidate-1);
 
     };
 
     nextCandidate=()=>{
-        this.props.maleScoringActions.nextCandidate(this.props.malescoring.activeCandidate + 1,this.props.auth.account.event);
+        this.props.maleScoringActions.nextCandidate(this.props.malescoring.activeCandidate + 1);
     };
 
 
@@ -221,7 +221,7 @@ import PrePageant from './PrePageant';
               </div>
               <Grid>
                 <Col md={6} mdPull={1}  >
-                  <h3 style={titleStyle}>Male Scoring </h3>
+                  <h3 style={titleStyle}>Female Scoring </h3>
                   <div style={imageStyle}>
                     <Image src={this.state.pic_reference[this.props.malescoring.activeCandidate]} circle  width="300" height="400"/>
                     <div style={nameStyle}>
@@ -278,7 +278,7 @@ import PrePageant from './PrePageant';
               </div>
               <Grid>
                 <Col md={6} mdPull={1}  >
-                  <h3 style={titleStyle}>Male Scoring </h3>
+                  <h3 style={titleStyle}>Female Scoring </h3>
                   <div style={imageStyle}>
                     <Image src={this.state.pic_reference[this.props.malescoring.activeCandidate]} circle  width="300" height="400"/>
                     <div style={nameStyle}>

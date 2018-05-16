@@ -95,6 +95,9 @@ class PrePageant extends React.Component {
             textDecoration: 'underline'
         };
 
+         if( this.props.femalescoring.candidates.length==0)
+           return null;
+
         var prepageant = "";
           if(this.props.femalescoring.currentScore.prepageant)
             prepageant = this.props.femalescoring.currentScore.prepageant.toFixed(1);

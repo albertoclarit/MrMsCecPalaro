@@ -8,7 +8,7 @@ import Promise from 'bluebird'
 import objectAssign from 'object-assign'
 
 
-export let loadMaleCandidates = (judgeno,event)=>{
+export let loadMaleCandidates = (judgeno)=>{
 
     return dispatcher=>{
 
@@ -35,8 +35,7 @@ export let loadMaleCandidates = (judgeno,event)=>{
                     params:{
                         judgeno,
                         candidateno:firstItem.candidateNo,
-                        gender:firstItem.gender,
-                        event
+                        gender:firstItem.gender
                     }
                 });
 
@@ -84,8 +83,7 @@ export let loadMaleCandidatesSuccess  = (maleCandidates)=>{
 
 export let loadScore=( judgeno,
                        candidateno,
-                       gender,
-                       event)=>{
+                       gender)=>{
 
     return dispatch =>{
 
@@ -94,8 +92,7 @@ export let loadScore=( judgeno,
                 params:{
                     judgeno,
                     candidateno,
-                    gender,
-                    event
+                    gender
                 }
             });
 
@@ -133,7 +130,7 @@ export let nextCandidate= (candidateIndex)=>{
 
         var targetCandidate = malescoring.candidates[candidateIndex];
 
-        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender,auth.account.event));
+        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender));
         dispatch(nextCandidateSuccess(candidateIndex));
     };
 };
@@ -154,7 +151,7 @@ export let previousCandidate= (candidateIndex)=>{
 
         var targetCandidate = malescoring.candidates[candidateIndex];
 
-        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender,auth.account.event));
+        dispatch(loadScore(auth.account.judgeNo,targetCandidate.candidateNo,targetCandidate.gender));
         dispatch(previousCandidateSuccess(candidateIndex));
     };
 
