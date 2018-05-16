@@ -61,15 +61,16 @@ module.exports = function (sequelize) {
             autoIncrement: true
         },
         candidateNo: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            unique: true
         },
         name: {
             type: Sequelize.STRING
         },
-        team: {
+        age: {
             type: Sequelize.STRING
         },
-        gender: {
+        address: {
             type: Sequelize.STRING
         }
     }, {
