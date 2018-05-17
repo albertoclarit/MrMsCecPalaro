@@ -24,7 +24,6 @@ export let resetscores=()=>{
 export let loadfinalranking = ()=>{
 
     return dispatcher=>{
-
         axios.get('/api/scores/finalranking')
             .then(function (response) {
                 var data = response.data;
@@ -54,16 +53,6 @@ export let loadfinalranking = ()=>{
                     );
 
                 }
-
-                for(var i=0;i<prepageant.judgeTotal;i++){
-                    judgeScores.prepageant.push({
-                        data:data.prepageant["judge"+(i+1)]
-                        }
-                    );
-
-                }
-
-
 
                 dispatcher(loadfinalrankingSuccess(data,judgeScores));
 

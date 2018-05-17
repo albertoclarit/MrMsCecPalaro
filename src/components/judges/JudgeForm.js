@@ -205,7 +205,7 @@ class JudgeForm extends React.Component {
                         <HelpBlock>{this.getErrorText('password')}</HelpBlock>
                     </FormGroup>
                     <FormGroup controlId="formControlsSelect" validationState={this.getClasses('password')}>
-                        <ControlLabel>Team</ControlLabel>
+                        <ControlLabel>Event</ControlLabel>
                         <FormControl
                             componentClass="select"
                             placeholder="Select Event"
@@ -219,17 +219,16 @@ class JudgeForm extends React.Component {
                                     }
                                 }>
                             <option value="">----select---</option>
-                            <option value="Pre-pageant">Pre-pageant</option>
                             <option value="Talent">Talent</option>
                             <option value="Coronation">Coronation</option>
                         </FormControl>
                         <HelpBlock>{this.getErrorText('event')}</HelpBlock>
                     </FormGroup>
-                    <Button bsStyle="info" type="submit">Save Record</Button>
+                    <Button bsStyle="info" bsSize="small" type="submit">Save Record</Button>
 
                     {
                         this.props.selectedJudge.id ?
-                        <Button bsStyle="danger" onClick={this.deleteRecord}>Delete Record</Button>
+                        <Button bsStyle="danger" bsSize="small" onClick={this.deleteRecord}>Delete Record</Button>
                         :
                         null
                     }

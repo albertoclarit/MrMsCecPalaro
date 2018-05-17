@@ -18,7 +18,7 @@ class Talent extends React.Component {
         super(props);
 
        // loadinitial
-        this.props.besttalentactions.loadbesttalentmale();
+        // this.props.besttalentactions.loadbesttalentmale();
         this.props.besttalentactions.loadbesttalentfemale();
 
     }
@@ -32,7 +32,7 @@ class Talent extends React.Component {
 
         this.interval = setInterval(()=>{
 
-            this.props.besttalentactions.loadbesttalentmale();
+            // this.props.besttalentactions.loadbesttalentmale();
             this.props.besttalentactions.loadbesttalentfemale();
         },1500); // every 1.5 seconds refresg
 
@@ -55,36 +55,13 @@ class Talent extends React.Component {
 
         var totalJudgeTd = [];
 
-         if(this.props.besttalent.recordsMale.length>0){
+         if(this.props.besttalent.recordsFemale.length>0){
 
-             var countJudge = this.props.besttalent.recordsMale[0].judgeTotal;
+             var countJudge = this.props.besttalent.recordsFemale[0].judgeTotal;
 
              for(var i=0;i<countJudge;i++)
                  totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
          }
-
-
-           var rowsMale = this.props.besttalent.recordsMale.map((item,i)=>{
-
-               var othertds = [];
-
-                var noOfJudge = item.judgeTotal;
-
-                for(var x=0;x<noOfJudge;x++){
-                    othertds.push(<td key={x}>{(item['judge'+(x+1)].talent)}</td>)
-                }
-
-            return (
-                <tr key={i} className={i==0 ? "success":null}>
-                     <td>{item.candidateNo}</td>
-                     <td>{item.name}</td>
-                    {othertds}
-                    <td>{item.average}</td>
-                    <td>{i+1}</td>
-                </tr>
-            );
-        });
-
 
         var rowsFemale = this.props.besttalent.recordsFemale.map((item,i)=>{
 
@@ -117,8 +94,6 @@ class Talent extends React.Component {
                 <h2> Talent</h2>
                 </center>
 
-              <h3>Female</h3>
-
                 <table className="table table-striped table-hover ">
 
                     <thead>
@@ -133,24 +108,6 @@ class Talent extends React.Component {
                     <tbody>
                     {rowsFemale}
                     </tbody>
-              </table>
-              
-              <h3>Male</h3>
-
-              <table className="table table-striped table-hover ">
-
-                <thead>
-                  <tr>
-                    <th>Candidate No</th>
-                    <th>Candidate Name</th>
-                    {totalJudgeTd}
-                    <th>Average</th>
-                    <th>Rank</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rowsMale}
-                </tbody>
               </table>
             </Well>
 

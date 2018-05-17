@@ -16,6 +16,9 @@ import Error from './Error'
 import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
+import Swimsuit from './components/specialawards/Swimsuit'
+import FinalRound from './components/scoring/FinalRound'
+import PreliminaryScores from './components/scoring/PreliminaryScores'
 import Talent from './components/specialawards/Talent'
 import Gown from './components/specialawards/Gown'
 import Witandint from './components/specialawards/Witandint'
@@ -44,13 +47,13 @@ const Components=(
     <Provider store={store}>
         <Router history={history}>
             <Route path="/admin" component={Admin}>
-                <Route path="prepageant" component={requireAuthentication(PrePageant,'ROLE_ADMIN')} />
+                <Route path="swimsuit" component={requireAuthentication(Swimsuit,'ROLE_ADMIN')}/>
                 <Route path="talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
                 <Route path="production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
                 <Route path="gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
-                <Route path="sportswear" component={requireAuthentication(Sportswear,'ROLE_ADMIN')}/>
-                <Route path="witandint" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
                 <Route path="scoreboard" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
+                <Route path="interview" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
+                <Route path="preliminary" component={requireAuthentication(PreliminaryScores,'ROLE_ADMIN')}/>
                 <Route path="judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
                 <Route path="judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
                 <Route path="judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>

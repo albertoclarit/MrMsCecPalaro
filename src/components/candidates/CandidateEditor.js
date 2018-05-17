@@ -42,7 +42,7 @@ class CandidateEditor extends React.Component {
                 <CandidateForm selectedCandidate={this.props.selectedCandidate}
                            candidatelistingactions={this.props.candidatelistingactions}
                            dialogActions={this.props.dialogActions}/>
-                <Button bsStyle="primary" onClick={this.back}>Back to List</Button>
+                <Button bsStyle="primary" bsSize="small" onClick={this.back}>Back to List</Button>
             </Well>
         );
     }

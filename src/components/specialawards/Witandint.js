@@ -13,7 +13,7 @@ class Witandint extends React.Component {
     constructor(props){
         super(props);
 
-        this.props.bestqaactions.loadbestqamale();
+        // this.props.bestqaactions.loadbestqamale();
         this.props.bestqaactions.loadbestqafemale();
 
     }
@@ -23,7 +23,7 @@ class Witandint extends React.Component {
 
         this.interval = setInterval(()=>{
 
-            this.props.bestqaactions.loadbestqamale();
+            // this.props.bestqaactions.loadbestqamale();
             this.props.bestqaactions.loadbestqafemale();
         },1500); // every 1.5 seconds refresh
      }
@@ -48,35 +48,14 @@ class Witandint extends React.Component {
 
         var totalJudgeTd = [];
 
-        if(this.props.bestqa.recordsMale.length>0){
+        if(this.props.bestqa.recordsFemale.length>0){
 
-            var countJudge = this.props.bestqa.recordsMale[0].judgeTotal;
+            var countJudge = this.props.bestqa.recordsFemale[0].judgeTotal;
 
             for(var i=0;i<countJudge;i++)
                 totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
         }
 
-
-        var rowsMale = this.props.bestqa.recordsMale.map((item,i)=>{
-
-            var othertds = [];
-
-            var noOfJudge = item.judgeTotal;
-
-            for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].qa)}</td>)
-            }
-
-            return (
-                <tr key={i} className={i==0 ? "success":null}>
-                    <td>{item.candidateNo}</td>
-                    <td>{item.name}</td>
-                    {othertds}
-                    <td>{item.average}</td>
-                    <td>{i+1}</td>
-                </tr>
-            );
-        });
 
 
         var rowsFemale = this.props.bestqa.recordsFemale.map((item,i)=>{
@@ -108,9 +87,6 @@ class Witandint extends React.Component {
                 <h2> Wit &amp; Intelligence</h2>
                 </center>
 
-
-              <h3>Female</h3>
-
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr>
@@ -125,22 +101,7 @@ class Witandint extends React.Component {
                     {rowsFemale}
                     </tbody>
               </table>
-              <h3>Male</h3>
-
-              <table className="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th>Candidate No</th>
-                    <th>Candidate Name</th>
-                    {totalJudgeTd}
-                    <th>Average</th>
-                    <th>Rank</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rowsMale}
-                </tbody>
-              </table> 
+              
             </Well>
 
         );

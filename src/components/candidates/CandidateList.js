@@ -45,8 +45,8 @@ class CandidateList extends React.Component{
                          </td>
                      <td>{item.candidateNo}</td>
                      <td>{item.name}</td>
-                     <td>{item.team}</td>
-                     <td>{item.gender}</td>
+                     <td>{item.age}</td>
+                     <td>{item.address}</td>
                 </tr>
             );
         });
@@ -64,8 +64,8 @@ class CandidateList extends React.Component{
                         <th>Options</th>
                         <th>Candidate No</th>
                         <th>Name</th>
-                        <th>Team</th>
-                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Barangay</th>
                     </tr>
                     </thead>
                     <tbody>

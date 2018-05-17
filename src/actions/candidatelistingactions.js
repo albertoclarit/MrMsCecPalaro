@@ -7,9 +7,6 @@ import { routerActions } from 'react-router-redux'
 export let deleteCandidate = (id)=>{
 
     return dispatcher=>{
-
-
-
             axios.delete('/api/candidates/'+ id)
                 .then(function (response) {
                     dispatcher(routerActions.push("/admin/candidateslist"));
@@ -31,8 +28,9 @@ export let saveData = ()=>{
              axios.put('/api/candidates/'+selectedCandidate.id, {
                      candidateNo:selectedCandidate.candidateNo,
                      name: selectedCandidate.name,
-                     team: selectedCandidate.team,
-                     gender: selectedCandidate.gender
+                     address: selectedCandidate.address,
+                     age: selectedCandidate.age,
+                     gender: "F"
                  }
              )
                  .then(function (response) {
@@ -45,9 +43,10 @@ export let saveData = ()=>{
         else {
              axios.post('/api/candidates', {
                      candidateNo:selectedCandidate.candidateNo,
-                     team: selectedCandidate.team,
                      name: selectedCandidate.name,
-                     gender: selectedCandidate.gender
+                     address: selectedCandidate.address,
+                     age: selectedCandidate.age,
+                     gender: "F"
                  }
              )
                  .then(function (response) {

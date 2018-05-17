@@ -72,6 +72,9 @@ module.exports = function (sequelize) {
         },
         address: {
             type: Sequelize.STRING
+        },
+        gender: {
+            type: Sequelize.STRING
         }
     }, {
         freezeTableName: true // Model tableName will be the same as the model name

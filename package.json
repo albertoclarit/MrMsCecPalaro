@@ -10,7 +10,7 @@
     "axios": "^0.13.1",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "4.1.1",
     "classnames": "^2.2.5",
     "co": "^4.6.0",
     "cookie-parser": "^1.4.3",

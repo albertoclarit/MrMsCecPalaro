@@ -77,7 +77,7 @@ import { routerActions } from 'react-router-redux'
                     {rows}
                     </tbody>
                 </Table>
-                <Button bsStyle="primary" onClick={this.addJudge}>Add a Judge </Button>
+                <Button bsStyle="primary" bsSize="small" onClick={this.addJudge}>Add a Judge </Button>
 
 
             </Well>

@@ -12,6 +12,7 @@ import PromptDialog from './dialogs/promptdialog/PromptDialog';
 import { routerActions } from 'react-router-redux'
 import * as HealthChecksAction from './actions/healthchecks';
 import * as authactions  from './actions/authactions';
+
 class Admin extends React.Component {
 
     constructor(props){
@@ -35,35 +36,34 @@ class Admin extends React.Component {
 
           switch (selectedKey) {
               case 1:
-                  this.props.routerActions.push("/admin/talent");
+                  this.props.routerActions.push("/admin/swimsuit");
                   break;
               case 2:
-                  this.props.routerActions.push("/admin/production");
-                  break;
-              case 3:
                   this.props.routerActions.push("/admin/gown");
                   break;
+              case 3:
+                  this.props.routerActions.push("/admin/interview");
+                  break;
               case 4:
-                  this.props.routerActions.push("/admin/sportswear");
+                  this.props.routerActions.push("/admin/talent");
                   break;
               case 5:
-                  this.props.routerActions.push("/admin/witandint");
+                  this.props.routerActions.push("/admin/production");
                   break;
               case 6:
-                  this.props.routerActions.push("/admin/judgeslist");
+                  this.props.routerActions.push("/admin/preliminary");
                   break;
               case 7:
-                  this.props.routerActions.push("/admin/candidateslist");
-                  break;
-              case 8:
                   this.props.routerActions.push("/admin/scoreboard");
                   break;
-              case 9:
-                   this.props.authActions.logout();
+              case 8:
+                  this.props.routerActions.push("/admin/judgeslist");
                   break;
+              case 9:
+                  this.props.routerActions.push("/admin/candidateslist");
                   break;
               case 10:
-                  this.props.routerActions.push("/admin/prepageant");
+                   this.props.authActions.logout();
                   break;
               default:
                   return;
@@ -79,27 +79,26 @@ class Admin extends React.Component {
         return (
 
             <Well>
-                <div className="container">
+                <div>
                      <Navbar inverse>
                         <Navbar.Header>
                         <Navbar.Brand>
-                            <a>Mr and  Ms Ce-c </a>
-
+                            <a>Miss Loboc 2018</a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
                         <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            <NavItem eventKey={10}>Pre-Pageant</NavItem>
-                            <NavItem eventKey={2}>Best in Production</NavItem>
-                            <NavItem eventKey={1}>Best in Talent</NavItem>
-                            <NavItem eventKey={4}>Best is Sportswear</NavItem>
-                            <NavItem eventKey={3}>Best in Formal Wear</NavItem>
-                            <NavItem eventKey={5}>Wit and Intelligent</NavItem>
-                            <NavItem eventKey={8}>Final Ranking</NavItem>
-                            <NavItem eventKey={6}>Judges List</NavItem>
-                            <NavItem eventKey={7}>Candidate List </NavItem>
-                            <NavItem eventKey={9}>Log out</NavItem>
+                            <NavItem eventKey={1}>Swimsuit</NavItem>
+                            <NavItem eventKey={2}>Evening Gown</NavItem>
+                            <NavItem eventKey={3}>Interview</NavItem>
+                            <NavItem eventKey={4}>Talent</NavItem>
+                            <NavItem eventKey={5}>Production</NavItem>
+                            <NavItem eventKey={6}>Preliminary</NavItem>
+                            <NavItem eventKey={7}>Final Ranking</NavItem>
+                            <NavItem eventKey={8}>Judges List</NavItem>
+                            <NavItem eventKey={9}>Candidate List </NavItem>
+                            <NavItem eventKey={10}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>
                     </Navbar>

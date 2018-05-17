@@ -74,7 +74,7 @@ const marginPull={
               <Navbar inverse>
                             <Navbar.Header>
                             <Navbar.Brand>
-                                <a>Mr and Ms Ce-c</a>
+                                <a>Miss Loboc 2018</a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
                                 

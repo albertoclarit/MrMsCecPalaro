@@ -17,7 +17,7 @@ class Production extends React.Component {
     constructor(props){
         super(props);
 
-        this.props.bestproductionactions.loadbestproductionmale();
+        // this.props.bestproductionactions.loadbestproductionmale();
         this.props.bestproductionactions.loadbestproductionfemale();
     }
 
@@ -29,7 +29,7 @@ class Production extends React.Component {
 
         this.interval = setInterval(()=>{
 
-            this.props.bestproductionactions.loadbestproductionmale();
+            // this.props.bestproductionactions.loadbestproductionmale();
             this.props.bestproductionactions.loadbestproductionfemale();
         },1500); // every 1.5 seconds refresg
 
@@ -53,36 +53,13 @@ class Production extends React.Component {
 
         var totalJudgeTd = [];
 
-        if(this.props.bestproduction.recordsMale.length>0){
+        if(this.props.bestproduction.recordsFemale.length>0){
 
-            var countJudge = this.props.bestproduction.recordsMale[0].judgeTotal;
+            var countJudge = this.props.bestproduction.recordsFemale[0].judgeTotal;
 
             for(var i=0;i<countJudge;i++)
                 totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
         }
-
-
-        var rowsMale = this.props.bestproduction.recordsMale.map((item,i)=>{
-
-            var othertds = [];
-
-            var noOfJudge = item.judgeTotal;
-
-            for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].production)}</td>)
-            }
-
-            return (
-                <tr key={i} className={i==0 ? "success":null}>
-                    <td>{item.candidateNo}</td>
-                    <td>{item.name}</td>
-                    {othertds}
-                    <td>{item.average}</td>
-                    <td>{i+1}</td>
-                </tr>
-            );
-        });
-
 
         var rowsFemale = this.props.bestproduction.recordsFemale.map((item,i)=>{
 
@@ -114,8 +91,6 @@ class Production extends React.Component {
                   <h2>  Production </h2>
                 </center>
 
-              <h3>Female</h3>
-
                 <table className="table table-striped table-hover ">
 
                     <thead>
@@ -132,23 +107,6 @@ class Production extends React.Component {
                     </tbody>
               </table>
 
-              <h3>Male</h3>
-
-              <table className="table table-striped table-hover ">
-
-                <thead>
-                  <tr>
-                    <th>Candidate No</th>
-                    <th>Candidate Name</th>
-                    {totalJudgeTd}
-                    <th>Average</th>
-                    <th>Rank</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rowsMale}
-                </tbody>
-              </table>
               </Well>
 
         );

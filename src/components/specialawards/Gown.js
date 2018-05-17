@@ -12,7 +12,7 @@ class Gown extends React.Component {
 
     constructor(props){
         super(props);
-        this.props.bestformalWearactions.loadbestformalWearmale();
+        // this.props.bestformalWearactions.loadbestformalWearmale();
         this.props.bestformalWearactions.loadbestformalWearfemale();
 
     }
@@ -21,7 +21,7 @@ class Gown extends React.Component {
 
         this.interval = setInterval(()=>{
 
-            this.props.bestformalWearactions.loadbestformalWearmale();
+            // this.props.bestformalWearactions.loadbestformalWearmale();
             this.props.bestformalWearactions.loadbestformalWearfemale();
         },1500); // every 1.5 seconds refresh
     }
@@ -45,35 +45,35 @@ class Gown extends React.Component {
 
         var totalJudgeTd = [];
 
-        if(this.props.bestformalWear.recordsMale.length>0){
+        if(this.props.bestformalWear.recordsFemale.length>0){
 
-            var countJudge = this.props.bestformalWear.recordsMale[0].judgeTotal;
+            var countJudge = this.props.bestformalWear.recordsFemale[0].judgeTotal;
 
             for(var i=0;i<countJudge;i++)
                 totalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
         }
 
 
-        var rowsMale = this.props.bestformalWear.recordsMale.map((item,i)=>{
+        // var rowsMale = this.props.bestformalWear.recordsMale.map((item,i)=>{
 
-            var othertds = [];
+        //     var othertds = [];
 
-            var noOfJudge = item.judgeTotal;
+        //     var noOfJudge = item.judgeTotal;
 
-            for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].formalWear)}</td>)
-            }
+        //     for(var x=0;x<noOfJudge;x++){
+        //         othertds.push(<td key={x}>{(item['judge'+(x+1)].formalWear)}</td>)
+        //     }
 
-            return (
-                <tr key={i} className={i==0 ? "success":null}>
-                    <td>{item.candidateNo}</td>
-                    <td>{item.name}</td>
-                    {othertds}
-                    <td>{item.average}</td>
-                    <td>{i+1}</td>
-                </tr>
-            );
-        });
+        //     return (
+        //         <tr key={i} className={i==0 ? "success":null}>
+        //             <td>{item.candidateNo}</td>
+        //             <td>{item.name}</td>
+        //             {othertds}
+        //             <td>{item.average}</td>
+        //             <td>{i+1}</td>
+        //         </tr>
+        //     );
+        // });
 
 
         var rowsFemale = this.props.bestformalWear.recordsFemale.map((item,i)=>{
@@ -106,8 +106,6 @@ class Gown extends React.Component {
                     <h2> Formal Wear</h2>
                 </center>
 
-                <h33>Female</h33>
-
                 <table className="table table-striped table-hover ">
 
                     <thead>
@@ -124,23 +122,6 @@ class Gown extends React.Component {
                     </tbody>
                 </table>
 
-                <h3>Male</h3>
-
-                <table className="table table-striped table-hover ">
-
-                  <thead>
-                    <tr>
-                      <th>Candidate No</th>
-                      <th>Candidate Name</th>
-                      {totalJudgeTd}
-                      <th>Average</th>
-                      <th>Rank</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rowsMale}
-                  </tbody>
-                </table>
             </Well>
 
         );

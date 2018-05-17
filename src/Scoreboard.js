@@ -73,31 +73,12 @@ class Scoreboard extends React.Component {
             marginRight: 'auto'
         };
 
-        var rowsMale = this.props.finalranking.recordsMale.map((item,i)=>{
-
-            return (
-                <tr key={i} className={i==0 ? "success":null}>
-                    <td>{item.candidateNo}</td>
-                    <td>{item.name}</td>
-                    <td>{item.prepageant.toFixed(2)}</td>
-                    <td>{item.production.toFixed(2)}</td>
-                    <td>{item.talent.toFixed(2)}</td>
-                    <td>{item.sportswear.toFixed(2)}</td>
-                    <td>{item.formalWear.toFixed(2)}</td>
-                    <td>{item.qa.toFixed(2)}</td>
-                    <td>{item.totalAverage.toFixed(2)}</td>
-                    <td>{i+1}</td>
-                </tr>
-            );
-        });
-
         var rowsFemale = this.props.finalranking.recordsFemale.map((item,i)=>{
 
             return (
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
-                    <td>{item.prepageant.toFixed(2)}</td>
                     <td>{item.production.toFixed(2)}</td>
                     <td>{item.talent.toFixed(2)}</td>
                     <td>{item.sportswear.toFixed(2)}</td>
@@ -111,19 +92,6 @@ class Scoreboard extends React.Component {
 
 
         // Tabs
-
-         var prePageantTabs = [];
-       //
-       // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
-          for(var i=0;i<this.props.finalranking.prePageant.judgeScores.length;i++){
-
-              prePageantTabs.push(
-                  <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.prePageant.judgeScores[i].data.judgeNo}>
-                    <PrePageantResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.prePageant.judgeScores[i]}/>
-                  </Tab>
-              );
-
-          }
 
           var talentTabs = [];
         //
@@ -160,13 +128,11 @@ class Scoreboard extends React.Component {
                 <Button block bsStyle="warning" onClick={this.resetScores}>Reset Scores</Button>
                 <br />
                 
-              <h3> Female </h3>
                 <table className="table table-striped table-hover ">
                     <thead>
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Pre-Pageant 10%</th>
                         <th>Production 15%</th>
                         <th>Talent 15%</th>
                         <th>Sportswear 10%</th>
@@ -181,37 +147,9 @@ class Scoreboard extends React.Component {
                     </tbody>
               </table>
 
-              <h3> Male </h3>
-
-              <table className="table table-striped table-hover ">
-                <thead>
-                  <tr>
-                    <th>Candidate No</th>
-                    <th>Candidate Name</th>
-                    <th>Pre-Pageant 10%</th>
-                    <th>Production 15%</th>
-                    <th>Talent 15%</th>
-                    <th>Sportswear 10%</th>
-                    <th>Formal Wear 20%</th>
-                    <th>Wit &amp; Intelligent 30%</th>
-                    <th>Total 100%</th>
-                    <th>Ranking</th>
-                  </tr>
-
-                </thead>
-                <tbody>
-                  {rowsMale}
-                </tbody>
-              </table>
-
-
                 <hr/>
                 <hr/>    <hr/>
-                <h4>Pre-Pageant</h4>
-                <Tabs defaultActiveKey={1} id="judgeTabs">
-                    {prePageantTabs}
-                </Tabs>
-
+                
                 <br />
                 <h4>Talent</h4>
                 <Tabs defaultActiveKey={1} id="judgeTabs">
