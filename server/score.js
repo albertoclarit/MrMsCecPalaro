@@ -1804,6 +1804,21 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
     });
 
+    router.get('/loadAllScoresByJudge',function (req,res,next) {
+      var judgeNo=req.query.judgeNo;
+      var event=req.query.event;
+
+      sequelize.query("select S.*, C.name as name from scores S, candidates C " +
+      "where S.candidateNo = C.candidateNo " +
+      "and event= '"+event + "' and judgeNo= "+judgeNo)
+        .spread(function(records, metadata) {
+          res.status(200).json(records);
+       }).catch((err) => {
+         res.sendStatus(404)
+       })
+      
+    })
+
 
     // get the list of score
     router.get('/', function(req, res,next) {

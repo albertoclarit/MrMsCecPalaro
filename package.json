@@ -5,6 +5,7 @@
   "private": true,
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
+    "react-app-rewired": "^1.5.2",
     "react-scripts": "v0.4.1"
   },
   "dependencies": {

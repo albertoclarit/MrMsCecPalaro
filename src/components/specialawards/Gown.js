@@ -103,7 +103,7 @@ class Gown extends React.Component {
             <Well style={wellStyle}>
 
                 <center>
-                    <h2> Formal Wear</h2>
+                    <h2> Evening Gown </h2>
                 </center>
 
                 <table className="table table-striped table-hover ">

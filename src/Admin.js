@@ -92,6 +92,7 @@ class Admin extends React.Component {
                             <NavItem eventKey={4}>Talent</NavItem>
                             <NavItem eventKey={5}>Production</NavItem>
                             <NavItem eventKey={6}>Preliminary</NavItem>
+                            <NavItem eventKey={6}>Final Round</NavItem>
                             <NavItem eventKey={7}>Judges List</NavItem>
                             <NavItem eventKey={8}>Candidate List </NavItem>
                             <NavItem eventKey={9}>Log out</NavItem>

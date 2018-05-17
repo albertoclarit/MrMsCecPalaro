@@ -63,7 +63,7 @@ class Swimsuit extends React.Component {
             var noOfJudge = item.judgeTotal;
 
             for(var x=0;x<noOfJudge;x++){
-                othertds.push(<td key={x}>{(item['judge'+(x+1)].sportswear)}</td>)
+                othertds.push(<td key={x}>{(item['judge'+(x+1)].swimsuit)}</td>)
             }
 
             return (

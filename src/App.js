@@ -16,6 +16,7 @@ import * as dialogActions  from './actions/dialogactions';
 import AlertModal from './dialogs/alertmodal/AlertModal';
 import ConfirmDialog from './dialogs/confirmdialog/ConfirmDialog';
 import PromptDialog from './dialogs/promptdialog/PromptDialog';
+import { routerActions } from 'react-router-redux'
 import * as HealthChecksAction from './actions/healthchecks';
 import * as authactions  from './actions/authactions';
 
@@ -46,6 +47,12 @@ state={
               case 1:
                   this.props.authActions.logout();
                   break;
+              case 2:
+                  this.props.routerActions.push('/judge');
+                  break;
+              case 3:
+                  this.props.routerActions.push('/overall');
+                  break;
               default:
                   return;
           }
@@ -69,8 +76,8 @@ const marginPull={
 }
 
     return (
-        <div className="container">
-            <Well style={wellStyle}>
+        <div >
+            <Well >
               <Navbar inverse>
                             <Navbar.Header>
                             <Navbar.Brand>
@@ -80,8 +87,14 @@ const marginPull={
                                 
                             </Navbar.Header>
                             <Navbar.Collapse>
-                            <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                            </Nav>
+                              {this.props.auth.isAuthenticated ?
+                                <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
+                                  <NavItem eventKey={2}>Score</NavItem>
+                                  <NavItem eventKey={3}>Overall</NavItem>
+                                </Nav>
+                                :
+                                null
+                              }
                                 {this.props.auth.isAuthenticated ?
                                     <Nav pullRight onSelect={this.handleSelect} style={marginPull}>
                                         <NavItem eventKey={1}>Logout</NavItem>
@@ -116,7 +129,8 @@ function mapDispatchToProps(dispatch) {
     return {
         dialogActions: bindActionCreators(dialogActions, dispatch),
         authActions: bindActionCreators(authactions, dispatch),
-        actions: bindActionCreators(HealthChecksAction, dispatch)
+        actions: bindActionCreators(HealthChecksAction, dispatch),
+        routerActions: bindActionCreators(routerActions, dispatch),
     }
 }
 

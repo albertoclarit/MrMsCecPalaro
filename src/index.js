@@ -16,6 +16,7 @@ import Error from './Error'
 import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
+import JudgeScores from './components/scoring/JudgeScores'
 import Swimsuit from './components/specialawards/Swimsuit'
 import FinalRound from './components/scoring/FinalRound'
 import Talent from './components/specialawards/Talent'
@@ -35,6 +36,7 @@ import Male from './Judges/Male'
 
 require('./fonts/Roboto/css/fonts.css');
 import './App.css'
+import './styles/antd.css'
 import './styles/bootstrap.css'
 import {requireAuthentication} from './utils/AuthUtils'
 
@@ -62,9 +64,10 @@ const Components=(
             <Route path="/" component={App}>
                 <Route path="login" component={LogIn}/>
                 <Route path="accessdenied" component={Error}/>
-                <Route path="male" component={requireAuthentication(Male,'ROLE_JUDGE')}/>
-                <Route path="female" component={requireAuthentication(Female,'ROLE_JUDGE')}/>
-                <IndexRedirect  to="/female"/>
+                {/* <Route path="male" component={requireAuthentication(Male,'ROLE_JUDGE')}/> */}
+                <Route path="judge" component={requireAuthentication(Female,'ROLE_JUDGE')}/>
+                <Route path="overall" component={requireAuthentication(JudgeScores,'ROLE_JUDGE')}/>
+                <IndexRedirect  to="/judge"/>
             </Route>
         </Router>
     </Provider>

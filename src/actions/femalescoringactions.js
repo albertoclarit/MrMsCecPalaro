@@ -188,13 +188,26 @@ export let updateAndSave = (name,value,eventName)=>{
             console.log(err);
         });
 
-
-
-
-
-
-
-
     }
 
 };
+
+export const loadAllScores = () => {
+  return (dispatcher, getState) => {
+    let {account} = getState().auth
+    axios.get('/api/scores/loadAllScoresByJudge',{
+      params:{
+        judgeNo: account.judgeNo,
+        event: account.event
+      }
+    }).then((response) => {
+      let {data} = response
+      dispatcher({
+        type: types.LOAD_ALL_SCORES_SUCCESS,
+        data
+      })
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+}

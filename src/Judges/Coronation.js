@@ -16,6 +16,7 @@ import {Well,
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
+import Icon from 'antd/lib/icon'
 
 import ScoreCombo from './ScoreCombo'
 
@@ -63,7 +64,7 @@ class Coronation extends React.Component {
 
         const fontSize2={
             fontWeight: 'bold',
-            fontSize: 18
+            fontSize: 17
         };
 
         const buttonStyle={
@@ -116,22 +117,22 @@ class Coronation extends React.Component {
                 <Well>
                     <form>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Production Number</ControlLabel>
+                            <ControlLabel style={fontSize2}>Production <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
                             <ScoreCombo onChange ={this.onScore('production')}
                                 value = {production}/>
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}>Swimsuit</ControlLabel>
                             <ScoreCombo onChange ={this.onScore('swimsuit')}
                                         value = {swimsuit}/>
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}>Evening Gown</ControlLabel>
                             <ScoreCombo onChange ={this.onScore('formalWear')}
                                         value = {formalWear}/>
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}><h5>Wit &amp; Intelligence Competition</h5></ControlLabel>
+                            <ControlLabel style={fontSize2}>Interview</ControlLabel>
                             <ScoreCombo onChange ={this.onScore('qa')}
                                         value = {qa}/>
                         </FormGroup>
