@@ -81,7 +81,7 @@ class Scoreboard extends React.Component {
                     <td>{item.name}</td>
                     <td>{item.production.toFixed(2)}</td>
                     <td>{item.talent.toFixed(2)}</td>
-                    <td>{item.sportswear.toFixed(2)}</td>
+                    <td>{item.swimsuit.toFixed(2)}</td>
                     <td>{item.formalWear.toFixed(2)}</td>
                     <td>{item.qa.toFixed(2)}</td>
                     <td>{item.totalAverage.toFixed(2)}</td>
@@ -135,9 +135,9 @@ class Scoreboard extends React.Component {
                         <th>Candidate Name</th>
                         <th>Production 15%</th>
                         <th>Talent 15%</th>
-                        <th>Sportswear 10%</th>
-                        <th>Formal Wear 20%</th>
-                        <th>Wit &amp; Intelligent 30%</th>
+                        <th>Swimsuit 10%</th>
+                        <th>Evening Gown 20%</th>
+                        <th>Interview 30%</th>
                         <th>Total 100%</th>
                         <th>Ranking</th>
                     </tr>

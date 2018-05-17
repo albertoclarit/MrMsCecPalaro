@@ -72,7 +72,7 @@ class CandidateList extends React.Component{
                     {rows}
                     </tbody>
                 </Table>
-                <Button bsStyle="primary" onClick={this.addCandidate}>Add a Candidate </Button>
+                <Button bsStyle="primary" bsSize="small" onClick={this.addCandidate}>Add a Candidate </Button>
 
 
             </Well>

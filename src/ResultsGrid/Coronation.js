@@ -15,7 +15,7 @@ export default  class Coronation extends React.Component {
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
                     <td>{item.production}</td>
-                    <td>{item.sportswear}</td>
+                    <td>{item.swimsuit}</td>
                     <td>{item.formalWear}</td>
                     <td>{item.qa}</td>
                     <td>{item.totalaverage.toFixed(2)}</td>
@@ -34,9 +34,9 @@ export default  class Coronation extends React.Component {
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
                         <th>Production 15%</th>
-                        <th>Sportswear 10%</th>
-                        <th>Formal Wear 20%</th>
-                        <th>Wit &amp; Intelligent 30%</th>
+                        <th>Swimsuit 10%</th>
+                        <th>Evening Gown 20%</th>
+                        <th>Interview 30%</th>
                         <th>Total</th>
                         <th>Ranking</th>
                     </tr>

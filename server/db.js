@@ -108,16 +108,11 @@ module.exports = function (sequelize) {
         judgeNo: {
             type: Sequelize.INTEGER
         },
-        prepageant:{
-            type: Sequelize.REAL
-        },
+        swimsuit: Sequelize.INTEGER,
         talent: {
             type: Sequelize.REAL
         },
         production: {
-            type: Sequelize.REAL
-        },
-        sportswear: {
             type: Sequelize.REAL
         },
         formalWear: {
@@ -135,8 +130,6 @@ module.exports = function (sequelize) {
 
 
     Score.sync({force: false});
-
-
 
     // =============================  Score  =============================
 

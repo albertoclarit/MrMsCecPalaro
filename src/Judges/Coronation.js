@@ -102,9 +102,9 @@ class Coronation extends React.Component {
         if(this.props.score.currentScore.formalWear)
             formalWear = this.props.score.currentScore.formalWear.toFixed(1);
 
-        var sportswear = "";
-        if(this.props.score.currentScore.sportswear)
-            sportswear = this.props.score.currentScore.sportswear.toFixed(1);
+        var swimsuit = "";
+        if(this.props.score.currentScore.swimsuit)
+            swimsuit = this.props.score.currentScore.swimsuit.toFixed(1);
 
 
         var qa = "";
@@ -122,8 +122,8 @@ class Coronation extends React.Component {
                         </FormGroup>
                         <FormGroup >
                             <ControlLabel style={fontSize2}><h5>Sportswear Competition</h5></ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('sportswear')}
-                                        value = {sportswear}/>
+                            <ScoreCombo onChange ={this.onScore('swimsuit')}
+                                        value = {swimsuit}/>
                         </FormGroup>
                         <FormGroup >
                             <ControlLabel style={fontSize2}><h5>Gown Competition</h5></ControlLabel>

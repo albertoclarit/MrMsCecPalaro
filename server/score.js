@@ -174,7 +174,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 try {
 
                   coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
-                         "  avg(sportswear) as avg_sportswear, " +
+                         "  avg(swimsuit) as avg_swimsuit, " +
                          " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
                          "  from scores where candidateNo=?  and gender='F' and event='Coronation' limit 1",
                          { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
@@ -192,7 +192,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                     var average = coronationAllAverage[0];
 
                     newItem.production  = (average.avg_production || 0) * 0.15;
-                    newItem.sportswear  =  (average.avg_sportswear || 0) * 0.10;
+                    newItem.swimsuit  =  (average.avg_swimsuit || 0) * 0.10;
                     newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
                     newItem.qa  =  (average.avg_qa || 0) * 0.30;
 
@@ -200,7 +200,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 }
                 else {
                     newItem.production  = 0;
-                    newItem.sportswear  = 0;
+                    newItem.swimsuit  = 0;
                     newItem.formalWear  = 0;
                     newItem.qa  = 0;
                     newItem.totalAverage= 0;
@@ -218,7 +218,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 }
 
                 newItem.totalAverage= newItem.production +  newItem.talent +
-                    newItem.sportswear + newItem.formalWear + 
+                    newItem.swimsuit + newItem.formalWear + 
                     newItem.qa  ;
 
 
@@ -532,7 +532,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                         //     { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
 
                         perjudgescore = yield sequelize.query("select  production , " +
-                            " sportswear, " +
+                            " swimsuit, " +
                             " formalWear, qa " +
                             "  from scores where candidateNo=? and judgeNo=?  and gender='F' and event='Coronation' limit 1",
                             { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
@@ -547,7 +547,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                                 // prepageant: x.prepageant,
                                 production:x.production,
                                 // talent:x.talent,
-                                sportswear:x.sportswear,
+                                swimsuit:x.swimsuit,
                                 formalWear:x.formalWear,
                                 qa:x.qa,
                                 totalaverage:
@@ -555,7 +555,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                                         // ((x.prepageant) * 0.10)
                                         ((x.production) * 0.15) +
                                         // ((x.talent) * 0.15) +
-                                        ((x.sportswear) * 0.10) +
+                                        ((x.swimsuit) * 0.10) +
                                         ((x.formalWear) * 0.20) +
                                         ((x.qa) * 0.30)
                                     )
@@ -569,7 +569,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                                 // prepageant: 0.0,
                                 production:0.0,
                                 // talent:0.0,
-                                sportswear:0.0,
+                                swimsuit:0.0,
                                 formalWear:0.0,
                                 qa:0.0,
                                 totalaverage:0.0
@@ -1790,7 +1790,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 talent:0,
                 prepageant: 0,
                 production:0,
-                sportswear:0,
+                swimsuit:0,
                 formalWear:0,
                 qa:0
             }
