@@ -84,7 +84,7 @@ class Witandint extends React.Component {
             <Well style={wellStyle}>
 
                 <center>
-                <h2> Wit &amp; Intelligence</h2>
+                <h2> Interview</h2>
                 </center>
 
                 <table className="table table-striped table-hover ">

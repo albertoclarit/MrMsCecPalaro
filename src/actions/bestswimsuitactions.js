@@ -1,4 +1,4 @@
-import * as types from '../constants/BestSportswearActionTypes';
+import * as types from '../constants/BestSwimsuitActionTypes';
 import axios from 'axios'
 import * as dialogActions  from '../actions/dialogactions';
 import { routerActions } from 'react-router-redux'
@@ -9,15 +9,15 @@ export let loadbestsportswearmale = ()=>{
     return dispatcher=>{
 
         axios.get('/api/scores/bestsportswearmale')
-            .then(function (response) {
-                var data = response.data;
+          .then(function (response) {
+              var data = response.data;
 
-                dispatcher(loadbestsportswearmaleSuccess(data));
+              dispatcher(loadbestsportswearmaleSuccess(data));
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
 
     };
 
@@ -34,15 +34,15 @@ export let loadbestsportswearmaleSuccess = (records)=>{
 
 
 
-export let loadbestsportswearfemale = ()=>{
+export let loadbestswimsuitfemale = ()=>{
 
     return dispatcher=>{
 
-        axios.get('/api/scores/bestsportswearfemale')
+        axios.get('/api/scores/bestswimsuitfemale')
             .then(function (response) {
                 var data = response.data;
 
-                dispatcher(loadbestsportswearfemaleSuccess(data));
+                dispatcher(loadbestswimsuitfemaleSuccess(data));
 
             })
             .catch(function (error) {
@@ -53,10 +53,10 @@ export let loadbestsportswearfemale = ()=>{
 
 };
 
-export let loadbestsportswearfemaleSuccess = (records)=>{
+export let loadbestswimsuitfemaleSuccess = (records)=>{
 
     return {
-        type:types.LOAD_BEST_SPORTSWEAR_FEMALE_SUCCESS,
+        type:types.LOAD_BEST_SWIMSUIT_FEMALE_SUCCESS,
         records
     }
 

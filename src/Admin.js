@@ -54,15 +54,12 @@ class Admin extends React.Component {
                   this.props.routerActions.push("/admin/preliminary");
                   break;
               case 7:
-                  this.props.routerActions.push("/admin/scoreboard");
-                  break;
-              case 8:
                   this.props.routerActions.push("/admin/judgeslist");
                   break;
-              case 9:
+              case 8:
                   this.props.routerActions.push("/admin/candidateslist");
                   break;
-              case 10:
+              case 9:
                    this.props.authActions.logout();
                   break;
               default:
@@ -95,10 +92,9 @@ class Admin extends React.Component {
                             <NavItem eventKey={4}>Talent</NavItem>
                             <NavItem eventKey={5}>Production</NavItem>
                             <NavItem eventKey={6}>Preliminary</NavItem>
-                            <NavItem eventKey={7}>Final Ranking</NavItem>
-                            <NavItem eventKey={8}>Judges List</NavItem>
-                            <NavItem eventKey={9}>Candidate List </NavItem>
-                            <NavItem eventKey={10}>Log out</NavItem>
+                            <NavItem eventKey={7}>Judges List</NavItem>
+                            <NavItem eventKey={8}>Candidate List </NavItem>
+                            <NavItem eventKey={9}>Log out</NavItem>
                         </Nav>
                         </Navbar.Collapse>
                     </Navbar>

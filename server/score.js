@@ -1015,7 +1015,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
 
     //====================sportswear===============================
-    router.get('/bestsportswearfemale', function(req, res,next) {
+    router.get('/bestswimsuitfemale', function(req, res,next) {
 
 
         co(function *(){
@@ -1057,19 +1057,19 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                     var judge  = judges[j];
 
 
-                    var sportswear =
-                        yield  sequelize.query("select sportswear from scores where candidateNo=? and judgeNo=? and event='Coronation' and gender='F' limit 1",
+                    var swimsuit =
+                        yield  sequelize.query("select swimsuit from scores where candidateNo=? and judgeNo=? and event='Coronation' and gender='F' limit 1",
                             { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
 
 
-                    if(sportswear.length>0)
+                    if(swimsuit.length>0)
                     {
-                        newItem["judge"+(j+1)] = sportswear[0];
-                        total +=sportswear[0].sportswear;
+                        newItem["judge"+(j+1)] = swimsuit[0];
+                        total +=swimsuit[0].swimsuit;
                     }
                     else
                     {
-                        newItem["judge"+(j+1)] = {sportswear:0.0};
+                        newItem["judge"+(j+1)] = {swimsuit:0.0};
                         total +=0;
                     }
 

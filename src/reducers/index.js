@@ -10,7 +10,7 @@ import malescoringreducers from './malescoringreducers';
 import loadmalecandidatesreducers from './loadmalecandidatesreducers';
 import besttalentreducers from './besttalentreducers';
 import bestproductionreducers from './bestproductionreducers';
-import bestsportswearreducers from './bestsportswearreducers';
+import bestswimsuitreducers from './bestswimsuitreducers';
 import bestformalWearreducers from './bestformalWearreducers';
 import bestqareducers from './bestqareducers';
 import finalrankingreducers from './finalrankingreducers';
@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
   loadmalecandidates: loadmalecandidatesreducers,
   besttalent:besttalentreducers,
   bestproduction:bestproductionreducers,
-  bestsportswear:bestsportswearreducers,
+  bestswimsuit:bestswimsuitreducers,
   bestformalWear:bestformalWearreducers,
   bestqa:bestqareducers,
   finalranking:finalrankingreducers,

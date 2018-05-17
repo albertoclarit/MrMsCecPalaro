@@ -1,5 +1,5 @@
 
-import * as types from '../constants/BestSportswearActionTypes';
+import * as types from '../constants/BestSwimsuitActionTypes';
 import  update from 'react-addons-update';
 
 
@@ -8,7 +8,7 @@ const initialState={
     recordsFemale:[]
 };
 
-export default function bestsportswearreducers(state=initialState, action={}) {
+export default function bestswimsuitreducers(state=initialState, action={}) {
 
     switch (action.type) {
         case types.LOAD_BEST_SPORTSWEAR_SUCCESS:
@@ -17,7 +17,7 @@ export default function bestsportswearreducers(state=initialState, action={}) {
                    $set:action.records
                }
             });
-        case types.LOAD_BEST_SPORTSWEAR_FEMALE_SUCCESS:
+        case types.LOAD_BEST_SWIMSUIT_FEMALE_SUCCESS:
             return update(state,{
                 recordsFemale:{
                     $set:action.records

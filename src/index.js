@@ -18,12 +18,10 @@ import LogIn from './LogIn'
 import Admin from './Admin'
 import Swimsuit from './components/specialawards/Swimsuit'
 import FinalRound from './components/scoring/FinalRound'
-import PreliminaryScores from './components/scoring/PreliminaryScores'
 import Talent from './components/specialawards/Talent'
 import Gown from './components/specialawards/Gown'
 import Witandint from './components/specialawards/Witandint'
 import Production    from './components/specialawards/Production'
-import Sportswear from './components/specialawards/Sportswear'
 import Formalwear from './components/specialawards/Formalwear'
 import PrePageant from './components/specialawards/PrePageant'
 import Scoreboard from './Scoreboard'
@@ -51,9 +49,8 @@ const Components=(
                 <Route path="talent" component={requireAuthentication(Talent,'ROLE_ADMIN')}/>
                 <Route path="production" component={requireAuthentication(Production,'ROLE_ADMIN')}/>
                 <Route path="gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
-                <Route path="scoreboard" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
                 <Route path="interview" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
-                <Route path="preliminary" component={requireAuthentication(PreliminaryScores,'ROLE_ADMIN')}/>
+                <Route path="preliminary" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
                 <Route path="judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
                 <Route path="judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
                 <Route path="judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>

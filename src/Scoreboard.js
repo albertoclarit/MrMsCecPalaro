@@ -123,9 +123,9 @@ class Scoreboard extends React.Component {
             <Well style={wellStyle}>
 
                 <center>
-                <h2> Final Ranking </h2>
+                <h2> Prelimary Ranking </h2>
                 </center>
-                <Button block bsStyle="warning" onClick={this.resetScores}>Reset Scores</Button>
+                <Button block bsSize="small" bsStyle="warning" onClick={this.resetScores}>Reset Preliminary Scores</Button>
                 <br />
                 
                 <table className="table table-striped table-hover ">
@@ -157,7 +157,7 @@ class Scoreboard extends React.Component {
                 </Tabs>
 
                 <br />
-                <h4>Coronation</h4>
+                <h4>Preliminary</h4>
                 <Tabs defaultActiveKey={1} id="judgeTabs">
                     {coronationTabs}
                 </Tabs>
