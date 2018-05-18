@@ -16,7 +16,7 @@ import bestqareducers from './bestqareducers';
 import finalrankingreducers from './finalrankingreducers';
 import prepageantreducers from './prepageantreducers';
 import control from './controlreducers';
-
+import finalround from './finalroundreducers'
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -35,7 +35,8 @@ const rootReducer = combineReducers({
   bestqa:bestqareducers,
   finalranking:finalrankingreducers,
   prepageant: prepageantreducers,
-  control
+  control,
+  finalround
 });
 
 export default rootReducer;
