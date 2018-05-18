@@ -108,7 +108,7 @@ module.exports = function (sequelize) {
         judgeNo: {
             type: Sequelize.INTEGER
         },
-        swimsuit: Sequelize.INTEGER,
+        swimsuit: Sequelize.REAL,
         talent: {
             type: Sequelize.REAL
         },
@@ -133,11 +133,125 @@ module.exports = function (sequelize) {
 
     // =============================  Score  =============================
 
+     // =============================  Final Round Scores  =============================
+
+     var FinalRoundScore = sequelize.define('finalroundscores', {
+      id: {
+          type: Sequelize.INTEGER,
+          field: 'id',
+          primaryKey: true,
+          autoIncrement: true
+      },
+      candidateNo: {
+          type: Sequelize.INTEGER
+      },
+      judgeNo: {
+          type: Sequelize.INTEGER
+      },
+      interview: Sequelize.REAL,
+      poise: Sequelize.REAL,
+      gender: {
+          type: Sequelize.STRING
+      }
+  }, {
+      freezeTableName: true // Model tableName will be the same as the model name
+  });
+
+
+  FinalRoundScore.sync({force: false});
+
+  // =============================  Final Round Scores  =============================
+
+   // =============================  Final Round Candidate  =============================
+
+   var FinalRoundCandidate = sequelize.define('finalroundcandidates', {
+        id: {
+          type: Sequelize.INTEGER,
+          field: 'id',
+          primaryKey: true,
+          autoIncrement: true
+        },
+        candidateNo: {
+            type: Sequelize.INTEGER,
+            unique: true
+        },
+        name: {
+            type: Sequelize.STRING
+        },
+        age: {
+            type: Sequelize.STRING
+        },
+        address: {
+            type: Sequelize.STRING
+        },
+        gender: {
+            type: Sequelize.STRING
+        }
+    }, {
+        freezeTableName: true // Model tableName will be the same as the model name
+    });
+
+
+FinalRoundCandidate.sync({force: false});
+
+// =============================  Final Round Candidate  =============================
+
+ // =============================  Final Round Candidate  =============================
+
+ var CoronationStatus = sequelize.define('coronationstatus', {
+  id: {
+    type: Sequelize.INTEGER,
+    field: 'id',
+    primaryKey: true,
+    autoIncrement: true
+  },
+  preliminary: Sequelize.BOOLEAN,
+  finalround: Sequelize.BOOLEAN,
+}, {
+  freezeTableName: true // Model tableName will be the same as the model name
+});
+
+
+CoronationStatus.sync({force: false});
+
+// =============================  Final Round Candidate  =============================
+
+// =============================  Final Round Candidate  =============================
+
+var JudgeConfirmation = sequelize.define('judge_confirmation', {
+  id: {
+    type: Sequelize.INTEGER,
+    field: 'id',
+    primaryKey: true,
+    autoIncrement: true
+  },
+  event: Sequelize.STRING,
+  judgeNo: Sequelize.INTEGER,
+  swimsuit: Sequelize.BOOLEAN,
+  interview: Sequelize.BOOLEAN,
+  talent: Sequelize.BOOLEAN,
+  gown: Sequelize.BOOLEAN,
+  production: Sequelize.BOOLEAN,
+  f_interview: Sequelize.BOOLEAN,
+  f_poise: Sequelize.BOOLEAN,
+}, {
+  freezeTableName: true // Model tableName will be the same as the model name
+});
+
+
+JudgeConfirmation.sync({force: false});
+
+// =============================  Final Round Candidate  =============================
+
 
  return {
      Judge: Judge,
      Candidate: Candidate,
-     Score : Score
+     Score : Score,
+     FinalRoundScore: FinalRoundScore,
+     FinalRoundCandidate: FinalRoundCandidate,
+     CoronationStatus: CoronationStatus,
+     JudgeConfirmation: JudgeConfirmation,
  };
 
 };

@@ -3,9 +3,10 @@
  */
 var express = require('express');
 var router = express.Router();
+var co = require('co')
 
 
-module.exports = function (Judge) {
+module.exports = function (Judge,Confirmation) {
 
 
     // get the list of judge
@@ -28,11 +29,34 @@ module.exports = function (Judge) {
     // save a new judge
     router.post('/', function(req, res,next) {
 
-        Judge.create(req.body).then(function(judge) {
-            res.status(201).json(judge);
-        }).catch(function(error){
-            res.sendStatus(500);
-        });
+      co(function *() {
+        var judge = yield Judge.create(req.body)
+
+        var confirmation = yield Confirmation.create({
+          judgeNo: judge.judgeNo,
+          event: judge.event,
+          swimsuit: false,
+          interview: false,
+          talent: false, 
+          gown: false,
+          production: false,
+          f_interview: false,
+          f_poise: false,
+        })
+
+        console.log(judge);
+        return judge
+      }).then(function (judge) {
+        res.status(200).json(judge)
+      }).catch(function (err) {
+        res.sendStatus(500)
+      })
+
+        // Judge.create(req.body).then(function(judge) {
+        //     res.status(201).json(judge);
+        // }).catch(function(error){
+        //     res.sendStatus(500);
+        // });
 
     });
 

@@ -199,7 +199,7 @@ function ensureAuthenticated(req, res, next) {
 var api= require('./api')(passport);
 app.use('/api', api);
 
-var judges = require('./judges')(db.Judge);
+var judges = require('./judges')(db.Judge,db.JudgeConfirmation);
 app.use('/api/judges',ensureAuthenticated,judges);
 
 var candidates = require ('./candidates')(db.Candidate);
