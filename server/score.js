@@ -1808,14 +1808,32 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
       var judgeNo=req.query.judgeNo;
       var event=req.query.event;
 
-      sequelize.query("select S.*, C.name as name from scores S, candidates C " +
-      "where S.candidateNo = C.candidateNo " +
-      "and event= '"+event + "' and judgeNo= "+judgeNo)
-        .spread(function(records, metadata) {
-          res.status(200).json(records);
-       }).catch((err) => {
-         res.sendStatus(404)
-       })
+      if(event === "Talent"){
+        console.log("talent");
+        sequelize.query("select S.candidateNo as candidateNo, S.talent as talent, " +
+        "C.name as name from scores S, candidates C " +
+        "where S.candidateNo = C.candidateNo " +
+        "and event= '"+event + "' and judgeNo= "+judgeNo)
+          .spread(function(records, metadata) {
+            res.status(200).json(records);
+         }).catch((err) => {
+           res.sendStatus(404)
+         })
+      }else if(event === "Coronation"){
+        sequelize.query("select S.candidateNo as candidateNo, S.swimsuit as swimsuit, " +
+        "S.production as production, S.formalWear as formalWear, S.qa as qa, " +
+        "C.name as name from scores S, candidates C " +
+        "where S.candidateNo = C.candidateNo " +
+        "and event= '"+event + "' and judgeNo= "+judgeNo)
+          .spread(function(records, metadata) {
+            res.status(200).json(records);
+         }).catch((err) => {
+           res.sendStatus(404)
+         })
+      }else{
+
+      }
+
       
     })
 

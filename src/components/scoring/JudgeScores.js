@@ -18,7 +18,7 @@ class JudgeScores extends Component {
 
   render(){
 
-    const columns = [{
+    const coronationColumn = [{
       title: 'Number',
       dataIndex: 'candidateNo',
       defaultSortOrder: 'ascend',
@@ -33,10 +33,6 @@ class JudgeScores extends Component {
       dataIndex: 'production',
       sorter: (a, b) => a.production - b.production,
     }, {
-      title: 'Talent',
-      dataIndex: 'talent',
-      sorter: (a, b) => a.talent - b.talent,
-    }, {
       title: 'Swimsuit',
       dataIndex: 'swimsuit',
       sorter: (a, b) => a.swimsuit - b.swimsuit,
@@ -50,56 +46,54 @@ class JudgeScores extends Component {
       sorter: (a, b) => a.qa - b.qa,
     },];
 
-    const data = [{
-      key: '1',
-      candidateno: 1,
-      name: 'John Brown',
-      age: 32,
-      production: 1,
-      talent: 2,
-      swimsuit: 3,
-      gown: 4,
-      interview: 5
+    const talentColumn = [{
+      title: 'Number',
+      dataIndex: 'candidateNo',
+      defaultSortOrder: 'ascend',
+      // specify the condition of filtering result
+      // here is that finding the name started with `value`
+      sorter: (a, b) => a.candidateNo - b.candidateNo,
     }, {
-      key: '2',
-      candidateno: 2,
-      name: 'Jim Green',
-      age: 42,
-      production: 1,
-      talent: 2,
-      swimsuit: 3,
-      gown: 4,
-      interview: 5
+      title: 'Name',
+      dataIndex: 'name',
     }, {
-      key: '3',
-      candidateno: 3,
-      name: 'Joe Black',
-      age: 32,
-      production: 1,
-      talent: 2,
-      swimsuit: 3,
-      gown: 4,
-      interview: 5
-    }, {
-      key: '4',
-      candidateno: 4,
-      name: 'Jim Red',
-      age: 32,
-      production: 1,
-      talent: 2,
-      swimsuit: 3,
-      gown: 4,
-      interview: 5
+      title: 'Talent',
+      dataIndex: 'talent',
+      sorter: (a, b) => a.talent - b.talent,
     }];
 
-    return(
-      <div>
-        <h1> All Scores </h1>
-        <Well style={{ margin: '0px 15px' }} >
-          <Table columns={columns} dataSource={this.props.femalescoring.allScores} pagination={false} onChange={this.onChange} />
-        </Well>
-      </div>
-    )
+    const finalColumn = [
+
+    ]
+
+    if(this.props.auth.account.event === "Talent"){
+      return (
+        <div>
+         <h1> All Scores </h1>
+         <Well style={{ margin: '0px 15px' }} >
+           <Table columns={talentColumn} dataSource={this.props.femalescoring.allScores} pagination={false} onChange={this.onChange} />
+         </Well>
+       </div>
+      )
+    }else if(this.props.auth.account.event = "Coronation"){
+      return (
+        <div>
+         <h1> All Scores </h1>
+         <Well style={{ margin: '0px 15px' }} >
+           <Table columns={coronationColumn} dataSource={this.props.femalescoring.allScores} pagination={false} onChange={this.onChange} />
+         </Well>
+       </div>
+      )
+    }else{
+      return (
+        <div>
+         <h1> All Scores </h1>
+         <Well style={{ margin: '0px 15px' }} >
+           <Table columns={finalColumn} dataSource={this.props.femalescoring.allScores} pagination={false} onChange={this.onChange} />
+         </Well>
+       </div>
+      )
+    }
   }
 }
 
