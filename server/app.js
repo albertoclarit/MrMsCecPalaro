@@ -205,9 +205,19 @@ app.use('/api/judges',ensureAuthenticated,judges);
 var candidates = require ('./candidates')(db.Candidate);
 app.use('/api/candidates',ensureAuthenticated,candidates);
 
-
 var scores = require ('./score')(sequelize,db.Score,db.Candidate,db.Judge);
 app.use('/api/scores',ensureAuthenticated,scores);
+
+var finalround = require ('./finalround')(
+  db.CoronationStatus,
+  db.FinalRoundCandidate,
+  db.FinalRoundScore,
+  db.Candidate,
+  db.Judge,
+  db.Score,
+  sequelize
+);
+app.use('/api/finalround',finalround);
 
 
 var server = app.listen(8080, function () {

@@ -3,6 +3,7 @@
  */
 
 var Sequelize = require('sequelize');
+var co = require('co')
 
 module.exports = function (sequelize) {
 
@@ -166,10 +167,10 @@ module.exports = function (sequelize) {
 
    var FinalRoundCandidate = sequelize.define('finalroundcandidates', {
         id: {
-          type: Sequelize.INTEGER,
-          field: 'id',
-          primaryKey: true,
-          autoIncrement: true
+            type: Sequelize.INTEGER,
+            field: 'id',
+            primaryKey: true,
+            autoIncrement: true
         },
         candidateNo: {
             type: Sequelize.INTEGER,
@@ -205,14 +206,50 @@ FinalRoundCandidate.sync({force: false});
     primaryKey: true,
     autoIncrement: true
   },
-  preliminary: Sequelize.BOOLEAN,
-  finalround: Sequelize.BOOLEAN,
+  event:{ 
+    type: Sequelize.STRING,
+    unique: true
+  },
+  status: {
+    type: Sequelize.BOOLEAN
+  },
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
 
-CoronationStatus.sync({force: false});
+CoronationStatus.sync({force: false}).then(function () {
+  
+  co(function *() {
+    var preliminary = yield CoronationStatus.findOrCreate({
+      where:{
+        event: "Preliminary"
+      },
+      defaults: {
+      event: "Preliminary",
+      status: true
+    }})
+
+    if(!preliminary[1])
+      console.log("Preliminary Status is create");
+
+    var finalround = yield CoronationStatus.findOrCreate({
+      where:{
+        event: "Final"
+      },
+      defaults: {
+      event: "Final",
+      status: false
+      }
+    })
+    if(!finalround[1])
+      console.log("Final Round Status is create");
+
+  }).catch(function (err) {
+    console.log(err);
+  })
+
+})
 
 // =============================  Final Round Candidate  =============================
 
