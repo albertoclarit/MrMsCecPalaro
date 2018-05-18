@@ -15,6 +15,7 @@ import bestformalWearreducers from './bestformalWearreducers';
 import bestqareducers from './bestqareducers';
 import finalrankingreducers from './finalrankingreducers';
 import prepageantreducers from './prepageantreducers';
+import control from './controlreducers';
 
 
 const rootReducer = combineReducers({
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   bestqa:bestqareducers,
   finalranking:finalrankingreducers,
   prepageant: prepageantreducers,
+  control
 });
 
 export default rootReducer;

@@ -16,6 +16,7 @@ import Error from './Error'
 import Welcome from './Welcome'
 import LogIn from './LogIn'
 import Admin from './Admin'
+import Control from './components/Control'
 import JudgeScores from './components/scoring/JudgeScores'
 import Swimsuit from './components/specialawards/Swimsuit'
 import FinalRound from './components/scoring/FinalRound'
@@ -53,6 +54,8 @@ const Components=(
                 <Route path="gown" component={requireAuthentication(Gown,'ROLE_ADMIN')}/>
                 <Route path="interview" component={requireAuthentication(Witandint,'ROLE_ADMIN')}/>
                 <Route path="preliminary" component={requireAuthentication(Scoreboard,'ROLE_ADMIN')}/>
+                <Route path="finalround" component={requireAuthentication(FinalRound,'ROLE_ADMIN')}/>
+                <Route path="control" component={requireAuthentication(Control,'ROLE_ADMIN')}/>
                 <Route path="judgeslist" component={requireAuthentication(JudgeList,'ROLE_ADMIN')}/>
                 <Route path="judgeslist_add" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
                 <Route path="judgeslist/:id" component={requireAuthentication(JudgeEditor,'ROLE_ADMIN')}/>
