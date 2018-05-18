@@ -100,7 +100,7 @@ class Scoreboard extends React.Component {
 
                talentTabs.push(
                    <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.talent.judgeScores[i].data.judgeNo}>
-                     <TalentResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.talent.judgeScores[i]}/>
+                     <TalentResultsGrid judgeNo={i+1} judgeData ={this.props.finalranking.talent.judgeScores[i]}/>
                    </Tab>
                );
 

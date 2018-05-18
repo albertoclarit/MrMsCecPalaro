@@ -24,9 +24,21 @@ module.exports = function(
     })
   })
 
-  router.get('/startfinalround',function(req,res,next){
+  router.post('/startfinalround',function(req,res,next){
 
     co(function *(){
+
+      CoronationStatus.find({
+        where: {
+          event:"Final"
+        }
+      }).then(function(status){
+        status.update({
+          status: true
+        })
+      }).catch(function(){
+        res.sendStatus(404)
+      })
 
       var talentJudges  =  yield Judge.findAll({
           where:{
@@ -174,12 +186,175 @@ module.exports = function(
       var topFive = FinalroundCandidate.findAll()
 
       return topFive;
-  }).then((result)=>{
-      res.status(200).json(result);
-  }).catch(function(error){
+      }).then((result)=>{
+          res.status(200).json(result);
+      }).catch(function(error){
 
-      res.status(404).send(error.message);
-  });
+          res.status(404).send(error.message);
+      });
+
+  })
+
+
+  router.get('/scores',function(req,res,next){
+
+    co(function *(){
+
+        var candidates = yield FinalroundCandidate.findAll({
+          order: [
+            ['candidateNo','ASC']
+          ]
+        })
+
+        var judges  =  yield Judge.findAll({
+          where:{
+              judgeNo: {
+                  $ne: 999
+              },
+              event: 'Coronation'
+          },
+          order: [
+              ['judgeNo', 'ASC']
+          ]
+      });
+        
+        var result = {
+          record: [],
+          judgeTotal: judges.length,
+          judgeScores: []
+        }
+
+        //=============== final round results ==============\\
+
+        for(var i=0; i< candidates.length;i++) {
+          var candidate = candidates[i]
+          var item = {}
+          item.name = candidate.name
+          item.candidateNo = candidate.candidateNo
+
+          try{
+
+            var allAverage = yield sequelize.query("select avg(interview) as avg_interview, " +
+            "  avg(poise) as avg_poise " +
+            "  from finalroundscores where candidateNo=?  and gender='F' limit 1",
+            { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+          }catch(e){
+            console.log(e)
+          }
+
+          if(allAverage.length > 0){
+              var average = allAverage[0];
+
+              item.interview  = (average.avg_interview || 0) * 0.5;
+              item.poise  =  (average.avg_poise || 0) * 0.5;
+          }
+          else {
+              item.interview  = 0;
+              item.poise  = 0;
+          }
+
+          item.totalAverage = item.interview + item.poise
+
+          result.record.push(item)
+
+        }
+
+        //=============== final round results ==============\\
+
+        //=============== final round per judge results ==============\\
+
+        var data = {
+          data:{}
+        }
+
+        for(var i=0; i< judges.length;i++) {
+          var judge = judges[i];
+          data.data.judgeNo = judge.judgeNo
+
+          var records = []
+
+          for(var j=0; j< candidates.length;j++) {
+            var candidate = candidates[j]
+  
+            try{
+  
+              perjudgescore = yield sequelize.query("select interview , " +
+              " poise " +
+              "  from finalroundscores where candidateNo=? and judgeNo=?  and gender='F' limit 1",
+              { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+
+              if(perjudgescore.length>0)
+                {
+                  var x = perjudgescore[0];
+                  console.log(x.interview * 0.50, x.poise * 0.50)
+
+                    records.push({
+                        candidateNo: candidate.candidateNo,
+                        name:candidate.name,
+                        interview:x.interview,
+                        poise:x.poise,
+                        totalaverage:
+                            (
+                                ((x.interview) * 0.50) +
+                                ((x.poise) * 0.50) 
+                            )
+                    });
+                }
+                else
+                {
+                    records.push({
+                        candidateNo: candidate.candidateNo,
+                        name:candidate.name,
+                        interview: 0.0,
+                        poise: 0.0,
+                        totalaverage:0.0
+                    });
+
+                }
+
+            }catch(e){
+              console.log(e)
+            }
+  
+          }
+
+          records.sort(function(a,b){
+            if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
+                return -1;
+
+            if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
+                return 1;
+
+            return 0;
+        });
+
+          data.data.records = records
+
+          result.judgeScores.push(data)
+
+          result.record.sort(function(a,b){
+            if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
+                return -1;
+
+            if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
+                return 1;
+
+            return 0;
+        });
+
+        }
+
+
+        //=============== final round per judge results ==============\\
+
+        return result
+
+    }).then(function(result){
+        res.status(200).json(result)
+    }).catch(function(err){
+        console.log(err)
+    })
 
   })
 
