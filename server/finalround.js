@@ -12,6 +12,19 @@ module.exports = function(
    sequelize,
 ){
 
+  router.get('/candidates',function(req,res,next){
+    FinalroundCandidate.findAll({
+      order: [
+        ['candidateNo','ASC']
+      ]
+    })
+      .then(function(candidates){
+        res.status(200).json(candidates)
+      }).catch(function(err){
+        res.sendStatus(404)
+      })
+  })
+
   router.get('/status',function (req,res,next) {
     CoronationStatus.find({
       where:{
@@ -287,7 +300,6 @@ module.exports = function(
               if(perjudgescore.length>0)
                 {
                   var x = perjudgescore[0];
-                  console.log(x.interview * 0.50, x.poise * 0.50)
 
                     records.push({
                         candidateNo: candidate.candidateNo,

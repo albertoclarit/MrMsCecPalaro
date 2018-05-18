@@ -53,6 +53,12 @@ state={
               case 3:
                   this.props.routerActions.push('/overall');
                   break;
+              case 4:
+                this.props.routerActions.push('/finalround');
+                break;
+              case 5:
+                this.props.routerActions.push('/finaloverall');
+                break;
               default:
                   return;
           }
@@ -89,8 +95,10 @@ const marginPull={
                             <Navbar.Collapse>
                               {this.props.auth.isAuthenticated ?
                                 <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
-                                  <NavItem eventKey={2}>Score</NavItem>
+                                  <NavItem eventKey={2}>Preliminary</NavItem>
                                   <NavItem eventKey={3}>Overall</NavItem>
+                                  <NavItem eventKey={4}>Final Round</NavItem>
+                                  <NavItem eventKey={5}>Final Round Overall</NavItem>
                                 </Nav>
                                 :
                                 null

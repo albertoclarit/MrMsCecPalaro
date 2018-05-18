@@ -219,6 +219,17 @@ var finalround = require ('./finalround')(
 );
 app.use('/api/finalround',finalround);
 
+var finalroundscore = require ('./finalroundscore')(
+  db.CoronationStatus,
+  db.FinalRoundCandidate,
+  db.FinalRoundScore,
+  db.Candidate,
+  db.Judge,
+  db.Score,
+  sequelize
+);
+app.use('/api/finalroundscore',finalroundscore);
+
 
 var server = app.listen(8080, function () {
     var host = server.address().address;

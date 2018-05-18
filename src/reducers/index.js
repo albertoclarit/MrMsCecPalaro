@@ -17,6 +17,7 @@ import finalrankingreducers from './finalrankingreducers';
 import prepageantreducers from './prepageantreducers';
 import control from './controlreducers';
 import finalround from './finalroundreducers'
+import finalroundscoring from './finalroundscoringreducers'
 
 const rootReducer = combineReducers({
   dialogs:dialogsreducers,
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
   finalranking:finalrankingreducers,
   prepageant: prepageantreducers,
   control,
-  finalround
+  finalround,
+  finalroundscoring
 });
 
 export default rootReducer;

@@ -180,7 +180,7 @@ class Female extends React.Component {
           return(
             <div>
               <Grid>
-                
+                <h2 style={{ textAlign: 'center' }} > Preliminary Scoring </h2>
                 <Col md={6}   >
                   <div style={imageStyle}>
                     <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>

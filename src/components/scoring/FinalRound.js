@@ -14,7 +14,6 @@ class FinalRound extends Component {
 
   startFinalRound = () =>{
     this.props.finalroundActions.startFinalRound()
-    
   }
 
   render(){
