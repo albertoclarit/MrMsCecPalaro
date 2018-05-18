@@ -202,9 +202,16 @@ export const loadAllScores = () => {
       }
     }).then((response) => {
       let {data} = response
+
+      let allScores = data.map((element, index) => {
+        element.avatar = element.candidateNo -1
+        return (
+          element
+        )
+      })
       dispatcher({
         type: types.LOAD_ALL_SCORES_SUCCESS,
-        data
+        allScores
       })
     }).catch((err) => {
       console.log(err);

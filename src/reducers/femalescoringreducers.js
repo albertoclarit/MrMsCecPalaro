@@ -50,7 +50,7 @@ export default function femalescoringreducers(state=initialState, action={}) {
         case types.LOAD_ALL_SCORES_SUCCESS:
             return update(state,{
               allScores: {
-                $set: action.data
+                $set: action.allScores
               }
             })
         default:

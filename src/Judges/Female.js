@@ -23,6 +23,19 @@ import pic2 from '../../images/Female/2.jpg'
 import pic3 from '../../images/Female/3.jpg'
 import pic4 from '../../images/Female/4.jpg'
 import pic5 from '../../images/Female/5.jpg'
+import pic6 from '../../images/Female/6.jpg'
+import pic7 from '../../images/Female/7.jpg'
+import pic8 from '../../images/Female/8.jpg'
+import pic9 from '../../images/Female/9.jpg'
+import pic10 from '../../images/Female/10.jpg'
+import pic11 from '../../images/Female/11.jpg'
+import pic12 from '../../images/Female/12.jpg'
+import pic13 from '../../images/Female/13.jpg'
+import pic14 from '../../images/Female/14.jpg'
+import pic15 from '../../images/Female/15.jpg'
+import pic16 from '../../images/Female/16.jpg'
+import pic17 from '../../images/Female/17.jpg'
+import pic18 from '../../images/Female/18.jpg'
 
 import * as femaleScoringActions from '../actions/femalescoringactions.js'
 
@@ -62,6 +75,19 @@ class Female extends React.Component {
         pics.push(pic3);
         pics.push(pic4);
         pics.push(pic5);
+        pics.push(pic6);
+        pics.push(pic7);
+        pics.push(pic8);
+        pics.push(pic9);
+        pics.push(pic10);
+        pics.push(pic11);
+        pics.push(pic12);
+        pics.push(pic13);
+        pics.push(pic14);
+        pics.push(pic15);
+        pics.push(pic16);
+        pics.push(pic17);
+        pics.push(pic18);
 
 
 
