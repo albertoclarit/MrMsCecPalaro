@@ -43,7 +43,7 @@ export default  class Talent extends React.Component {
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Talent 15%</th>
+                        <th>Talent 10%</th>
                         <th>Total</th>
                         <th>Ranking</th>
                     </tr>

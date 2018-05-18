@@ -33,9 +33,9 @@ export default  class Coronation extends React.Component {
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Production 15%</th>
-                        <th>Swimsuit 10%</th>
-                        <th>Evening Gown 20%</th>
+                        <th>Production 10%</th>
+                        <th>Swimsuit 25%</th>
+                        <th>Evening Gown 25%</th>
                         <th>Interview 30%</th>
                         <th>Total</th>
                         <th>Ranking</th>

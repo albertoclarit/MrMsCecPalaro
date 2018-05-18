@@ -11,7 +11,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
     router.get('/resetscores', function(req, res,next) {
 
-        sequelize.query("UPDATE scores SET prepageant = 0.0,production = 0.0,talent = 0.0,sportswear = 0.0,formalWear = 0.0,qa = 0.0  ")
+        sequelize.query("UPDATE scores SET swimsuit = 0.0,production = 0.0,talent = 0.0,formalWear = 0.0,qa = 0.0  ")
             .spread(function(results, metadata) {
                res.status(200).json("OK");
              }).catch(function(error){
@@ -191,9 +191,9 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 if(coronationAllAverage.length > 0){
                     var average = coronationAllAverage[0];
 
-                    newItem.production  = (average.avg_production || 0) * 0.15;
-                    newItem.swimsuit  =  (average.avg_swimsuit || 0) * 0.10;
-                    newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
+                    newItem.production  = (average.avg_production || 0) * 0.10;
+                    newItem.swimsuit  =  (average.avg_swimsuit || 0) * 0.25;
+                    newItem.formalWear  =  (average.avg_formalWear || 0) * 0.25;
                     newItem.qa  =  (average.avg_qa || 0) * 0.30;
 
 
@@ -210,7 +210,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 if(talentAllAverage.length > 0){
                     var average = talentAllAverage[0];
 
-                    newItem.talent  = (average.avg_talent || 0) * 0.15;
+                    newItem.talent  = (average.avg_talent || 0) * 0.10;
 
                 }
                 else {
@@ -367,7 +367,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                                     (
                                         // ((x.prepageant) * 0.10) +
                                         // ((x.production) * 0.15) +
-                                        ((x.talent) * 0.15)
+                                        ((x.talent) * 0.10)
                                         // ((x.sportswear) * 0.10) +
                                         // ((x.formalWear) * 0.20) +
                                         // ((x.qa) * 0.30)
@@ -553,10 +553,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                                 totalaverage:
                                     (
                                         // ((x.prepageant) * 0.10)
-                                        ((x.production) * 0.15) +
+                                        ((x.production) * 0.10) +
                                         // ((x.talent) * 0.15) +
-                                        ((x.swimsuit) * 0.10) +
-                                        ((x.formalWear) * 0.20) +
+                                        ((x.swimsuit) * 0.25) +
+                                        ((x.formalWear) * 0.25) +
                                         ((x.qa) * 0.30)
                                     )
                             });

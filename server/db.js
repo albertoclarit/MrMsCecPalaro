@@ -262,7 +262,6 @@ var JudgeConfirmation = sequelize.define('judge_confirmation', {
     primaryKey: true,
     autoIncrement: true
   },
-  event: Sequelize.STRING,
   judgeNo: Sequelize.INTEGER,
   swimsuit: Sequelize.BOOLEAN,
   interview: Sequelize.BOOLEAN,

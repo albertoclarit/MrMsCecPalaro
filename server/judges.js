@@ -44,7 +44,6 @@ module.exports = function (Judge,Confirmation) {
           f_poise: false,
         })
 
-        console.log(judge);
         return judge
       }).then(function (judge) {
         res.status(200).json(judge)
@@ -104,23 +103,38 @@ module.exports = function (Judge,Confirmation) {
 
     router.delete('/:id', function(req, res,next) {
 
-        Judge.findById(req.params.id).then(function(judge){
-            if(judge==null)
+      co(function *(){
+        
+        var judge = yield Judge.findById(req.params.id)
+
+        if(judge==null)
             {
                 res.sendStatus(404);
                 next();
             }
 
-            judge.destroy().then(function(judge) {
-                res.status(200).json(judge);
-            });
+        var destroyedJudge = yield judge.destroy()
 
+        var confirmation = yield Confirmation.find({
+          where: {
+            judgeNo: judge.judgeNo
+          }
+        })
 
+        if(confirmation == null){
+          res.sendStatus(404)
+          next()
+        }
 
-        }).catch(function(error){
-            res.sendStatus(404);
-        });
+        var destroyedConfirmation = yield confirmation.destroy()
 
+        return destroyedJudge
+
+      }).then(function(judge){
+          res.status(200).json(judge);
+      }).catch(function(err){
+          res.sendStatus(404)
+      })
     });
 
 
