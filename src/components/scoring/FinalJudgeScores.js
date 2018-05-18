@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Well } from 'react-bootstrap';
 import Table from 'antd/lib/table';
 import Avatar from 'antd/lib/avatar'
+import Alert from 'antd/lib/alert'
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux';
 import { bindActionCreators } from 'redux'
@@ -77,7 +78,12 @@ class JudgeScores extends Component {
 
     if(this.props.finalround.isStarted === false){
       return (
-        <h1> No Scores Yet </h1>
+        <Alert
+          message="Error"
+          description="No Scores for final round yet."
+          type="error"
+          showIcon
+        />
       )
     }
       
