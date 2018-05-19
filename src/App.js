@@ -97,8 +97,15 @@ const marginPull={
                                 <Nav  activeKey={this.state.selectedKey} onSelect={this.handleSelect}>
                                   <NavItem eventKey={2}>Preliminary</NavItem>
                                   <NavItem eventKey={3}>Overall</NavItem>
-                                  <NavItem eventKey={4}>Final Round</NavItem>
-                                  <NavItem eventKey={5}>Final Round Overall</NavItem>
+                                  {
+                                    this.props.auth.account.event ==="Coronation" ?
+                                    <Nav >
+                                      <NavItem eventKey={4}>Final Round</NavItem>
+                                      <NavItem eventKey={5}>Final Round Overall</NavItem>
+                                    </Nav>
+                                    :
+                                    null
+                                  }
                                 </Nav>
                                 :
                                 null
