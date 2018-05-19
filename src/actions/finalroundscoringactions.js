@@ -7,10 +7,10 @@ import * as dialogActions  from './dialogactions';
 import Promise from 'bluebird'
 import objectAssign from 'object-assign'
 
+
 export let loadFinalroundCandidates = (judgeno,event)=>{
 
     return dispatcher=>{
-
 
         Promise.coroutine( function *(){
 
@@ -48,8 +48,6 @@ export let loadFinalroundCandidates = (judgeno,event)=>{
                     allFemales
                 }
             }
-
-
 
         })().then((data)=>{
 

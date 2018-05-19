@@ -14,6 +14,7 @@ import {Well,
         Tab} from 'react-bootstrap';
 import * as finalrankingactions  from './actions/finalrankingactions';
 import * as dialogactions  from './actions/dialogactions';
+import * as finalroundActions  from './actions/finalroundactions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { routerActions } from 'react-router-redux';
@@ -30,6 +31,10 @@ class Scoreboard extends React.Component {
 
         this.props.finalrankingactions.loadfinalranking();
 
+    }
+
+    componentWillMount(){
+      this.props.finalroundActions.checkStatus()
     }
 
     componentDidMount(){
@@ -125,7 +130,7 @@ class Scoreboard extends React.Component {
                 <center>
                 <h2> Prelimary Ranking </h2>
                 </center>
-                <Button block bsSize="small" bsStyle="warning" onClick={this.resetScores}>Reset Preliminary Scores</Button>
+                <Button disabled={this.props.finalround.isStarted} block bsSize="small" bsStyle="warning" onClick={this.resetScores}>Reset Preliminary Scores</Button>
                 <br />
                 
                 <table className="table table-striped table-hover ">
@@ -175,7 +180,8 @@ class Scoreboard extends React.Component {
 function mapStateToProps(state) {
 
     return {
-        finalranking:state.finalranking
+        finalranking:state.finalranking,
+        finalround: state.finalround
     }
 }
 
@@ -183,7 +189,8 @@ function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
         finalrankingactions: bindActionCreators(finalrankingactions, dispatch),
-        dialogactions:bindActionCreators(dialogactions, dispatch)
+        dialogactions:bindActionCreators(dialogactions, dispatch),
+        finalroundActions: bindActionCreators(finalroundActions,dispatch)
     }
 }
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Button, Tab, Tabs } from 'react-bootstrap';
+import Alert from 'antd/lib/alert'
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import * as finalroundActions from '../../actions/finalroundactions'
+import * as dialogActions from '../../actions/dialogactions';
 import TalentResultsGrid from '../../ResultsGrid/FinalRound';
 
 class FinalRound extends Component {
@@ -14,6 +16,38 @@ class FinalRound extends Component {
 
   startFinalRound = () =>{
     this.props.finalroundActions.startFinalRound()
+  }
+
+  resetScores=()=>{
+
+      this.props.dialogActions.openConfirm('Are you sure you wanted to reset Scores?','Please Confirm','YES','NO',(result)=>{
+
+          if(result){
+
+              this.props.dialogActions.openConfirm('Are you REALLY REALLY REALLY Sure?','Please Confirm','YES','NO',(result1)=>{
+
+                  if(result1){
+                      this.props.finalroundActions.resetFinalroundScore();
+                  }
+              });
+
+          }
+      });
+  };
+
+  componentDidMount(){
+
+      this.interval = setInterval(()=>{
+  
+          this.props.finalroundActions.checkStatus();
+      },1500); // every 1.5 seconds refresh
+
+  }
+
+  componentWillUnmount(){
+
+    if( this.interval)
+        clearInterval( this.interval);
   }
 
   render(){
@@ -46,30 +80,58 @@ class FinalRound extends Component {
     return (
       <div>
         <h1 style={{ textAlign: 'center' }} > Final Round </h1>
-        <Button onClick={this.startFinalRound} bsSize="small"  bsStyle="success" disabled={this.props.finalround.isStarted} >Start Final Round</Button>
+
+        {
+          this.props.finalround.isStarted ?
+          null :
+          <div>
+            <Button block onClick={this.startFinalRound} bsSize="small"  bsStyle="success" disabled={this.props.finalround.isStarted} >Start Final Round</Button>
+            <br />
+          </div>
+        }
+        
+        {
+          this.props.finalround.isStarted ?
+          (
+            <div>
+              <br />
+              <Button onClick={this.resetScores} block bsSize="small"  bsStyle="warning" >Reset Final Round</Button>
+              <table className="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                    <th>Interview 50%</th>
+                    <th>Poise and Charm 50%</th>
+                    <th>Total 100%</th>
+                    <th>Ranking</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows}
+                </tbody>
+              </table> 
+
+              <br />
+              <h4>Per Judge Score</h4>
+              <Tabs defaultActiveKey={1} id="judgeTabs">
+                  {tabs}
+              </Tabs>
+            </div>
+          )
+          : 
+          (
+            <Alert
+              message="Error"
+              description="Final Round has not started yet."
+              type="error"
+              showIcon
+            />
+          )
+        }
+        <br />
         <br />
 
-        <table className="table table-striped table-hover ">
-          <thead>
-            <tr>
-              <th>Candidate No</th>
-              <th>Candidate Name</th>
-              <th>Interview 50%</th>
-              <th>Poise and Charm 50%</th>
-              <th>Total 100%</th>
-              <th>Ranking</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table> 
-
-        <br />
-        <h4>Per Judge Score</h4>
-        <Tabs defaultActiveKey={1} id="judgeTabs">
-            {tabs}
-        </Tabs>
 
                          
       </div>
@@ -88,6 +150,7 @@ function mapDispatchToProps(dispatch) {
   return {
     routerActions: bindActionCreators(routerActions, dispatch),
     finalroundActions: bindActionCreators(finalroundActions, dispatch),
+    dialogActions: bindActionCreators(dialogActions,dispatch)
   }
 }
 

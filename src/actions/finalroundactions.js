@@ -1,5 +1,22 @@
 import * as types from '../constants/FinalRoundActionTypes';
 import axios from 'axios'
+import * as dialogActions from './dialogactions'
+
+
+export let resetFinalroundScore = () => {
+  
+  return dispatcher => {
+    axios.get('/api/finalround/resetscores')
+      .then(function (response) {
+          dispatcher(dialogActions.openAlert('Scores was successfully reset','Reset','success'));
+      })
+      .catch(function (error) {
+          dispatcher(dialogActions.openAlert('Scores failed to reset','Reset','danger'));
+      });
+
+  }
+
+}
 
 export const checkStatus = () => {
   return (dispatcher,getState) => {
@@ -9,7 +26,7 @@ export const checkStatus = () => {
           type: types.FINAL_ROUND_STATUS,
           status: status.data.status
         })
-        if(status){
+        if(status.data.status){
           dispatcher(getFinalRoundScores())
         }
       }).catch((err) => {
@@ -25,7 +42,6 @@ export const startFinalRound = () =>{
     axios.post('/api/finalround/startfinalround')
       .then(()=>{
         dispatcher(checkStatus())
-        dispatcher(getFinalRoundScores())
       }).catch(err=>{
           console.log(err)
       })

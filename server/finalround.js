@@ -12,6 +12,17 @@ module.exports = function(
    sequelize,
 ){
 
+  router.get('/resetscores', function(req, res,next) {
+
+    sequelize.query("UPDATE finalroundscores SET interview = 0.0,poise = 0.0 ")
+      .spread(function(results, metadata) {
+        res.status(200).json("OK");
+      }).catch(function(error){
+          res.status(500).send(error.message);
+      });
+
+  });
+
   router.get('/candidates',function(req,res,next){
     FinalroundCandidate.findAll({
       order: [
