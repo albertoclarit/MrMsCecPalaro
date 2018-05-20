@@ -25,7 +25,7 @@ export default  class ScoreCombo extends React.Component {
                     >
                     {val.toFixed(1)}
                     </option>));
-            val +=1;
+            val +=this.props.addTo;
             i++;
         }
 

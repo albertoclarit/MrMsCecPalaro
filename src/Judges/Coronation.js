@@ -118,23 +118,35 @@ class Coronation extends React.Component {
                     <form>
                         <FormGroup >
                             <ControlLabel style={fontSize2}>Production <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('production')}
-                                value = {production}/>
+                            <ScoreCombo 
+                              onChange ={this.onScore('production')}
+                              addTo={1}
+                              value = {production}
+                            />
                         </FormGroup>
                         <FormGroup >
                             <ControlLabel style={fontSize2}>Swimsuit</ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('swimsuit')}
-                                        value = {swimsuit}/>
+                            <ScoreCombo 
+                              onChange ={this.onScore('swimsuit')}
+                              addTo={1}
+                              value = {swimsuit}
+                            />
                         </FormGroup>
                         <FormGroup >
                             <ControlLabel style={fontSize2}>Evening Gown</ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('formalWear')}
-                                        value = {formalWear}/>
+                            <ScoreCombo 
+                              onChange ={this.onScore('formalWear')}
+                              addTo={1}
+                              value = {formalWear}
+                            />
                         </FormGroup>
                         <FormGroup >
                             <ControlLabel style={fontSize2}>Interview</ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('qa')}
-                                        value = {qa}/>
+                            <ScoreCombo 
+                              onChange ={this.onScore('qa')}
+                              addTo={1}
+                              value = {qa}
+                            />
                         </FormGroup>
 
                     </form>

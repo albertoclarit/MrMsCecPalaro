@@ -102,8 +102,11 @@ class Talent extends React.Component {
             <form>
                 <FormGroup >
                     <ControlLabel style={fontSize2}>Talent</ControlLabel>
-                    <ScoreCombo onChange ={this.onScore('talent')}
-                        value = {talent}/>
+                    <ScoreCombo 
+                      onChange ={this.onScore('talent')}
+                      value = {talent}
+                      addTo={0.1}
+                    />
                 </FormGroup>
             </form>
          </Well>
