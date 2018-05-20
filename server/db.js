@@ -276,7 +276,7 @@ var JudgeConfirmation = sequelize.define('judge_confirmation', {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
-JudgeConfirmation.sync({force: false}).(function () {
+JudgeConfirmation.sync({force: false}).then(function () {
   return JudgeConfirmation.create({
     event: "ADMIN",
     judgeNo: 999,
