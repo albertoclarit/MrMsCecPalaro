@@ -99,7 +99,7 @@ class Admin extends React.Component {
                             <NavItem eventKey={5}>Production</NavItem>
                             <NavItem eventKey={6}>Preliminary</NavItem>
                             <NavItem eventKey={7}>Final Round</NavItem>
-                            {/* <NavItem eventKey={8}>Control</NavItem> */}
+                            <NavItem eventKey={8}>Control</NavItem>
                             <NavItem eventKey={9}>Judges List</NavItem>
                             <NavItem eventKey={10}>Candidate List </NavItem>
                             <NavItem eventKey={11}>Log out</NavItem>

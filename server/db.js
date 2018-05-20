@@ -35,7 +35,7 @@ module.exports = function (sequelize) {
 
     Judge.sync({force: false}).then(function () {
         // Table created
-        Judge.create({
+        return Judge.create({
             judgeNo: '999',
             username: 'amazingAdmin',
             password: 'itsawesome',
@@ -220,36 +220,23 @@ FinalRoundCandidate.sync({force: false});
 
 
 CoronationStatus.sync({force: false}).then(function () {
-  
+
   co(function *() {
-    var preliminary = yield CoronationStatus.findOrCreate({
-      where:{
-        event: "Preliminary"
-      },
-      defaults: {
+    var preliminary = CoronationStatus.create({
       event: "Preliminary",
       status: true
-    }})
+    })
 
-    if(!preliminary[1])
-      console.log("Preliminary Status is create");
-
-    var finalround = yield CoronationStatus.findOrCreate({
-      where:{
-        event: "Final"
-      },
-      defaults: {
+    var final = CoronationStatus.create({
       event: "Final",
       status: false
-      }
     })
-    if(!finalround[1])
-      console.log("Final Round Status is create");
 
+    return yield [preliminary,final]
   }).catch(function (err) {
-    console.log(err);
+    console.log(err.message);
   })
-
+  
 })
 
 // =============================  Final Round Candidate  =============================
@@ -264,7 +251,10 @@ var JudgeConfirmation = sequelize.define('judge_confirmation', {
     autoIncrement: true
   },
   event: Sequelize.STRING,
-  judgeNo: Sequelize.INTEGER,
+  judgeNo: {
+    type: Sequelize.INTEGER,
+    unique: true
+  },
   swimsuit: Sequelize.STRING,
   interview: Sequelize.STRING,
   talent: Sequelize.STRING,

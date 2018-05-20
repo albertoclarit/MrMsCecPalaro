@@ -230,6 +230,11 @@ var finalroundscore = require ('./finalroundscore')(
 );
 app.use('/api/finalroundscore',finalroundscore);
 
+var control = require('./control')(
+  db.JudgeConfirmation
+);
+app.use('/api/control',control)
+
 
 var server = app.listen(8080, function () {
     var host = server.address().address;

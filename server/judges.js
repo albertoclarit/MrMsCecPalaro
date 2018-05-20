@@ -51,12 +51,6 @@ module.exports = function (Judge,Confirmation) {
         res.sendStatus(500)
       })
 
-        // Judge.create(req.body).then(function(judge) {
-        //     res.status(201).json(judge);
-        // }).catch(function(error){
-        //     res.sendStatus(500);
-        // });
-
     });
 
     // find one judge
