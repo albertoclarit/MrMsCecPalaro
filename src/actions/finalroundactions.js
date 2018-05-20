@@ -54,9 +54,18 @@ export const getFinalRoundScores = ()=> {
     axios.get('/api/finalround/scores')
       .then(result =>{
           let {data} = result
+
+          var judgesScores = []
+          
+          for (let i = 0; i < data.judgeTotal; i++) {
+            const judgeScore = data.judgeScores["judgeNo"+(i+1)];
+            judgesScores.push(judgeScore)
+          }
+
           dispatcher({
             type: types.FINAL_ROUND_GETSCORES_SUCCESS,
-            data
+            data,
+            judgesScores
           })
       }).catch(err =>{
           console.log(err)
@@ -64,4 +73,34 @@ export const getFinalRoundScores = ()=> {
   }
 }
 
+export const getInterviewScores = () => {
+  return dispatcher => {
+      axios.get('/api/finalround/interviewScores')
+        .then((interview) => {
+          var {data} = interview
+          dispatcher({
+            type: types.FINAL_ROUND_INTERVIEW_SUCCESS,
+            data
+          })
+        }).catch((err) => {
+            console.log(err); 
+        }) 
+  }
+}
+
+
+export const getPoiseScores = () => {
+  return dispatcher => {
+      axios.get('/api/finalround/poiseScores')
+        .then((poise) => {
+          var {data} = poise
+          dispatcher({
+            type: types.FINAL_ROUND_POISE_SUCCESS,
+            data
+          })
+        }).catch((err) => {
+            console.log(err); 
+        }) 
+  }
+}
 

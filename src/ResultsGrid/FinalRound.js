@@ -8,8 +8,9 @@ export default  class Coronation extends React.Component {
 
 
     render(){
+      // console.log(this.props.data);
 
-        var femaleRows = this.props.data.records.map((item,i)=>{
+        var femaleRows = this.props.data.map((item,i)=>{
             return (
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>

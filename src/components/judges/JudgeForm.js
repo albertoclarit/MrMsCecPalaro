@@ -146,7 +146,7 @@ class JudgeForm extends React.Component {
         return (
             <div style={style}>
                 <form onSubmit={this.onFormSubmit}>
-                    <FormGroup validationState={this.getClasses('judgeNo')}>
+                    <FormGroup validationState={this.getClasses('username')}>
                         <ControlLabel>Enter Judge Username</ControlLabel>
                         <FormControl
                             type="text"
@@ -204,7 +204,7 @@ class JudgeForm extends React.Component {
                         <FormControl.Feedback/>
                         <HelpBlock>{this.getErrorText('password')}</HelpBlock>
                     </FormGroup>
-                    <FormGroup controlId="formControlsSelect" validationState={this.getClasses('password')}>
+                    <FormGroup controlId="formControlsSelect" validationState={this.getClasses('event')}>
                         <ControlLabel>Event</ControlLabel>
                         <FormControl
                             componentClass="select"
@@ -221,6 +221,7 @@ class JudgeForm extends React.Component {
                             <option value="">----select---</option>
                             <option value="Talent">Talent</option>
                             <option value="Coronation">Coronation</option>
+                            <option value="Production">Production</option>
                         </FormControl>
                         <HelpBlock>{this.getErrorText('event')}</HelpBlock>
                     </FormGroup>

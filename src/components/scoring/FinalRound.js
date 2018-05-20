@@ -40,6 +40,8 @@ class FinalRound extends Component {
       this.interval = setInterval(()=>{
   
           this.props.finalroundActions.checkStatus();
+          this.props.finalroundActions.getInterviewScores()
+          this.props.finalroundActions.getPoiseScores()
       },1500); // every 1.5 seconds refresh
 
   }
@@ -68,14 +70,79 @@ class FinalRound extends Component {
     var tabs = [];
   
     for(var i=0;i<this.props.finalround.judgeScores.length;i++){
-
       tabs.push(
-          <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalround.judgeScores[i].data.judgeNo}>
-            <TalentResultsGrid judgeNo={i+1} data={this.props.finalround.judgeScores[i].data}/>
+          <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalround.judgeScores[i].judgeNo}>
+            <TalentResultsGrid judgeNo={i+1} data={this.props.finalround.judgeScores[i].result}/>
           </Tab>
       );
 
     }
+
+    //interview scores
+
+    var interviewtotalJudgeTd = [];
+
+        if(this.props.finalround.interview.length>0){
+
+            var countJudge = this.props.finalround.interview[0].judgeTotal;
+
+            for(var i=0;i<countJudge;i++)
+            interviewtotalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
+        }
+
+        var interviewrows = this.props.finalround.interview.map((item,i)=>{
+
+            var othertds = [];
+
+            var noOfJudge = item.judgeTotal;
+
+            for(var x=0;x<noOfJudge;x++){
+                othertds.push(<td key={x}>{(item['judgeNo'+(x+1)].interview)}</td>)
+            }
+
+            return (
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    {othertds}
+                    <td>{item.average}</td>
+                    <td>{i+1}</td>
+                </tr>
+            );
+        });
+
+    //poise and charm scores
+
+    var poisetotalJudgeTd = [];
+
+        if(this.props.finalround.poise.length>0){
+
+            var countJudge = this.props.finalround.poise[0].judgeTotal;
+
+            for(var i=0;i<countJudge;i++)
+            poisetotalJudgeTd.push(<th key={i}>Judge #{i+1}</th>);
+        }
+
+        var poiserows = this.props.finalround.poise.map((item,i)=>{
+
+            var othertds = [];
+
+            var noOfJudge = item.judgeTotal;
+
+            for(var x=0;x<noOfJudge;x++){
+                othertds.push(<td key={x}>{(item['judgeNo'+(x+1)].poise)}</td>)
+            }
+
+            return (
+                <tr key={i} className={i==0 ? "success":null}>
+                    <td>{item.candidateNo}</td>
+                    <td>{item.name}</td>
+                    {othertds}
+                    <td>{item.average}</td>
+                    <td>{i+1}</td>
+                </tr>
+            );
+        });
 
     return (
       <div>
@@ -111,6 +178,40 @@ class FinalRound extends Component {
                   {rows}
                 </tbody>
               </table> 
+
+              <h4> Inverview Scores </h4>
+
+              <table className="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                        {interviewtotalJudgeTd}
+                    <th>Average</th>
+                    <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {interviewrows}
+                </tbody>
+              </table>
+
+              <h4> Poise and Chard </h4>
+
+              <table className="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                    <th>Candidate No</th>
+                    <th>Candidate Name</th>
+                        {interviewtotalJudgeTd}
+                    <th>Average</th>
+                    <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {interviewrows}
+                </tbody>
+              </table>
 
               <br />
               <h4>Per Judge Score</h4>

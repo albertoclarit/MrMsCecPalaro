@@ -5,7 +5,9 @@ const initialState ={
   isStarted: null,
   records: [],
   judgeTotal: 0,
-  judgeScores: []
+  judgeScores: [],
+  interview: [],
+  poise: []
 }
 
 export default function finalroundreducers(state = initialState, action={}){
@@ -18,7 +20,15 @@ export default function finalroundreducers(state = initialState, action={}){
       return _.assign({},state,{
         records: action.data.record,
         judgeTotal: action.data.judgeTotal,
-        judgeScores: action.data.judgeScores
+        judgeScores: action.judgesScores
+      })
+    case types.FINAL_ROUND_POISE_SUCCESS:
+      return _.assign({},state,{
+        poise: action.data
+      })
+    case types.FINAL_ROUND_INTERVIEW_SUCCESS:
+      return _.assign({},state,{
+        interview: action.data
       })
     default:
       return state
