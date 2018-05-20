@@ -26,7 +26,7 @@ class Control extends Component {
   componentDidMount(){
     this.interval = setInterval(()=>{
       this.props.controlActions.getTalentControls()
-    },2500); // every 1.5 seconds refresh
+    },2500 ); // every 1.5 seconds refresh
   }
 
   componentWillUnmount(){
@@ -42,28 +42,28 @@ class Control extends Component {
       this.props.controlActions.getTalentControls()
       this.interval = setInterval(()=>{
         this.props.controlActions.getTalentControls()
-      },2500); // every 1.5 seconds refresh
+      },2500 ); // every 1.5 seconds refresh
     }else if(key === "Production"){
       if( this.interval)
         clearInterval( this.interval);
       this.props.controlActions.getProductionControls()
       this.interval = setInterval(()=>{
         this.props.controlActions.getProductionControls()
-      },2500); // every 1.5 seconds refresh
+      },2500 ); // every 1.5 seconds refresh
     }else if(key === "Coronation"){
       if( this.interval)
         clearInterval( this.interval);
       this.props.controlActions.getCoronationControls()
       this.interval = setInterval(()=>{
         this.props.controlActions.getCoronationControls()
-      },2500); // every 1.5 seconds refresh
+      },2500 ); // every 1.5 seconds refresh
     }else if(key === "FinalRound"){
       if( this.interval)
         clearInterval( this.interval);
       this.props.controlActions.getFinalControls()
       this.interval = setInterval(()=>{
         this.props.controlActions.getCoronationControls()
-      },2500); // every 1.5 seconds refresh
+      },2500 ); // every 1.5 seconds refresh
     }
   }
 
