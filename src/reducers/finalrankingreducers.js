@@ -13,8 +13,11 @@ const initialState={
     coronation:{
       judgeTotal:0,
       judgeScores:[]
+    },
+    production:{
+      judgeTotal:0,
+      judgeScores:[]
     }
-
 };
 
 export default function finalrankingreducers(state=initialState, action={}) {
@@ -43,6 +46,14 @@ export default function finalrankingreducers(state=initialState, action={}) {
                   },
                   judgeScores:{
                     $set: action.judgeScores.coronation
+                  }
+                },
+                production:{
+                  judgeTotal:{
+                    $set: action.data.production.judgeTotal
+                  },
+                  judgeScores:{
+                    $set: action.judgeScores.production
                   }
                 },
             });

@@ -31,11 +31,13 @@ export let loadfinalranking = ()=>{
                 var coronation = data.coronation;
                 var talent = data.talent;
                 var prepageant = data.prepageant;
+                var production = data.production;
 
                 var judgeScores={
                   coronation:[],
                   talent:[],
-                  prepageant:[]
+                  prepageant:[],
+                  production:[]
                 };
 
                 for(var i=0;i<coronation.judgeTotal;i++){
@@ -53,6 +55,14 @@ export let loadfinalranking = ()=>{
                     );
 
                 }
+
+                for(var i=0;i<production.judgeTotal;i++){
+                  judgeScores.production.push({
+                      data:data.production["judge"+(i+1)]
+                      }
+                  );
+
+              }
 
                 dispatcher(loadfinalrankingSuccess(data,judgeScores));
 

@@ -49,14 +49,17 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 ]
             });
 
-            // var candidatesMale  =  yield Candidate.findAll({
-            //     where:{
-            //         gender:'M'
-            //     },
-            //     order: [
-            //         ['candidateNo', 'ASC']
-            //     ]
-            // });
+            var productionJudges  =  yield Judge.findAll({
+                where:{
+                    judgeNo: {
+                        $ne: 999
+                    },
+                    event: 'Production'
+                },
+                order: [
+                    ['judgeNo', 'ASC']
+                ]
+            });
 
             var candidatesFemale  =  yield Candidate.findAll({
                 where:{
@@ -76,92 +79,12 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                },
                coronation:{
                  judgeTotal:coronationJudges.length
+               },
+               production:{
+                 judgeTotal:productionJudges.length
                }
             };
              // after there is per judge property that list the score
-
-
-            // ==================== get ranking for males ====================
-
-            // for(var c=0; c< candidatesMale.length;c++) {
-            //     var candidate = candidatesMale[c];
-            //     var newItem = {};
-            //     newItem.name=candidate.name;
-            //     newItem.candidateNo=candidate.candidateNo;
-
-            //     var allaverage = [];
-            //     try {
-
-            //         coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
-            //                "  avg(sportswear) as avg_sportswear, " +
-            //                " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
-            //                "  from scores where candidateNo=?  and gender='M' and event='Coronation' limit 1",
-            //                { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
-
-            //         talentAllAverage = yield sequelize.query("select avg(talent) as avg_talent" +
-            //                "  from scores where candidateNo=?  and gender='M' and event='Talent' limit 1",
-            //                { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
-
-            //         prePageantAllAverage = yield sequelize.query("select avg(prepageant) as avg_prepageant " +
-            //                "  from scores where candidateNo=?  and gender='M' and event='Pre-pageant' limit 1",
-            //                { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
-
-            //     }catch(e){
-            //         console.log(e.message);
-            //     }
-
-
-            //     //=====coronation averages=====\\
-            //     if(coronationAllAverage.length > 0){
-            //         var average = coronationAllAverage[0];
-
-            //         newItem.production  = (average.avg_production || 0) * 0.15;
-            //         newItem.sportswear  =  (average.avg_sportswear || 0) * 0.10;
-            //         newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
-            //         newItem.qa  =  (average.avg_qa || 0) * 0.30;
-
-
-            //     }
-            //     else {
-            //         newItem.production  = 0;
-            //         newItem.sportswear  = 0;
-            //         newItem.formalWear  = 0;
-            //         newItem.qa  = 0;
-            //         newItem.totalAverage= 0;
-            //     }
-
-            //     //======talent averages=====\\
-            //     if(talentAllAverage.length > 0){
-            //         var average = talentAllAverage[0];
-
-            //         newItem.talent  = (average.avg_talent || 0) * 0.15;
-
-            //     }
-            //     else {
-            //         newItem.talent  = 0;
-            //     }
-
-            //     //=====Pre-pageant avearages=====\\
-            //     if(prePageantAllAverage.length > 0){
-            //         var average = prePageantAllAverage[0];
-
-            //         newItem.prepageant  = (average.avg_prepageant || 0) * 0.10;
-
-            //     }
-            //     else {
-            //         newItem.prepageant = 0;
-            //     }
-
-            //     newItem.totalAverage= newItem.production +  newItem.talent +
-            //         newItem.sportswear + newItem.formalWear + newItem.prepageant +
-            //         newItem.qa  ;
-
-
-            //     result.rankingmale.push(newItem);
-            // }
-
-
-            // ==================== get ranking for males ====================
 
             // ==================== get ranking for females ====================
             for(var c=0; c< candidatesFemale.length;c++) {
@@ -173,15 +96,19 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 var allaverage = [];
                 try {
 
-                  coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
+                  var coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
                          "  avg(swimsuit) as avg_swimsuit, " +
                          " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
                          "  from scores where candidateNo=?  and gender='F' and event='Coronation' limit 1",
                          { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
 
-                  talentAllAverage = yield sequelize.query("select avg(talent) as avg_talent" +
+                  var talentAllAverage = yield sequelize.query("select avg(talent) as avg_talent" +
                          "  from scores where candidateNo=?  and gender='F' and event='Talent' limit 1",
                          { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+                  var productAllAverage = yield sequelize.query("select avg(production) as avg_production" +
+                  "  from scores where candidateNo=?  and gender='F' and event='Talent' limit 1",
+                  { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
 
                 }catch(e){
                     console.log(e.message);
@@ -217,6 +144,17 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                     newItem.talent  = 0;
                 }
 
+                //======production averages=====\\
+                if(productAllAverage.length > 0){
+                  var average = productAllAverage[0];
+
+                  newItem.production  = (average.avg_production || 0) * 0.10;
+
+              }
+              else {
+                  newItem.production  = 0;
+              }
+
                 newItem.totalAverage= newItem.production +  newItem.talent +
                     newItem.swimsuit + newItem.formalWear + 
                     newItem.qa  ;
@@ -230,6 +168,78 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
             // ======================================
 
+             //===============Production===============\\
+             for(var j=0; j< productionJudges.length;j++) {
+
+              var judge = productionJudges[j];
+
+              result.production["judge"+(j+1)] = {};
+
+              result.production["judge"+(j+1)].judgeNo = judge.judgeNo;
+
+                 // === for female results
+              var femaleResults = [];
+              for(var c=0; c< candidatesFemale.length;c++) {
+
+                  var  candidate = candidatesFemale[c];
+
+
+                  var perjudgescore = [];
+                  try {
+
+                      perjudgescore = yield sequelize.query("select  production" +
+                          "  from scores where candidateNo=? and judgeNo=?  and gender='F' and event='Talent' limit 1",
+                          { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+
+                      if(perjudgescore.length>0)
+                      {
+                          var x = perjudgescore[0];
+
+                          femaleResults.push({
+                              candidateNo: candidate.candidateNo,
+                              name:candidate.name,
+                              production:x.production,
+                              totalaverage:
+                                  (
+                                      ((x.production) * 0.10)
+                                  )
+                          });
+                      }
+                      else
+                      {
+                          femaleResults.push({
+                              candidateNo: candidate.candidateNo,
+                              name:candidate.name,
+                              production:0.0,
+                              totalaverage:0.0
+                          });
+
+                      }
+
+
+                      femaleResults.sort(function(a,b){
+                          if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
+                              return -1;
+
+                          if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
+                              return 1;
+
+                          return 0;
+                      });
+
+                      result.production["judge"+(j+1)].femaleResults=femaleResults;
+
+
+
+                  }catch(e){
+                      console.log(e.message);
+                  }
+              }
+
+
+          }
+          //===============Production===============\\
+
             //===============Talent===============\\
             for(var j=0; j< talentJudges.length;j++) {
 
@@ -238,96 +248,6 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 result.talent["judge"+(j+1)] = {};
 
                 result.talent["judge"+(j+1)].judgeNo = judge.judgeNo;
-
-                // // === for male results
-                // var maleResults = [];
-                // for(var c=0; c< candidatesMale.length;c++) {
-
-                //     var  candidate = candidatesMale[c];
-
-
-                //     var perjudgescore = [];
-                //     try {
-
-                //         // perjudgescore = yield sequelize.query("select  production , " +
-                //         //     " talent, sportswear, " +
-                //         //     " formalWear, qa, prepageant " +
-                //         //     "  from scores where candidateNo=? and judgeNo=?  and gender='M' limit 1",
-                //         //     { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
-
-                //         perjudgescore = yield sequelize.query("select  talent " +
-                //             "  from scores where candidateNo=? and judgeNo=?  and gender='M' and event='Talent' limit 1",
-                //             { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
-
-                //         // newItem.prepageant = (average.avg_prepageant || 0) * 0.10;
-                //         // newItem.production  = (average.avg_production || 0) * 0.15;
-                //         // newItem.talent  = (average.avg_talent || 0) * 0.15;
-                //         // newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
-                //         // newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
-                //         // newItem.qa  =  (average.avg_qa || 0) * 0.30;
-
-                //         if(perjudgescore.length>0)
-                //         {
-                //             var x = perjudgescore[0];
-
-                //             maleResults.push({
-                //                 candidateNo: candidate.candidateNo,
-                //                 name:candidate.name,
-                //                 // prepageant: x.prepageant,
-                //                 // production:x.production,
-                //                 talent:x.talent,
-                //                 // sportswear:x.sportswear,
-                //                 // formalWear:x.formalWear,
-                //                 // qa:x.qa,
-                //                 totalaverage:
-                //                     (
-                //                         // ((x.prepageant) * 0.10) +
-                //                         // ((x.production) * 0.15) +
-                //                         ((x.talent) * 0.15)
-                //                         // ((x.sportswear) * 0.10) +
-                //                         // ((x.formalWear) * 0.20) +
-                //                         // ((x.qa) * 0.30)
-                //                     )
-                //             });
-                //         }
-                //         else
-                //         {
-                //             maleResults.push({
-                //                 candidateNo: candidate.candidateNo,
-                //                 name:candidate.name,
-                //                 // prepageant: 0.0,
-                //                 // production:0.0,
-                //                 talent:0.0,
-                //                 // sportswear:0.0,
-                //                 // formalWear:0.0,
-                //                 // qa:0.0,
-                //                 totalaverage:0.0
-                //             });
-
-                //         }
-
-
-                //         maleResults.sort(function(a,b){
-                //             if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
-                //                 return -1;
-
-                //             if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
-                //                 return 1;
-
-                //             return 0;
-                //         });
-
-                //         result.talent["judge"+(j+1)].maleResults=maleResults;
-
-
-
-
-
-                //     }catch(e){
-                //         console.log(e.message);
-                //     }
-                // }
-
 
                    // === for female results
                 var femaleResults = [];
@@ -338,13 +258,6 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
                     var perjudgescore = [];
                     try {
-
-                        // perjudgescore = yield sequelize.query("select  production , " +
-                        //     " talent, sportswear, prepageant, " +
-                        //     " formalWear, qa " +
-                        //     "  from scores where candidateNo=? and judgeNo=?  and gender='F' limit 1",
-                        //     { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
-
 
                         perjudgescore = yield sequelize.query("select  talent" +
                             "  from scores where candidateNo=? and judgeNo=?  and gender='F' and event='Talent' limit 1",
@@ -357,20 +270,10 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                             femaleResults.push({
                                 candidateNo: candidate.candidateNo,
                                 name:candidate.name,
-                                // prepageant: x.prepageant,
-                                // production:x.production,
                                 talent:x.talent,
-                                // sportswear:x.sportswear,
-                                // formalWear:x.formalWear,
-                                // qa:x.qa,
                                 totalaverage:
                                     (
-                                        // ((x.prepageant) * 0.10) +
-                                        // ((x.production) * 0.15) +
                                         ((x.talent) * 0.10)
-                                        // ((x.sportswear) * 0.10) +
-                                        // ((x.formalWear) * 0.20) +
-                                        // ((x.qa) * 0.30)
                                     )
                             });
                         }
@@ -379,12 +282,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                             femaleResults.push({
                                 candidateNo: candidate.candidateNo,
                                 name:candidate.name,
-                                // prepageant: 0.0,
-                                // production:0.0,
                                 talent:0.0,
-                                // sportswear:0.0,
-                                // formalWear:0.0,
-                                // qa:0.0,
                                 totalaverage:0.0
                             });
 
@@ -422,98 +320,6 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                 result.coronation["judge"+(j+1)] = {};
 
                 result.coronation["judge"+(j+1)].judgeNo = judge.judgeNo;
-
-                // // === for male results
-                // var maleResults = [];
-                // for(var c=0; c< candidatesMale.length;c++) {
-
-                //     var  candidate = candidatesMale[c];
-
-
-                //     var perjudgescore = [];
-                //     try {
-
-                //         // perjudgescore = yield sequelize.query("select  production , " +
-                //         //     " talent, sportswear, " +
-                //         //     " formalWear, qa, prepageant " +
-                //         //     "  from scores where candidateNo=? and judgeNo=?  and gender='M' limit 1",
-                //         //     { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
-
-                //         perjudgescore = yield sequelize.query("select  production , " +
-                //             "  sportswear, " +
-                //             " formalWear, qa " +
-                //             "  from scores where candidateNo=? and judgeNo=?  and gender='M' and event='Coronation' limit 1",
-                //             { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
-
-                //         // newItem.prepageant = (average.avg_prepageant || 0) * 0.10;
-                //         // newItem.production  = (average.avg_production || 0) * 0.15;
-                //         // newItem.talent  = (average.avg_talent || 0) * 0.15;
-                //         // newItem.sportswear  =  (average.avg_talent || 0) * 0.10;
-                //         // newItem.formalWear  =  (average.avg_talent || 0) * 0.20;
-                //         // newItem.qa  =  (average.avg_qa || 0) * 0.30;
-
-                //         if(perjudgescore.length>0)
-                //         {
-                //             var x = perjudgescore[0];
-
-                //             maleResults.push({
-                //                 candidateNo: candidate.candidateNo,
-                //                 name:candidate.name,
-                //                 // prepageant: x.prepageant,
-                //                 production:x.production,
-                //                 // talent:x.talent,
-                //                 sportswear:x.sportswear,
-                //                 formalWear:x.formalWear,
-                //                 qa:x.qa,
-                //                 totalaverage:
-                //                     (
-                //                         // ((x.prepageant) * 0.10)
-                //                         ((x.production) * 0.15) +
-                //                         // ((x.talent) * 0.15) +
-                //                         ((x.sportswear) * 0.10) +
-                //                         ((x.formalWear) * 0.20) +
-                //                         ((x.qa) * 0.30)
-                //                     )
-                //             });
-                //         }
-                //         else
-                //         {
-                //             maleResults.push({
-                //                 candidateNo: candidate.candidateNo,
-                //                 name:candidate.name,
-                //                 // prepageant: 0.0,
-                //                 production:0.0,
-                //                 // talent:0.0,
-                //                 sportswear:0.0,
-                //                 formalWear:0.0,
-                //                 qa:0.0,
-                //                 totalaverage:0.0
-                //             });
-
-                //         }
-
-
-                //         maleResults.sort(function(a,b){
-                //             if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
-                //                 return -1;
-
-                //             if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
-                //                 return 1;
-
-                //             return 0;
-                //         });
-
-                //         result.coronation["judge"+(j+1)].maleResults=maleResults;
-
-
-
-
-
-                //     }catch(e){
-                //         console.log(e.message);
-                //     }
-                // }
-
 
                    // === for female results
                 var femaleResults = [];
@@ -1218,7 +1024,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
                     judgeNo: {
                         $ne: 999
                     },
-                    event:'Coronation'
+                    event:'Production'
                 },
                 order: [
                     ['judgeNo', 'ASC']

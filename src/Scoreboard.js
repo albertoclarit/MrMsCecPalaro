@@ -124,6 +124,19 @@ class Scoreboard extends React.Component {
 
             }
 
+            var productionTabs = [];
+            //
+            // <Tab eventKey={2} title="Tab 2">Judge 2</Tab>
+          for(var i=0;i<this.props.finalranking.production.judgeScores.length;i++){
+   
+            productionTabs.push(
+                       <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.production.judgeScores[i].data.judgeNo}>
+                         <PrePageantResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.production.judgeScores[i]}/>
+                       </Tab>
+                   );
+   
+               }
+
         return (
             <Well style={wellStyle}>
 
@@ -162,10 +175,18 @@ class Scoreboard extends React.Component {
                 </Tabs>
 
                 <br />
+                <h4>Production</h4>
+                <Tabs defaultActiveKey={1} id="judgeTabs">
+                    {productionTabs}
+                </Tabs>
+
+                <br />
                 <h4>Preliminary</h4>
                 <Tabs defaultActiveKey={1} id="judgeTabs">
                     {coronationTabs}
                 </Tabs>
+
+                
 
 
             </Well>

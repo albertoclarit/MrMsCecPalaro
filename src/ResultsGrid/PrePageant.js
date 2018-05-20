@@ -9,25 +9,12 @@ export default  class PrePageant extends React.Component {
 
     render(){
 
-         var maleRows = this.props.judgeData.data.maleResults.map((item,i)=>{
-
-             return (
-                 <tr key={i} className={i==0 ? "success":null}>
-                     <td>{item.candidateNo}</td>
-                     <td>{item.name}</td>
-                     <td>{item.prepageant}</td>
-                     <td>{item.totalaverage.toFixed(2)}</td>
-                     <td>{i+1}</td>
-                 </tr>
-             );
-         });
-
         var femaleRows = this.props.judgeData.data.femaleResults.map((item,i)=>{
             return (
                 <tr key={i} className={i==0 ? "success":null}>
                     <td>{item.candidateNo}</td>
                     <td>{item.name}</td>
-                    <td>{item.prepageant}</td>
+                    <td>{item.production}</td>
                     <td>{item.totalaverage.toFixed(2)}</td>
                     <td>{i+1}</td>
                 </tr>
@@ -44,7 +31,7 @@ export default  class PrePageant extends React.Component {
                     <tr>
                         <th>Candidate No</th>
                         <th>Candidate Name</th>
-                        <th>Pre-Pageant 10%</th>
+                        <th>Production 10%</th>
                         <th>Total</th>
                         <th>Ranking</th>
                     </tr>
@@ -54,22 +41,6 @@ export default  class PrePageant extends React.Component {
                     </tbody>
                 </table>
 
-                <h5> Male </h5>
-                <table className="table table-striped table-hover ">
-                <thead>
-                <tr>
-                <th>Candidate No</th>
-                <th>Candidate Name</th>
-                <th>Pre-Pageant 10%</th>
-                <th>Total</th>
-                <th>Ranking</th>
-                </tr>
-
-                </thead>
-                <tbody>
-                {maleRows}
-                </tbody>
-                </table>
             </div>
         );
     }
