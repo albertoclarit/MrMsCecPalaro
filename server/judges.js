@@ -35,13 +35,13 @@ module.exports = function (Judge,Confirmation) {
         var confirmation = yield Confirmation.create({
           judgeNo: judge.judgeNo,
           event: judge.event,
-          swimsuit: false,
-          interview: false,
-          talent: false, 
-          gown: false,
-          production: false,
-          f_interview: false,
-          f_poise: false,
+          swimsuit: "PENDING",
+          interview: "PENDING",
+          talent: "PENDING", 
+          gown: "PENDING",
+          production: "PENDING",
+          f_interview: "PENDING",
+          f_poise: "PENDING",
         })
 
         return judge

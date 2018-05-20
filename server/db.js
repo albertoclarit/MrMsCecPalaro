@@ -35,12 +35,13 @@ module.exports = function (sequelize) {
 
     Judge.sync({force: false}).then(function () {
         // Table created
-        return Judge.create({
+        Judge.create({
             judgeNo: '999',
             username: 'amazingAdmin',
             password: 'itsawesome',
             event: 'ADMIN',
         });
+        
     }).catch(function(error) {
         console.log('999 user already created');
     });
@@ -262,20 +263,34 @@ var JudgeConfirmation = sequelize.define('judge_confirmation', {
     primaryKey: true,
     autoIncrement: true
   },
+  event: Sequelize.STRING,
   judgeNo: Sequelize.INTEGER,
-  swimsuit: Sequelize.BOOLEAN,
-  interview: Sequelize.BOOLEAN,
-  talent: Sequelize.BOOLEAN,
-  gown: Sequelize.BOOLEAN,
-  production: Sequelize.BOOLEAN,
-  f_interview: Sequelize.BOOLEAN,
-  f_poise: Sequelize.BOOLEAN,
+  swimsuit: Sequelize.STRING,
+  interview: Sequelize.STRING,
+  talent: Sequelize.STRING,
+  gown: Sequelize.STRING,
+  production: Sequelize.STRING,
+  f_interview: Sequelize.STRING,
+  f_poise: Sequelize.STRING,
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
-
-JudgeConfirmation.sync({force: false});
+JudgeConfirmation.sync({force: false}).(function () {
+  return JudgeConfirmation.create({
+    event: "ADMIN",
+    judgeNo: 999,
+    swimsuit: "ACTIVE",
+    interview: "INACTIVE",
+    talent: "INACTIVE",
+    gown: "INACTIVE",
+    production: "INACTIVE",
+    f_interview: "INACTIVE",
+    f_poise: "INACTIVE"
+  })
+}).catch(function (e) {
+    console.log("admin confirmation alread created");
+})
 
 // =============================  Final Round Candidate  =============================
 
