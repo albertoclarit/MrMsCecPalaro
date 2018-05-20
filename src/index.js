@@ -36,6 +36,7 @@ import Female from './Judges/Female'
 import Male from './Judges/Male'
 import FinalRoundJudge from './Judges/FinalRoundScore'
 import FinalJudgeScores from './components/scoring/FinalJudgeScores'
+import JudgeConfirm from './Judges/JudgeConfirm'
 
 require('./fonts/Roboto/css/fonts.css');
 import './App.css'
@@ -74,6 +75,7 @@ const Components=(
                 <Route path="overall" component={requireAuthentication(JudgeScores,'ROLE_JUDGE')}/>
                 <Route path="finalround" component={requireAuthentication(FinalRoundJudge,'ROLE_JUDGE')}/>
                 <Route path="finaloverall" component={requireAuthentication(FinalJudgeScores,'ROLE_JUDGE')}/>
+                <Route path="controls" component={requireAuthentication(JudgeConfirm,'ROLE_JUDGE')}/>
                 <IndexRedirect  to="/judge"/>
             </Route>
         </Router>

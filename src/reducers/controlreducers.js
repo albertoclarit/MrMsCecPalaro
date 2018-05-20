@@ -6,7 +6,8 @@ const initialState = {
   coronation: [],
   talent: [],
   production: [],
-  final: []
+  final: [],
+  perjudge: {}
 }
 
 export default function controlreducers(state = initialState, action = {}) {
@@ -30,6 +31,10 @@ export default function controlreducers(state = initialState, action = {}) {
     case types.CONTROLS_FINAL_SUCCESS:
       return _.assign({},state,{
         final: action.data
+      })
+    case types.CONTROLS_JUDGE_SUCCESS:
+      return _.assign({},state,{
+        perjudge: action.data
       })
     default:
       return state

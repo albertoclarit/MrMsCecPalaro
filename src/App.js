@@ -59,6 +59,9 @@ state={
               case 5:
                 this.props.routerActions.push('/finaloverall');
                 break;
+              case 6:
+                this.props.routerActions.push('/controls');
+                break;
               default:
                   return;
           }
@@ -106,6 +109,7 @@ const marginPull={
                                     :
                                     null
                                   }
+                                  <NavItem eventKey={6}>Confirm</NavItem>
                                 </Nav>
                                 :
                                 null

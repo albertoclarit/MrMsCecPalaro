@@ -135,3 +135,86 @@ export const activeJudge = (category,judgeNo,tab) =>{
     })
   }
 }
+
+export const perJudgeControls = (judgeNo) =>{
+  return dispatcher =>{
+    axios.get('/api/control/'+judgeNo)
+      .then(control=>{
+         let {data} = control
+
+         let perjudge = data
+         let coronation = [
+          {
+            name: "swimsuit",
+            category: "Swimsuit",
+            status: perjudge["swimsuit"]
+          },
+          {
+            name: "gown",
+            category: "Evening Gown",
+            status: perjudge["gown"]
+          },
+          {
+            name: "interview",
+            category: "Interview",
+            status: perjudge["interview"]
+          }
+        ]
+    
+        let production = [
+          {
+            name: "production",
+            category: "Production",
+            status: perjudge["production"]
+          }
+        ]
+    
+        let talent = [
+          {
+            name: "talent",
+            category: "Talent",
+            status: perjudge["talent"]
+          }
+        ]
+    
+        let final = [
+          {
+            name: "f_interview",
+            category: "Interview",
+            status: perjudge["f_interview"]
+          },
+          {
+            name: "f_poise",
+            category: "Poise & Charm",
+            status: perjudge["f_poise"]
+          }
+        ]
+
+        var judgeControl={
+          production: production,
+          talent: talent,
+          coronation: coronation,
+          final: final
+        }
+
+         dispatcher({
+           type: types.CONTROLS_JUDGE_SUCCESS,
+           data: judgeControl
+         })
+      }).catch(err=>{
+        console.log(err.message)
+      })
+  }
+}
+
+export const perJudgeActivate = (category,judgeNo) =>{
+  return dispatcher =>{
+
+    axios.put('/api/control/confirmJudge',{
+      category:category,
+      judgeNo: judgeNo
+    }).then(()=>{
+        dispatcher(perJudgeControls(judgeNo))
+    })
+  }
+}
