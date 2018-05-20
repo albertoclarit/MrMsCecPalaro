@@ -245,7 +245,7 @@ module.exports = function(
         var result = {
           record: [],
           judgeTotal: judges.length,
-          judgeScores: []
+          judgeScores: {}
         }
 
         //=============== final round results ==============\\
@@ -288,13 +288,10 @@ module.exports = function(
 
         //=============== final round per judge results ==============\\
 
-        var data = {
-          data:{}
-        }
-
-        for(var i=0; i< judges.length;i++) {
-          var judge = judges[i];
-          data.data.judgeNo = judge.judgeNo
+        for(var a=0; a< judges.length;a++) {
+          var judge = judges[a];
+          result.judgeScores["judgeNo"+(a+1)] = {}
+          result.judgeScores["judgeNo"+(a+1)].judgeNo = judge.judgeNo
 
           var records = []
 
@@ -335,6 +332,18 @@ module.exports = function(
                     });
 
                 }
+                records.sort(function(a,b){
+                  if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
+                      return -1;
+      
+                  if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
+                      return 1;
+      
+                  return 0;
+                });
+
+                result.judgeScores["judgeNo"+(a+1)].result = records
+
 
             }catch(e){
               console.log(e)
@@ -342,32 +351,18 @@ module.exports = function(
   
           }
 
-          records.sort(function(a,b){
-            if (parseFloat(a.totalaverage) > parseFloat(b.totalaverage))
-                return -1;
-
-            if (parseFloat(a.totalaverage) < parseFloat(b.totalaverage))
-                return 1;
-
-            return 0;
-        });
-
-          data.data.records = records
-
-          result.judgeScores.push(data)
-
-          result.record.sort(function(a,b){
-            if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
-                return -1;
-
-            if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
-                return 1;
-
-            return 0;
-        });
-
+          // result.judgeScores.push(data)
         }
+        result.record.sort(function(a,b){
+          if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
+              return -1;
 
+          if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
+              return 1;
+
+          return 0;
+      });
+        
 
         //=============== final round per judge results ==============\\
 
@@ -378,6 +373,150 @@ module.exports = function(
     }).catch(function(err){
         console.log(err)
     })
+
+  })
+
+  router.get('/interviewScores',function (req,res,next) {
+
+    
+    co(function *() {
+      
+      var scores = []
+
+      var candidates = yield FinalroundCandidate.findAll()
+
+      var judges = yield Judge.findAll({
+        where:{
+          event: "Coronation"
+        }
+      })
+
+      for (let i = 0; i < candidates.length; i++) {
+        const candidate = candidates[i];
+        let score = {}
+        score.candidateNo = candidate.candidateNo
+        score.name = candidate.name
+        score.judgeTotal = judges.length
+
+        var total = 0
+        for (let j = 0; j < judges.length; j++) {
+          const judge = judges[j];
+
+            try {
+              var interview = yield sequelize.query("select interview " +
+              "  from finalroundscores where candidateNo=? and judgeNo=? and gender='F' limit 1",
+              { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+              
+              score["judgeNo"+(j+1)] = {}
+              
+              if (interview.length>0) {
+                score["judgeNo"+(j+1)] = interview[0]
+                total+=interview[0].interview
+              }else{
+                score["judgeNo"+(j+1)] = {interview: 0.0}
+                total+=0
+              }
+    
+            } catch (e) {
+              res.sendStatus(404)
+            }
+          
+        }
+
+        score.average = (total/judges.length).toFixed(2)
+
+        scores.push(score)
+
+      }
+
+      return scores.sort(function(a,b){
+                if (parseFloat(a.average) > parseFloat(b.average))
+                    return -1;
+
+                if (parseFloat(a.average) < parseFloat(b.average))
+                    return 1;
+
+                return 0;
+            });
+
+    }).then(function (result) {
+        res.status(200).json(result)
+    }).catch(function (err) {
+        res.sendStatus(404)
+    })
+
+
+  })
+
+  router.get('/poiseScores',function (req,res,next) {
+
+    
+    co(function *() {
+      
+      var scores = []
+
+      var candidates = yield FinalroundCandidate.findAll()
+
+      var judges = yield Judge.findAll({
+        where:{
+          event: "Coronation"
+        }
+      })
+
+      for (let i = 0; i < candidates.length; i++) {
+        const candidate = candidates[i];
+        let score = {}
+        score.candidateNo = candidate.candidateNo
+        score.name = candidate.name
+        score.judgeTotal = judges.length
+
+        var total = 0
+        for (let j = 0; j < judges.length; j++) {
+          const judge = judges[j];
+
+            try {
+              var poise = yield sequelize.query("select poise " +
+              "  from finalroundscores where candidateNo=? and judgeNo=? and gender='F' limit 1",
+              { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
+              
+              score["judgeNo"+(j+1)] = {}
+              
+              if (poise.length>0) {
+                score["judgeNo"+(j+1)] = poise[0]
+                total+=poise[0].poise
+              }else{
+                score["judgeNo"+(j+1)] = {poise: 0.0}
+                total+=0
+              }
+    
+            } catch (e) {
+              res.sendStatus(404)
+            }
+          
+        }
+
+        score.average = (total/judges.length).toFixed(2)
+
+        scores.push(score)
+
+      }
+
+      return scores.sort(function(a,b){
+                if (parseFloat(a.average) > parseFloat(b.average))
+                    return -1;
+
+                if (parseFloat(a.average) < parseFloat(b.average))
+                    return 1;
+
+                return 0;
+            });
+
+    }).then(function (result) {
+        res.status(200).json(result)
+    }).catch(function (err) {
+        res.sendStatus(404)
+    })
+
 
   })
 
