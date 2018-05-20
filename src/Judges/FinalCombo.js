@@ -103,12 +103,12 @@ class Coronation extends React.Component {
                 <Well>
                     <form>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Production <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
+                            <ControlLabel style={fontSize2}>Interview <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
                             <ScoreCombo onChange ={this.onScore('interview')}
                                 value = {interview}/>
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Swimsuit</ControlLabel>
+                            <ControlLabel style={fontSize2}>Poise and Charm</ControlLabel>
                             <ScoreCombo onChange ={this.onScore('poise')}
                                         value = {poise}/>
                         </FormGroup>

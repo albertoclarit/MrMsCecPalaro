@@ -24,11 +24,7 @@ module.exports = function(
   });
 
   router.get('/candidates',function(req,res,next){
-    FinalroundCandidate.findAll({
-      order: [
-        ['candidateNo','ASC']
-      ]
-    })
+    FinalroundCandidate.findAll()
       .then(function(candidates){
         res.status(200).json(candidates)
       }).catch(function(err){
@@ -51,171 +47,174 @@ module.exports = function(
   router.post('/startfinalround',function(req,res,next){
 
     co(function *(){
-
-      CoronationStatus.find({
-        where: {
-          event:"Final"
-        }
-      }).then(function(status){
-        status.update({
-          status: true
-        })
-      }).catch(function(){
-        res.sendStatus(404)
-      })
-
-      var talentJudges  =  yield Judge.findAll({
-          where:{
-              judgeNo: {
-                  $ne: 999
-              },
-              event: 'Talent'
-          },
-          order: [
-              ['judgeNo', 'ASC']
-          ]
-      });
-
-      var coronationJudges  =  yield Judge.findAll({
-          where:{
-              judgeNo: {
-                  $ne: 999
-              },
-              event: 'Coronation'
-          },
-          order: [
-              ['judgeNo', 'ASC']
-          ]
-      });
-
-      var candidatesFemale  =  yield Candidate.findAll({
-          where:{
-              gender:'F'
-          },
-          order: [
-              ['candidateNo', 'ASC']
-          ]
-      });
-
-
-      var result={
-         rankingfemale:[],
-      };
-       // after there is per judge property that list the score
-
-      // ==================== get ranking for males ====================
-
-      // ==================== get ranking for females ====================
-      for(var c=0; c< candidatesFemale.length;c++) {
-          var candidate = candidatesFemale[c];
-          var newItem = {};
-          newItem.name=candidate.name;
-          newItem.candidateNo=candidate.candidateNo;
-
-          var allaverage = [];
-          try {
-
-            coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
-                   "  avg(swimsuit) as avg_swimsuit, " +
-                   " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
-                   "  from scores where candidateNo=?  and gender='F' and event='Coronation' limit 1",
-                   { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
-
-            talentAllAverage = yield sequelize.query("select avg(talent) as avg_talent" +
-                   "  from scores where candidateNo=?  and gender='F' and event='Talent' limit 1",
-                   { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
-
-          }catch(e){
-              console.log(e.message);
-          }
-
-          //=====coronation averages=====\\
-          if(coronationAllAverage.length > 0){
-              var average = coronationAllAverage[0];
-
-              newItem.production  = (average.avg_production || 0) * 0.15;
-              newItem.swimsuit  =  (average.avg_swimsuit || 0) * 0.10;
-              newItem.formalWear  =  (average.avg_formalWear || 0) * 0.20;
-              newItem.qa  =  (average.avg_qa || 0) * 0.30;
-
-
-          }
-          else {
-              newItem.production  = 0;
-              newItem.swimsuit  = 0;
-              newItem.formalWear  = 0;
-              newItem.qa  = 0;
-              newItem.totalAverage= 0;
-          }
-
-          //======talent averages=====\\
-          if(talentAllAverage.length > 0){
-              var average = talentAllAverage[0];
-
-              newItem.talent  = (average.avg_talent || 0) * 0.15;
-
-          }
-          else {
-              newItem.talent  = 0;
-          }
-
-          newItem.totalAverage= newItem.production +  newItem.talent +
-              newItem.swimsuit + newItem.formalWear + 
-              newItem.qa  ;
-
-
-          result.rankingfemale.push(newItem);
-      }
-      // ==================== get ranking for females ====================
-
-
-
-      // ======================================
-
       
-      result.rankingfemale.sort(function(a,b){
-          if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
-              return -1;
+          var talentJudges  =  yield Judge.findAll({
+              where:{
+                  judgeNo: {
+                      $ne: 999
+                  },
+                  event: 'Talent'
+              },
+              order: [
+                  ['judgeNo', 'ASC']
+              ]
+          });
 
-          if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
-              return 1;
+          var coronationJudges  =  yield Judge.findAll({
+              where:{
+                  judgeNo: {
+                      $ne: 999
+                  },
+                  event: 'Coronation'
+              },
+              order: [
+                  ['judgeNo', 'ASC']
+              ]
+          });
 
-          return 0;
-      });
+          var candidatesFemale  =  yield Candidate.findAll({
+              where:{
+                  gender:'F'
+              },
+              order: [
+                  ['candidateNo', 'ASC']
+              ]
+          });
 
-      for(var i = 0;i<result.rankingfemale.length;i++){
-        if(i === 5){
-          break;
-        }
-        var candidateScore = result.rankingfemale[i]
-        
-        var candidate = yield Candidate.find({
-          where:{
-            candidateNo: candidateScore.candidateNo
+
+          var result={
+            rankingfemale:[],
+          };
+          // after there is per judge property that list the score
+
+          // ==================== get ranking for females ====================
+          for(var c=0; c< candidatesFemale.length;c++) {
+              var candidate = candidatesFemale[c];
+              var newItem = {};
+              newItem.name=candidate.name;
+              newItem.candidateNo=candidate.candidateNo;
+
+              var allaverage = [];
+              try {
+
+                coronationAllAverage = yield sequelize.query("select avg(production) as avg_production, " +
+                      "  avg(swimsuit) as avg_swimsuit, " +
+                      " avg(formalWear) as avg_formalWear, avg(qa) as avg_qa " +
+                      "  from scores where candidateNo=?  and gender='F' and event='Coronation' limit 1",
+                      { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+                talentAllAverage = yield sequelize.query("select avg(talent) as avg_talent" +
+                      "  from scores where candidateNo=?  and gender='F' and event='Talent' limit 1",
+                      { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+
+              }catch(e){
+                  console.log(e.message);
+              }
+
+              //=====coronation averages=====\\
+              if(coronationAllAverage.length > 0){
+                  var average = coronationAllAverage[0];
+
+                  newItem.production  = (average.avg_production || 0) * 0.10;
+                  newItem.swimsuit  =  (average.avg_swimsuit || 0) * 0.25;
+                  newItem.formalWear  =  (average.avg_formalWear || 0) * 0.25;
+                  newItem.qa  =  (average.avg_qa || 0) * 0.30;
+
+
+              }
+              else {
+                  newItem.production  = 0;
+                  newItem.swimsuit  = 0;
+                  newItem.formalWear  = 0;
+                  newItem.qa  = 0;
+                  newItem.totalAverage= 0;
+              }
+
+              //======talent averages=====\\
+              if(talentAllAverage.length > 0){
+                  var average = talentAllAverage[0];
+
+                  newItem.talent  = (average.avg_talent || 0) * 0.10;
+
+              }
+              else {
+                  newItem.talent  = 0;
+              }
+
+              newItem.totalAverage= newItem.production +  newItem.talent +
+                  newItem.swimsuit + newItem.formalWear + 
+                  newItem.qa  ;
+
+
+              result.rankingfemale.push(newItem);
           }
-        })
+          // ==================== get ranking for females ====================
 
-        FinalroundCandidate.create({
-          candidateNo: candidate.candidateNo,
-          name: candidate.name,
-          age: candidate.age,
-          address: candidate.address,
-          gender: 'F'
-        }).catch(function(err){
-          res.sendStatus(404)
-        })
+          result.rankingfemale.sort(function(a,b){
+              if (parseFloat(a.totalAverage) > parseFloat(b.totalAverage))
+                  return -1;
 
-      }
+              if (parseFloat(a.totalAverage) < parseFloat(b.totalAverage))
+                  return 1;
 
-      var topFive = FinalroundCandidate.findAll()
+              return 0;
+          });
 
-      return topFive;
+          //getting the top five
+    
+          var topFive = result.rankingfemale.splice(0,5)
+
+          var shuffled = topFive.map(a => [Math.random(), a])
+          .sort((a, b) => a[0] - b[0])
+          .map(a => a[1]);
+          
+          
+          
+          for (let f = 0; f < shuffled.length; f++) {
+            const candidate = shuffled[f];
+
+            var candidateInfo = yield Candidate.find({
+              where:{
+                candidateNo: candidate.candidateNo
+              }
+            })
+
+            FinalroundCandidate.create({
+              candidateNo: candidateInfo.candidateNo,
+              name: candidateInfo.name,
+              age: candidateInfo.age,
+              address: candidateInfo.address,
+              gender: candidateInfo.gender
+            }).catch(function (err) {
+              sequelize.query("DELETE FROM finalroundcandidates",
+                      { replacements: [candidate.candidateNo], type: sequelize.QueryTypes.SELECT });
+              res.status(404).json(err.message)
+            })
+            
+            
+          }
+
+          console.log(shuffled);
+          
+          CoronationStatus.find({
+            where:{
+              event: "Final"
+            }
+          }).then(function (final) {
+              final.update({
+                status:true
+              })
+          }).catch(function (err) {
+              res.sendStatus(404)
+          })
+
       }).then((result)=>{
           res.status(200).json(result);
       }).catch(function(error){
 
           res.status(404).send(error.message);
       });
+
 
   })
 
