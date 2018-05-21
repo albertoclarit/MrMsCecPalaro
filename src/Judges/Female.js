@@ -160,6 +160,9 @@ class Female extends React.Component {
          if( this.props.femalescoring.candidates.length==0)
            return null;
 
+        if(!this.props.femalescoring.control.admin)
+        return null;
+
         var production = "";
           if(this.props.femalescoring.currentScore.production)
               production = this.props.femalescoring.currentScore.production.toFixed(1);
