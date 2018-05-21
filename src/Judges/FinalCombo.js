@@ -103,14 +103,34 @@ class Coronation extends React.Component {
                 <Well>
                     <form>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Interview <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
-                            <ScoreCombo onChange ={this.onScore('interview')}
-                                value = {interview}/>
+                            <ControlLabel style={fontSize2}>
+                            Interview 
+                            {
+                              this.props.score.control.judge.f_interview === "CONFIRMED" ? 
+                                <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                              :
+                                <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                            }
+                            </ControlLabel>
+                            <ScoreCombo 
+                              onChange ={this.onScore('interview')}
+                              disabled={this.props.score.control.admin.f_interview === "ACTIVE" ? false : true }
+                              value = {interview}/>
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Poise and Charm</ControlLabel>
+                            <ControlLabel style={fontSize2}>
+                            Poise and Charm
+                            {
+                              this.props.score.control.judge.f_poise === "CONFIRMED" ? 
+                                <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                              :
+                                <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                            }
+                            </ControlLabel>
                             <ScoreCombo onChange ={this.onScore('poise')}
-                                        value = {poise}/>
+                                        disabled={this.props.score.control.admin.f_poise === "ACTIVE" ? false : true }
+                                        value = {poise
+                                        }/>
                         </FormGroup>
                     </form>
                </Well>

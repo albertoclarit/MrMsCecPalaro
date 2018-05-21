@@ -20,6 +20,7 @@ import { routerActions } from 'react-router-redux'
 import ScoreCombo from './ScoreCombo'
 
 import * as femaleScoringActions from '../actions/femalescoringactions.js'
+import Icon from 'antd/lib/icon'
 
 
 class Talent extends React.Component {
@@ -101,8 +102,17 @@ class Talent extends React.Component {
           <Well>
             <form>
                 <FormGroup >
-                    <ControlLabel style={fontSize2}>Talent</ControlLabel>
+                    <ControlLabel style={fontSize2}>
+                    Talent
+                    {
+                      this.props.score.control.judge.talent === "CONFIRMED" ? 
+                        <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                      :
+                        <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                    }
+                    </ControlLabel>
                     <ScoreCombo 
+                      disabled={this.props.score.control.admin.talent === "ACTIVE" ? false : true }
                       onChange ={this.onScore('talent')}
                       value = {talent}
                       addTo={0.1}

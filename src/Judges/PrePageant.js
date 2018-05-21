@@ -26,6 +26,8 @@ import pic5 from '../../images/Female/5.jpg'
 
 import * as femaleScoringActions from '../actions/femalescoringactions.js'
 
+import Icon from 'antd/lib/icon'
+
 
 class PrePageant extends React.Component {
 
@@ -106,8 +108,17 @@ class PrePageant extends React.Component {
           <Well>
             <form>
                 <FormGroup >
-                    <ControlLabel style={fontSize2}>Production</ControlLabel>
+                    <ControlLabel style={fontSize2}>
+                    Production
+                    {
+                      this.props.score.control.judge.production === "CONFIRMED" ? 
+                        <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                      :
+                        <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                    }
+                    </ControlLabel>
                     <ScoreCombo onChange ={this.onScore('production')}
+                      disabled={this.props.score.control.admin.talent === "ACTIVE" ? false : true }
                         addTo={1}
                         value={production}/>
                 </FormGroup>

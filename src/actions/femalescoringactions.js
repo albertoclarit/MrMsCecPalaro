@@ -218,3 +218,30 @@ export const loadAllScores = () => {
     })
   }
 }
+
+export const getConfirms = () =>{
+  return (dispatcher,getState) =>{
+    Promise.coroutine( function *(){
+
+      var {account} = getState().auth 
+
+      var adminConfirm = yield axios.get('/api/control/')
+
+      var judgeConfirm = yield axios.get('/api/control/'+account.judgeNo)
+
+
+      return {
+        admin: adminConfirm.data,
+        judge: judgeConfirm.data
+      }
+
+  })().then(control=>{
+      dispatcher({
+        type: types.CONTROL_GET_STATUS,
+        control
+      })
+  }).catch(err=>{
+      console.log(err)
+  })
+  }
+}

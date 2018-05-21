@@ -117,32 +117,54 @@ class Coronation extends React.Component {
                 <Well>
                     <form>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Production <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} /> </ControlLabel>
+                            <ControlLabel 
+                              style={fontSize2}
+                              >Swimsuit 
+                              {
+                                this.props.score.control.judge.swimsuit === "CONFIRMED" ? 
+                                  <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                                :
+                                  <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                              }
+                              </ControlLabel>
                             <ScoreCombo 
-                              onChange ={this.onScore('production')}
-                              addTo={1}
-                              value = {production}
-                            />
-                        </FormGroup>
-                        <FormGroup >
-                            <ControlLabel style={fontSize2}>Swimsuit</ControlLabel>
-                            <ScoreCombo 
+                              disabled = {this.props.score.control.admin.swimsuit === "ACTIVE" ? false : true}
                               onChange ={this.onScore('swimsuit')}
                               addTo={1}
                               value = {swimsuit}
                             />
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Evening Gown</ControlLabel>
+                            <ControlLabel 
+                              style={fontSize2}
+                              >Evening Gown 
+                              {
+                                this.props.score.control.judge.gown === "CONFIRMED" ? 
+                                  <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                                :
+                                  <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                              }
+                              </ControlLabel>
                             <ScoreCombo 
+                              disabled = {this.props.score.control.admin.gown === "ACTIVE" ? false : true}
                               onChange ={this.onScore('formalWear')}
                               addTo={1}
                               value = {formalWear}
                             />
                         </FormGroup>
                         <FormGroup >
-                            <ControlLabel style={fontSize2}>Interview</ControlLabel>
+                            <ControlLabel 
+                              style={fontSize2}
+                              >Interview
+                              {
+                                this.props.score.control.judge.interview === "CONFIRMED" ? 
+                                  <Icon type="check-circle-o" style={{ color: '#2ecc71', marginLeft: 5 }} />
+                                :
+                                  <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
+                              }
+                              </ControlLabel>
                             <ScoreCombo 
+                              disabled = {this.props.score.control.admin.interview === "ACTIVE" ? false : true}
                               onChange ={this.onScore('qa')}
                               addTo={1}
                               value = {qa}

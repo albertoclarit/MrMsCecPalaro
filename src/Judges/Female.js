@@ -38,6 +38,7 @@ import pic17 from '../../images/Female/17.jpg'
 import pic18 from '../../images/Female/18.jpg'
 
 import * as femaleScoringActions from '../actions/femalescoringactions.js'
+import * as controlActions from '../actions/controlactions'
 
 import Talent from './Talent';
 import Coronation from './Coronation';
@@ -48,13 +49,10 @@ class Female extends React.Component {
 
     constructor(props){
         super(props);
-
-
-
     }
 
     state = {
-        pic_reference:[]
+        pic_reference:[],
     };
 
       static contextTypes = {
@@ -89,12 +87,16 @@ class Female extends React.Component {
         pics.push(pic17);
         pics.push(pic18);
 
-
-
         this.setState({
             pic_reference:pics
         })
+        this.props.femaleScoringActions.getConfirms()
+    }
 
+    componentWillUnmount(){
+
+        if( this.interval)
+            clearInterval( this.interval);
     }
 
 
@@ -110,8 +112,11 @@ class Female extends React.Component {
 
 
      componentDidMount(){
-         this.props.femaleScoringActions.loadFemaleCandidates(this.props.auth.account.judgeNo,this.props.auth.account.event);
-     }
+        this.props.femaleScoringActions.loadFemaleCandidates(this.props.auth.account.judgeNo,this.props.auth.account.event);
+        this.interval = setInterval(()=>{
+          this.props.femaleScoringActions.getConfirms();
+        },2500); // every 1.5 seconds refresh
+      }
 
     onScore=(name,value,event)=>{
             this.props.femaleScoringActions.updateAndSave(name,value,event);
@@ -432,7 +437,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         routerActions: bindActionCreators(routerActions, dispatch),
-        femaleScoringActions: bindActionCreators(femaleScoringActions, dispatch)
+        femaleScoringActions: bindActionCreators(femaleScoringActions, dispatch),
+        controlActions: bindActionCreators(controlActions, dispatch),
     }
 }
 

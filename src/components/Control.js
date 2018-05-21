@@ -190,7 +190,7 @@ class Control extends Component {
       const judge = final[a];
       
       finalContents.push(
-        <List.Item key={judge.judgeNo} >
+        <List.Item key={"final "+judge.judgeNo} >
           <b>{"Judge #"+judge.judgeNo}</b>
         </List.Item>
       )
@@ -198,7 +198,7 @@ class Control extends Component {
         const categories = final[a].categories[b]
         finalContents.push(
           <List.Item 
-            key={b + " " + judge.judgeNo }
+            key={b + " final " + judge.judgeNo }
             actions={[<Switch 
               checked={categories.status === "PENDING" ? false : true} 
               checkedChildren={categories.status}

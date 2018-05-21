@@ -105,7 +105,10 @@ class Scoreboard extends React.Component {
 
                talentTabs.push(
                    <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.talent.judgeScores[i].data.judgeNo}>
-                     <TalentResultsGrid judgeNo={i+1} judgeData ={this.props.finalranking.talent.judgeScores[i]}/>
+                     <TalentResultsGrid 
+                      judgeNo={i+1} 
+                      judgeData ={this.props.finalranking.talent.judgeScores[i]}
+                     />
                    </Tab>
                );
 
@@ -118,7 +121,10 @@ class Scoreboard extends React.Component {
 
                 coronationTabs.push(
                     <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.coronation.judgeScores[i].data.judgeNo}>
-                      <CoronationResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.coronation.judgeScores[i]}/>
+                      <CoronationResultsGrid 
+                        judgeNo={i+1} 
+                        judgeData = {this.props.finalranking.coronation.judgeScores[i]}
+                      />
                     </Tab>
                 );
 
@@ -131,7 +137,10 @@ class Scoreboard extends React.Component {
    
             productionTabs.push(
                        <Tab key={i} eventKey={i+1} title={"Judge #" + this.props.finalranking.production.judgeScores[i].data.judgeNo}>
-                         <PrePageantResultsGrid judgeNo={i+1} judgeData = {this.props.finalranking.production.judgeScores[i]}/>
+                         <PrePageantResultsGrid 
+                          judgeNo={i+1} 
+                          judgeData = {this.props.finalranking.production.judgeScores[i]}
+                         />
                        </Tab>
                    );
    
