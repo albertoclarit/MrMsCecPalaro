@@ -17,6 +17,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux'
 import Icon from 'antd/lib/icon'
+import AButton from 'antd/lib/button'
+import Popover from 'antd/lib/popover'
 
 import ScoreCombo from './ScoreCombo'
 
@@ -126,6 +128,8 @@ class Coronation extends React.Component {
                                 :
                                   <Icon type="close-circle-o" style={{ color: '#e74c3c', marginLeft: 5 }} />
                               }
+                              <Popover placement="topLeft" title={"Criteria"} content={"hello"} trigger="click">
+                              </Popover>
                               </ControlLabel>
                             <ScoreCombo 
                               disabled = {this.props.score.control.admin.swimsuit === "ACTIVE" ? false : true}

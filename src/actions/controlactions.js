@@ -1,5 +1,6 @@
 import * as types from '../constants/ControlActionTypes'
 import axios from 'axios'
+import notification from 'antd/lib/notification'
 
 
 export const getAdminControls = () => {
@@ -111,6 +112,10 @@ export const activateAdmin = (category) =>{
     axios.put('/api/control/activateAdmin',{
       category:category
     }).then(()=>{
+      notification.success({
+        message: `Yeheeyy! It's a Success`,
+        description: `Success! ${category.toUpperCase()} has been Activated!`,
+      });
       dispatcher(getAdminControls())
     })
   }
@@ -123,6 +128,10 @@ export const activeJudge = (category,judgeNo,tab) =>{
       category:category,
       judgeNo: judgeNo
     }).then(()=>{
+      notification.success({
+        message: `Yeheeyy! It's a Success`,
+        description: `Success! ${category.toUpperCase()} has been Confirmed!`,
+      });
       if(tab === "Talent"){
         dispatcher(getTalentControls())
       }else if(tab === "Production"){
@@ -214,6 +223,10 @@ export const perJudgeActivate = (category,judgeNo) =>{
       category:category,
       judgeNo: judgeNo
     }).then(()=>{
+      notification.success({
+        message: `Yeheeyy! It's a Success`,
+        description: `Success! ${category.toUpperCase()} has been Confirmed!`,
+      });
         dispatcher(perJudgeControls(judgeNo))
     })
   }
