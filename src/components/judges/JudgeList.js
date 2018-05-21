@@ -11,12 +11,17 @@ import { connect } from 'react-redux';
 import * as dialogActions  from '../../actions/dialogactions';
 import * as judgelistingactions  from '../../actions/judgelistingactions';
 import { routerActions } from 'react-router-redux'
+import { Modal,Row,Col } from 'antd';
 
 
  class JudgeList extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
+        this.state={
+            modal1: false,
+            modal2: false
+        }
 
     }
 
@@ -37,6 +42,33 @@ import { routerActions } from 'react-router-redux'
              this.props.routerActions.push('/admin/judgeslist/'+ id);
          };
      };
+
+     showModal1 = () =>{
+         this.setState({
+             modal1: true
+         });
+     }
+
+     showModal2 = () =>{
+        this.setState({
+            modal2: true
+        });
+    }
+
+     handleOk = (e) => {
+        console.log(e);
+        this.setState({
+          modal1: false,
+          modal2: false
+        });
+      }
+      handleCancel = (e) => {
+        console.log(e);
+        this.setState({
+          modal1: false,
+          modal2: false
+        });
+      }
 
 
     render(){
@@ -77,8 +109,33 @@ import { routerActions } from 'react-router-redux'
                     {rows}
                     </tbody>
                 </Table>
-                <Button bsStyle="primary" bsSize="small" onClick={this.addJudge}>Add a Judge </Button>
+                <Row>
+                    <Col span={8}><Button bsStyle="primary" bsSize="small" onClick={this.addJudge}>Add a Judge </Button></Col>
+                    <Col span={2} offset={13}><Button bsStyle="primary" bsSize="small" onClick={this.showModal1}>Modal1</Button></Col>
+                    <Col span={1}><Button bsStyle="primary" bsSize="small" onClick={this.showModal2}>Modal2</Button></Col>
+                </Row>
 
+                <Modal
+                title="Modal 1"
+                visible={this.state.modal1}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
+
+                <Modal
+                title="Modal 2"
+                visible={this.state.modal2}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+                >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Modal>
 
             </Well>
         );
