@@ -98,17 +98,18 @@ class PrePageant extends React.Component {
          if( this.props.femalescoring.candidates.length==0)
            return null;
 
-        var prepageant = "";
-          if(this.props.femalescoring.currentScore.prepageant)
-            prepageant = this.props.femalescoring.currentScore.prepageant.toFixed(1);
+        var production = "";
+          if(this.props.femalescoring.currentScore.production)
+            production = this.props.femalescoring.currentScore.production.toFixed(1);
 
         return (
           <Well>
             <form>
                 <FormGroup >
-                    <ControlLabel style={fontSize2}>Pre-pageant</ControlLabel>
-                    <ScoreCombo onChange ={this.onScore('prepageant')}
-                        value={prepageant}/>
+                    <ControlLabel style={fontSize2}>Production</ControlLabel>
+                    <ScoreCombo onChange ={this.onScore('production')}
+                        addTo={1}
+                        value={production}/>
                 </FormGroup>
             </form>
          </Well>

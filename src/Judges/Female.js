@@ -280,6 +280,58 @@ class Female extends React.Component {
             </Grid>
             </div>
           )
+        }else if(this.props.auth.account.event === "Production"){
+          return(
+            <div>
+              <Grid>
+                <h3 style={titleStyle}>Female Scoring </h3>
+                <Col md={6} mdPull={1}  >
+                  <div style={imageStyle}>
+                    <Image src={this.state.pic_reference[this.props.femalescoring.activeCandidate]} circle  width="300" height="400"/>
+                    <div style={nameStyle}>
+                      <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].candidateNo}</h4>
+                      <h5>Candidate #</h5>
+                    </div>
+                    <div style={nameStyle}>
+                      <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].name}</h4>
+                      <h5>Name</h5>
+                    </div>
+                    <div style={nameStyle}>
+                      <h4 style={textUnderline}>{this.props.femalescoring.candidates[this.props.femalescoring.activeCandidate].address + ", Loboc"}</h4>
+                      <h5>Barangay</h5>
+                    </div>
+                  </div>
+                </Col>
+                <Col md={6}  mdPull={1} >
+                  <br />
+                  <PrePageant
+                    gender="female"
+                    previousCandidate={this.previousCandidate}
+                    nextCandidate={this.nextCandidate}
+                    onScore={this.onScore}
+                    goToMale={this.goToMale}
+                    score={this.props.femalescoring}
+                    />
+                  <div style={buttonStyle}>
+                      {this.props.femalescoring.activeCandidate > 0 ?
+                      (<Button bsSize="small" onClick={this.previousCandidate}  bsStyle="primary" type="button" block>
+                          PREVIOUS </Button>)
+                          :
+                          <Button bsSize="small" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                          PREVIOUS </Button>}
+
+                      {this.props.femalescoring.activeCandidate < this.props.femalescoring.candidates.length  -1 ?
+                          ( <Button bsSize="small" onClick={this.nextCandidate} bsStyle="primary" type="button" block>
+                              NEXT </Button>)
+                          :
+                           <Button bsSize="small" onClick={this.previousCandidate}  bsStyle="primary" type="button" disabled block>
+                           NEXT </Button>
+                      }
+                  </div>
+                </Col>
+            </Grid>
+            </div>
+          )
         }
 
 

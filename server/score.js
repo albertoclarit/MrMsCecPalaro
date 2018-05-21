@@ -1049,7 +1049,7 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
 
 
                     var production =
-                        yield  sequelize.query("select production from scores where candidateNo=? and judgeNo=? and event='Coronation' and gender='F' limit 1",
+                        yield  sequelize.query("select production from scores where candidateNo=? and judgeNo=? and event='Production' and gender='F' limit 1",
                             { replacements: [candidate.candidateNo,judge.judgeNo], type: sequelize.QueryTypes.SELECT });
 
 
@@ -1636,8 +1636,17 @@ module.exports = function (sequelize,Score,Candidate,Judge) {
          }).catch((err) => {
            res.sendStatus(404)
          })
-      }else{
-
+      }else if(event === "Production"){
+        sequelize.query("select S.candidateNo as candidateNo, " +
+        "S.production as production, " +
+        "C.name as name from scores S, candidates C " +
+        "where S.candidateNo = C.candidateNo " +
+        "and event= '"+event + "' and judgeNo= "+judgeNo)
+          .spread(function(records, metadata) {
+            res.status(200).json(records);
+         }).catch((err) => {
+           res.sendStatus(404)
+         })
       }
 
       

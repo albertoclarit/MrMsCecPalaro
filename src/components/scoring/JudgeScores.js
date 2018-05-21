@@ -128,6 +128,22 @@ class JudgeScores extends Component {
       dataIndex: 'talent',
       sorter: (a, b) => a.talent - b.talent,
     }];
+    
+    const productionColumn = [{
+      title: 'Number',
+      dataIndex: 'candidateNo',
+      defaultSortOrder: 'ascend',
+      // specify the condition of filtering result
+      // here is that finding the name started with `value`
+      sorter: (a, b) => a.candidateNo - b.candidateNo,
+    }, {
+      title: 'Name',
+      dataIndex: 'name',
+    }, {
+      title: 'Production',
+      dataIndex: 'production',
+      sorter: (a, b) => a.production - b.production,
+    }];
 
     const finalColumn = [
 
@@ -139,8 +155,8 @@ class JudgeScores extends Component {
       column = talentColumn
     else if(event === "Coronation")
       column = coronationColumn
-    else
-      column = finalColumn
+    else if(event === "Production")
+      column = productionColumn
 
     return(
       <div>
